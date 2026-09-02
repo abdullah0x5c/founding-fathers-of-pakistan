@@ -1,0 +1,130 @@
+.card {
+  display: flex;
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(201, 169, 107, 0.28);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms ease-out;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateX(6px);
+  box-shadow: 0 0 0 1px rgba(201, 169, 107, 0.9);
+}
+
+/* The year set vertically in the spine. Undated items say so rather than
+   showing an empty rail — a blank there reads as a rendering fault. "Undated"
+   is set at full gold rather than dimmed: it carries information, and a dimmed
+   gold on this green does not reach AA at this size. The smaller size and
+   tighter tracking are what distinguish it from a date. */
+.spine {
+  flex: 0 0 54px;
+  background: var(--ground-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spineText {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  white-space: nowrap;
+  padding: 14px 0;
+}
+
+.spineUndated {
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  font-size: 0.5625rem;
+}
+
+.body {
+  flex: 1;
+  padding: 18px 20px;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.urdu {
+  color: var(--urdu-muted);
+  font-size: 1.0625rem;
+}
+
+.byline {
+  margin-top: 4px;
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+.meta {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tag {
+  color: var(--gold-deep);
+  border: 1px solid currentColor;
+  padding: 1px 5px;
+  margin-right: 8px;
+}
+
+/* Editions of the same work, indented under the parent rather than listed
+   beside it — a translation is not a second work. */
+.editions {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(86, 104, 96, 0.28);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.edition {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-left: 14px;
+  border-left: 2px solid rgba(201, 169, 107, 0.5);
+}
+
+.open {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+@media (max-width: 560px) {
+  .open {
+    display: none;
+  }
+  .body {
+    padding: 15px 16px;
+  }
+}

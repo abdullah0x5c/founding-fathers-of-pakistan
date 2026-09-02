@@ -1,0 +1,126 @@
+.frame {
+  background: var(--ground-sunk);
+  border: 1px solid rgba(201, 169, 107, 0.26);
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--on-ground-12);
+}
+
+.barLabel {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-ground-62);
+}
+
+.download {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ground);
+  background: var(--gold);
+  padding: 9px 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.download:hover {
+  background: var(--gold-bright);
+  color: var(--ground);
+}
+
+.downloadOff {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-ground-62);
+  border: 1px solid var(--on-ground-12);
+  padding: 8px 14px;
+  white-space: nowrap;
+}
+
+/* The stage is a mid neutral, not near black. Aged and yellowed paper against
+   near black reads as dirty; this is dark enough to frame a scan and let it
+   read as bright without souring the paper tone. */
+.stage {
+  background: var(--stage);
+  padding: 0;
+}
+
+.embed {
+  display: block;
+  width: 100%;
+  height: min(78vh, 900px);
+  border: 0;
+}
+
+.pending {
+  background: var(--stage);
+  min-height: min(34vh, 320px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: clamp(32px, 6vw, 72px) 20px;
+  text-align: center;
+}
+
+.pendingLabel {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.pendingMeta {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-ground-62);
+}
+
+.pendingBody {
+  margin: 6px 0 0;
+  max-width: 46ch;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--on-ground-86);
+  text-wrap: pretty;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid var(--on-ground-12);
+  font-family: var(--mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-ground-62);
+}
+
+.scanNote {
+  padding: 12px 16px;
+  border-top: 1px solid var(--on-ground-12);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--on-ground-86);
+  text-wrap: pretty;
+}

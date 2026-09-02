@@ -1,0 +1,54 @@
+.row {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  column-gap: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--on-ground-12);
+}
+
+.label {
+  font-family: var(--mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-top: 5px;
+}
+
+.value {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--on-ground-86);
+}
+
+/* the same pair set on a light plate */
+.rowPaper {
+  border-bottom: none;
+  padding-bottom: 0;
+  display: block;
+}
+
+.labelPaper {
+  font-family: var(--mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.valuePaper {
+  margin-top: 5px;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+@media (max-width: 420px) {
+  .row {
+    grid-template-columns: 1fr;
+    row-gap: 2px;
+  }
+  .label {
+    padding-top: 0;
+  }
+}

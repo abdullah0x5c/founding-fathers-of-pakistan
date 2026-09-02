@@ -1,0 +1,26 @@
+.box {
+  margin: 28px 0 0;
+  border: 1px dashed var(--gold-deep);
+  background: rgba(142, 43, 36, 0.08);
+  padding: 14px 16px;
+}
+
+.head {
+  font-family: var(--mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.list {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--on-ground-86);
+}
+
+.list li + li {
+  margin-top: 6px;
+}

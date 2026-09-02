@@ -1,0 +1,219 @@
+.main {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 60px);
+}
+
+.crumb {
+  padding: 28px 0 0;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-ground-62);
+}
+
+.crumb a {
+  text-decoration: none;
+}
+
+.slash {
+  color: rgba(201, 169, 107, 0.7);
+  padding: 0 4px;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 3.4vw, 56px);
+  padding: clamp(24px, 3.4vw, 48px) 0 clamp(40px, 7vw, 90px);
+  align-items: flex-start;
+}
+
+/* Left: the plate. A light card on the dark ground, arched at the head. */
+.plate {
+  flex: 1 1 420px;
+  max-width: 560px;
+  position: sticky;
+  top: 88px;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 50% 50% 3px 3px / 13% 13% 3px 3px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(201, 169, 107, 0.4);
+}
+
+.portraitFrame {
+  position: relative;
+  aspect-ratio: 4 / 3.4;
+  background: var(--paper-sunk);
+}
+
+.portrait {
+  object-fit: cover;
+  object-position: center 20%;
+  filter: grayscale(1) contrast(1.05) brightness(1.06);
+}
+
+/* Same duotone as the index plates, so a figure looks the same in both places. */
+.duotone {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--plate-bg);
+  mix-blend-mode: soft-light;
+  opacity: 0.6;
+}
+
+.plateBody {
+  padding: clamp(24px, 3vw, 40px) clamp(22px, 3vw, 42px) clamp(30px, 3.4vw, 46px);
+}
+
+.plateTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.plateN {
+  color: var(--gold-deep);
+}
+
+.name {
+  margin: 14px 0 0;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 3.2vw, 2.9rem);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+}
+
+.nameUrdu {
+  margin-top: 4px;
+  color: var(--urdu-muted);
+  font-size: 1.5rem;
+}
+
+.plateRule {
+  height: 1px;
+  border: 0;
+  background: rgba(168, 140, 78, 0.5);
+  margin: 24px 0 22px;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 18px 22px;
+}
+
+.bio p {
+  margin: 0 0 15px;
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.bio p:last-child {
+  margin-bottom: 0;
+}
+
+/* Right: the shelf. */
+.shelf {
+  flex: 1 1 480px;
+  min-width: 300px;
+}
+
+.shelfHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.shelfTitle {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.shelfCount {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-ground-62);
+  text-align: right;
+}
+
+.note {
+  margin: 20px 0 0;
+  padding: 14px 16px;
+  border-left: 2px solid var(--rule);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--on-ground-86);
+  text-wrap: pretty;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.foot {
+  margin-top: 26px;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  line-height: 2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-ground-62);
+}
+
+/* Jinnah. The emptiest page in the collection, and the one that best shows
+   the method — so it gets a real explanation rather than a blank table. */
+.empty {
+  margin-top: 22px;
+  border: 1px solid var(--rule-soft);
+  background: var(--ground-sunk);
+  padding: clamp(20px, 3vw, 34px);
+}
+
+.emptyLabel {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.emptyBody {
+  margin: 14px 0 0;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--on-ground-86);
+  text-wrap: pretty;
+}
+
+.emptyBody + .emptyBody {
+  margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+  .plate {
+    position: static;
+  }
+}

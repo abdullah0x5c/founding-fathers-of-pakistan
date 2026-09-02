@@ -1,0 +1,17 @@
+# Source scans — 1.7 GB. These live on archive.org, not in git.
+content/
+
+# Design canvas export
+design-guide/*.zip
+
+# Node
+node_modules/
+.next/
+out/
+.env*.local
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# OS
+.DS_Store

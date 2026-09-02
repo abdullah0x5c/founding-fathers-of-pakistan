@@ -1,0 +1,198 @@
+/* ==========================================================================
+   Founding Fathers of Pakistan — design tokens
+   Extracted from design-guide/"Founding Fathers of Pakistan v2.dc.html",
+   the direction exported as design-guide/fff.pdf.
+   ========================================================================== */
+
+:root {
+  /* ground — the dark field the site sits on */
+  --ground: #0b3a2e;
+  --ground-sunk: #072a21;
+  --ground-raised: #0f4635;
+  --plate-bg: #12503e;
+
+  /* gold — the only accent colour in the system */
+  --gold: #c9a96b;
+  --gold-bright: #e4ce9c;
+  --gold-deep: #7a6224;
+
+  /* paper — light inset surfaces */
+  --paper: #ecefe6;
+  --paper-sunk: #dde2d7;
+  --ink: #16241f;
+  --ink-2: #2c3a34;
+  --muted: #566860;
+  --urdu-muted: #5a6b62;
+
+  /* viewer */
+  --stage: #2a3b34;
+
+  /* text on the ground */
+  --on-ground: #ecefe6;
+  --on-ground-86: rgba(236, 239, 230, 0.86);
+  --on-ground-70: rgba(236, 239, 230, 0.7);
+  --on-ground-62: rgba(236, 239, 230, 0.62);
+  --on-ground-12: rgba(236, 239, 230, 0.12);
+
+  /* hairlines */
+  --rule: rgba(201, 169, 107, 0.32);
+  --rule-soft: rgba(201, 169, 107, 0.24);
+
+  /* type */
+  --display: var(--font-display), Didot, "Bodoni MT", Georgia, serif;
+  --body: var(--font-body), Georgia, "Times New Roman", serif;
+  --mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --urdu: var(--font-urdu), var(--font-body), serif;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ground);
+  color: var(--on-ground);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--gold);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  color: var(--gold-bright);
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Type roles
+   -------------------------------------------------------------------------- */
+
+.display {
+  font-family: var(--display);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.display em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mono-sm {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Nastaliq descends steeply across the line; anything under ~2.0 collides.
+   Urdu also needs to sit 1.2–1.4x the Latin beside it to read as equivalent. */
+.urdu {
+  font-family: var(--urdu);
+  line-height: 2.1;
+  font-size: 1.2em;
+}
+
+/* --------------------------------------------------------------------------
+   Rules
+   -------------------------------------------------------------------------- */
+
+.rule-fade {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(to right, rgba(201, 169, 107, 0.7), rgba(201, 169, 107, 0));
+}
+
+/* --------------------------------------------------------------------------
+   Motion — the whole permitted list
+   -------------------------------------------------------------------------- */
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes softIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.rise-in {
+  animation: riseIn 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.soft-in {
+  animation: softIn 300ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
