@@ -84,7 +84,7 @@ Ameer Ali.pdf` is byte-identical to `Ethics of Islam` and is deliberately catalo
 
 Run `npm run dev` and read the dashed boxes. Every claim written from general knowledge
 rather than read off a scan is recorded in a `verify` array and rendered in development
-only — they never reach the production build. There are around ninety of them, mostly
+only — they never reach the production build. There are 82 of them, mostly
 dates and attributions. They are the launch checklist.
 
 Three things in particular need a decision rather than a check:
