@@ -1,5 +1,7 @@
 # Source scans — 1.7 GB. These live on archive.org, not in git.
-content/
+# Anchored to the repo root: without the leading slash this would also match
+# web/content/, which holds the site's TypeScript catalogue data, not scans.
+/content/
 
 # Design canvas export
 design-guide/*.zip
