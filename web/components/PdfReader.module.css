@@ -1,0 +1,110 @@
+.reader {
+  background: var(--stage);
+}
+
+.readerBar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--on-ground-12);
+  background: var(--stage);
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--on-ground-86);
+}
+
+.pageCount {
+  white-space: nowrap;
+}
+
+.grow {
+  flex: 1;
+}
+
+.zoomButton {
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  line-height: 1;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--on-ground-12);
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.zoomButton:hover:not(:disabled) {
+  background: var(--gold);
+  color: var(--ground);
+}
+
+.zoomButton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.status {
+  padding: clamp(32px, 6vw, 64px) 20px;
+  text-align: center;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--on-ground-86);
+}
+
+.progress {
+  display: block;
+  position: relative;
+  margin: 14px auto 0;
+  max-width: 220px;
+  height: 3px;
+  background: var(--on-ground-12);
+  overflow: hidden;
+}
+
+.progressBar {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+  transition: width 0.2s ease;
+}
+
+.progressBar[data-indeterminate] {
+  position: absolute;
+  top: 0;
+  width: 40% !important;
+  animation: indeterminate 1.2s ease-in-out infinite;
+}
+
+@keyframes indeterminate {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.pages {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+}
+
+.page {
+  position: relative;
+  width: 100%;
+  background: var(--ground-sunk);
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}

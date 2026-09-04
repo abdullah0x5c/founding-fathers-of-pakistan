@@ -1,6 +1,7 @@
 import { formatBytes, formatPages, iaDetails } from "@/lib/archive";
 import { r2Url } from "@/lib/storage";
 import type { Work } from "@/content/types";
+import PdfReader from "./PdfReader";
 import styles from "./WorkViewer.module.css";
 
 /**
@@ -9,9 +10,14 @@ import styles from "./WorkViewer.module.css";
  * Scans are hosted in a Cloudflare R2 bucket the site owns, under the same key as
  * the work's `sourceFile` — R2 was chosen over embedding archive.org's BookReader
  * so the collection isn't dependent on a third party's item lifecycle, and because
- * R2 charges nothing for egress even on a 392 MB file. The browser's own PDF
- * viewer renders the embed; R2 serves byte ranges (`Accept-Ranges: bytes`), so it
- * doesn't have to pull the whole file down before showing page one.
+ * R2 charges nothing for egress even on a 392 MB file. Rendering is a self-hosted
+ * pdf.js reader (`PdfReader`) rather than the browser's native PDF viewer: it
+ * renders one page at a time as it scrolls into view instead of leaving paging
+ * behavior up to whichever PDF plugin the visitor's browser happens to ship, and
+ * it streams byte ranges from R2 (`Accept-Ranges: bytes`, confirmed) rather than
+ * downloading the whole file — which only pays off because the PDFs served here
+ * have also been linearized ("Fast Web View") ahead of upload; see
+ * web/docs/pdf-reader-reference.md for the reader this is adapted from.
  *
  * `r2Key` is only ever set by scripts/check-r2-upload.py once a HEAD request has
  * confirmed the object is actually live with the right byte size — never by hand
@@ -44,13 +50,7 @@ export default function WorkViewer({ work }: { work: Work }) {
 
       {url ? (
         <div className={styles.stage}>
-          <iframe
-            className={styles.embed}
-            src={url}
-            title={`${work.title} — scanned document`}
-            allowFullScreen
-            loading="lazy"
-          />
+          <PdfReader url={url} title={work.title} />
         </div>
       ) : (
         <div className={styles.pending}>
