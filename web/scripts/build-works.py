@@ -7,6 +7,12 @@ import json, pathlib, sys
 seed = {r["sourceFile"]: r for r in json.load(open("content/works.seed.json"))}
 used = set()
 
+# Populated by scripts/generate-ia-upload.py once scans are uploaded to
+# archive.org, keyed by sourceFile. Absent entirely until the first upload —
+# an empty mapping here is the normal, expected state for a fresh checkout.
+IA_MAP_PATH = pathlib.Path("content/ia-map.json")
+ia_map = json.loads(IA_MAP_PATH.read_text()) if IA_MAP_PATH.exists() else {}
+
 RIGHTS_PD = ("Public domain in Pakistan, where copyright runs for the author's life plus fifty years. "
              "Rights in the scan itself may rest separately with the institution that produced it.")
 RIGHTS_MODERN = ("The underlying text is in the public domain, but this printing carries modern editorial "
@@ -300,10 +306,17 @@ for r in W:
     out.append(f'    intro:\n      {q(r["intro"])},')
     if r.get("scanNote"):
         out.append(f'    scanNote:\n      {q(r["scanNote"])},')
-    if r.get("ia"):
-        out.append(f'    iaIdentifier: {q(r["ia"])},')
-    if r.get("iaFile"):
-        out.append(f'    iaFilename: {q(r["iaFile"])},')
+    # A manual `ia=`/`iaFile=` on the entry above wins (that's how the one demo
+    # record points at an existing Internet Archive item instead of an upload
+    # of the local scan); otherwise fall back to what the last bulk upload
+    # recorded in content/ia-map.json.
+    mapped = ia_map.get(r["sourceFile"], {})
+    ia_id = r.get("ia") or mapped.get("identifier")
+    ia_file = r.get("iaFile") or mapped.get("filename")
+    if ia_id:
+        out.append(f'    iaIdentifier: {q(ia_id)},')
+    if ia_file:
+        out.append(f'    iaFilename: {q(ia_file)},')
     out.append(f'    sourceFile: {q(r["sourceFile"])},')
     if r.get("secondary"):
         out.append("    secondary: true,")
@@ -313,12 +326,17 @@ for r in W:
         out.append("    editions: [")
         for e in r["editions"]:
             em = look(e["src"])
+            emapped = ia_map.get(e["src"], {})
             out.append("      {")
             out.append(f'        label: {q(e["label"])},')
             out.append(f'        lang: {q(e["lang"])},')
             out.append(f'        pages: {em["pages"]},')
             out.append(f'        bytes: {em["bytes"]},')
             out.append(f'        sourceFile: {q(e["src"])},')
+            if emapped.get("identifier"):
+                out.append(f'        iaIdentifier: {q(emapped["identifier"])},')
+            if emapped.get("filename"):
+                out.append(f'        iaFilename: {q(emapped["filename"])},')
             out.append("      },")
         out.append("    ],")
     if r.get("verify"):
@@ -332,9 +350,34 @@ out.append("];")
 out.append("")
 pathlib.Path("content/works.ts").write_text("\n".join(out) + "\n")
 
+# A machine-readable dump of the same catalogue, for scripts/generate-ia-upload.py
+# to read without having to parse the generated TypeScript. Not used by the site
+# itself and not something to hand-edit — it exists purely as a handoff between
+# these two scripts.
+catalog = []
+for r in W:
+    m = seed[r["sourceFile"]]
+    entry = {
+        "slug": r["slug"], "figure": r["figure"], "title": r["title"],
+        "titleUrdu": r.get("titleUrdu"), "year": r.get("year", ""), "kind": r["kind"],
+        "lang": r["lang"], "pages": m["pages"], "bytes": m["bytes"],
+        "intro": r["intro"], "sourceFile": r["sourceFile"], "secondary": bool(r.get("secondary")),
+        "alreadyMapped": r["sourceFile"] in ia_map or bool(r.get("ia")),
+        "editions": [],
+    }
+    for e in r.get("editions", []):
+        entry["editions"].append({
+            "label": e["label"], "lang": e["lang"], "sourceFile": e["src"],
+            "alreadyMapped": e["src"] in ia_map,
+        })
+    catalog.append(entry)
+pathlib.Path("content/works.catalog.json").write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n")
+
 missing = set(seed) - used
 print(f"{len(W)} catalogue entries covering {len(used)} scans")
 if missing:
     print("UNCATALOGUED SCANS:")
     for m_ in sorted(missing):
         print("  ", m_)
+if ia_map:
+    print(f"{len(ia_map)} scans already mapped to archive.org identifiers (content/ia-map.json)")

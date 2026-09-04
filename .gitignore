@@ -6,6 +6,12 @@
 # Design canvas export
 design-guide/*.zip
 
+# Bulk-upload working files (scripts/generate-ia-upload.py). Both hold absolute
+# local file paths and are meaningless on another machine; content/ia-map.json
+# is the durable, portable result and is tracked normally.
+web/scripts/ia-uploads.csv
+web/scripts/ia-plan.json
+
 # Node
 node_modules/
 .next/
@@ -17,3 +23,6 @@ next-env.d.ts
 
 # OS
 .DS_Store
+
+# Claude Code session/worktree state — not project content
+.claude/

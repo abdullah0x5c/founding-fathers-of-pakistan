@@ -20,32 +20,65 @@ variables, no build overrides.
 
 `content/` (1.7 GB of scans) is gitignored. It never needs to reach Vercel.
 
-## Bringing a document online
+## Bringing documents online
 
 Every work page already exists and shows its full record. Where a work has no
 `iaIdentifier`, the viewer shows a quiet "scan not yet online" panel instead of an
-embed. To bring one online:
+embed. There are two ways to fill that in.
 
-1. Upload the PDF to archive.org as its own item.
-2. **Set the item's language correctly.** For Urdu and Persian items this is what
-   makes BookReader paginate right to left. Getting it wrong is immediately obvious
-   to an Urdu reader and almost never noticed by the person who uploaded it.
-3. Add the identifier to the record in `content/works.ts`:
+### All of them at once (recommended)
 
-   ```ts
-   iaIdentifier: "asar-us-sanadid-urdu",
-   iaFilename: "asar-us-sanadid-urdu.pdf",   // optional, for the direct download link
-   ```
+`scripts/generate-ia-upload.py` turns "upload 50 PDFs and wire up 50 identifiers" into
+four commands, none of which touch an individual record by hand:
 
-That is the whole change. Commit and Vercel redeploys.
+```bash
+python3 scripts/build-works.py              # make sure content/works.catalog.json is current
+python3 scripts/generate-ia-upload.py plan  # -> scripts/ia-uploads.csv, scripts/ia-plan.json
 
-`iaFilename` is optional: without it the download button opens the item's file listing
-instead of the file itself, which is the safer default when the name inside the item
-isn't known.
+pip install internetarchive && ia configure # one-time: needs a free archive.org account
+ia upload --spreadsheet=scripts/ia-uploads.csv
 
-One record is already live — Aga Khan III's *India in Transition* points at an existing
-public-domain Archive item (`indiaintransitio00agakuoft`) so the embed path can be seen
-working. Replace it if you would rather serve your own scan.
+python3 scripts/generate-ia-upload.py confirm  # verifies each item is actually live
+python3 scripts/build-works.py                 # fills in iaIdentifier for the confirmed ones
+```
+
+`plan` assigns every scan a deterministic identifier (`ffop-<figure>-<work>`, or `-e2`,
+`-e3`, … for further editions of the same work), checks each one against the public
+archive.org metadata API so it won't collide with an existing item, and sets
+`page-progression: rl` on the Urdu and Persian items so BookReader paginates right to
+left without anyone having to remember that per item. `confirm` re-checks that same
+public API and only merges an identifier into `content/ia-map.json` — the file
+`build-works.py` reads — once the file is actually confirmed present on archive.org.
+Nothing on the live site can claim a document is online before that.
+
+Both commands are safe to re-run. `ia upload` skips files that already fully
+uploaded, so if the connection drops partway, running the same `ia upload` command again
+picks up where it left off; run `confirm` again afterward.
+
+`scripts/ia-uploads.csv` and `scripts/ia-plan.json` hold absolute local file paths and
+are gitignored — they're a working handoff to the `ia` CLI, not something to commit.
+`content/ia-map.json` is the durable result and does get committed.
+
+### One at a time
+
+For a single item — replacing a bad scan, adding one you found later — upload it to
+archive.org yourself and add the identifier directly:
+
+```ts
+iaIdentifier: "asar-us-sanadid-urdu",
+iaFilename: "asar-us-sanadid-urdu.pdf",   // optional, for the direct download link
+```
+
+either straight into `content/works.ts` for a one-off, or as `ia=`/`iaFile=` on the
+entry in `scripts/build-works.py` if it should survive the next regeneration. Set the
+item's language (or `page-progression` directly) on archive.org either way — it's what
+controls reading direction for Urdu and Persian items, and getting it wrong is
+immediately obvious to an Urdu reader and almost never noticed by the person who
+uploaded it.
+
+One record is already live this way — Aga Khan III's *India in Transition* points at an
+existing public-domain Archive item (`indiaintransitio00agakuoft`) so the embed path can
+be seen working. Replace it if you would rather serve your own scan.
 
 ## Where things live
 
@@ -55,11 +88,14 @@ working. Replace it if you would rather serve your own scan.
 | `content/figures.ts` | The eleven, with biographies |
 | `content/works.ts` | **Generated.** 47 catalogue entries over 50 scans |
 | `content/works.seed.json` | **Generated.** Measured page counts and byte sizes |
+| `content/works.catalog.json` | **Generated.** Machine-readable catalogue dump, read by `generate-ia-upload.py` |
+| `content/ia-map.json` | **Generated**, once uploads exist. `sourceFile` → confirmed archive.org identifier |
 | `lib/archive.ts` | archive.org URL builders, byte and page formatting |
 | `lib/catalogue.ts` | Lookups, shelf ordering, counts |
 | `components/WorkViewer.tsx` | The viewer. Single swap point for a custom reader |
 | `scripts/scan-content.mjs` | Walks `../content/`, measures every PDF |
 | `scripts/build-works.py` | Merges the prose table with the measurements |
+| `scripts/generate-ia-upload.py` | Bulk-upload pipeline — see "Bringing documents online" above |
 
 ### Regenerating the catalogue
 
