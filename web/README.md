@@ -2,7 +2,7 @@
 
 A reading archive of the primary writings of eleven figures in the making of Pakistan.
 Next.js App Router, fully static, deployed on Vercel. The scans themselves are hosted
-on the Internet Archive and read through their embedded BookReader.
+in a Cloudflare R2 bucket the site owns, and read through the browser's own PDF viewer.
 
 ## Running it
 
@@ -15,70 +15,68 @@ npm run build    # 11 figure routes + 61 work routes + / and /about
 ## Deploying to Vercel
 
 The repository root is the archive folder; the site lives in `web/`. When importing the
-project, set **Root Directory** to `web`. Everything else is defaults — no environment
-variables, no build overrides.
+project, set **Root Directory** to `web`. Everything else is defaults — no build
+overrides.
 
-`content/` (1.7 GB of scans) is gitignored. It never needs to reach Vercel.
+One optional environment variable: `NEXT_PUBLIC_R2_BASE_URL`, the bucket's public URL.
+`lib/storage.ts` falls back to the current one if it's unset, so it isn't required —
+set it only if you move to a custom domain instead of the `r2.dev` one, so a domain
+change doesn't need a code change too.
+
+`content/` (1.7 GB of scans) is gitignored. It never needs to reach Vercel — the site
+reads it from R2 at request time via `<iframe>`, not from the repo.
 
 ## Bringing documents online
 
 Every work page already exists and shows its full record. Where a work has no
-`iaIdentifier`, the viewer shows a quiet "scan not yet online" panel instead of an
-embed. There are two ways to fill that in.
+`r2Key`, the viewer shows a quiet "scan not yet online" panel instead of an embed.
 
-### All of them at once (recommended)
+### Uploading to R2
 
-`scripts/generate-ia-upload.py` turns "upload 50 PDFs and wire up 50 identifiers" into
-four commands, none of which touch an individual record by hand:
+R2's object keys are just each work's `sourceFile` — the same relative path files
+already live at under `content/` — so once a file is uploaded under that same key,
+confirming it is a single step:
 
 ```bash
-python3 scripts/build-works.py              # make sure content/works.catalog.json is current
-python3 scripts/generate-ia-upload.py plan  # -> scripts/ia-uploads.csv, scripts/ia-plan.json
+# upload content/ to the bucket however you like — the Cloudflare dashboard,
+# rclone, or the S3-compatible API — preserving the folder structure exactly
+# (01-sir-syed-ahmad-khan/asar-us-sanadid.pdf, and so on)
 
-pip install internetarchive && ia configure # one-time: needs a free archive.org account
-ia upload --spreadsheet=scripts/ia-uploads.csv
-
-python3 scripts/generate-ia-upload.py confirm  # verifies each item is actually live
-python3 scripts/build-works.py                 # fills in iaIdentifier for the confirmed ones
+python3 scripts/check-r2-upload.py   # HEAD-checks every catalogued scan against
+                                      # the bucket and compares byte sizes
+python3 scripts/build-works.py       # fills in r2Key for everything confirmed
 ```
 
-`plan` assigns every scan a deterministic identifier (`ffop-<figure>-<work>`, or `-e2`,
-`-e3`, … for further editions of the same work), checks each one against the public
-archive.org metadata API so it won't collide with an existing item, and sets
-`page-progression: rl` on the Urdu and Persian items so BookReader paginates right to
-left without anyone having to remember that per item. `confirm` re-checks that same
-public API and only merges an identifier into `content/ia-map.json` — the file
-`build-works.py` reads — once the file is actually confirmed present on archive.org.
-Nothing on the live site can claim a document is online before that.
+`check-r2-upload.py` doesn't just check that a file exists — it compares the reported
+size against the byte count measured locally in `content/works.seed.json`, so a
+truncated or wrong upload gets caught rather than silently marked live. Only entries
+that match get written to `content/ia-map.json`'s counterpart, `content/r2-map.json`,
+which `build-works.py` reads to set `r2Key`. Nothing on the site can claim a document
+is online before this has actually verified it — re-run it any time after uploading
+more files.
 
-Both commands are safe to re-run. `ia upload` skips files that already fully
-uploaded, so if the connection drops partway, running the same `ia upload` command again
-picks up where it left off; run `confirm` again afterward.
-
-`scripts/ia-uploads.csv` and `scripts/ia-plan.json` hold absolute local file paths and
-are gitignored — they're a working handoff to the `ia` CLI, not something to commit.
-`content/ia-map.json` is the durable result and does get committed.
+If a HEAD request gets a `403 Forbidden` from a script or tool rather than a browser,
+that's Cloudflare rejecting the tool's default user agent as a bot, not a real access
+problem — set an ordinary-looking `User-Agent` header and it goes away (already handled
+in `check-r2-upload.py`).
 
 ### One at a time
 
-For a single item — replacing a bad scan, adding one you found later — upload it to
-archive.org yourself and add the identifier directly:
+For a single item — replacing a bad scan, adding one you found later — upload the file
+to the bucket under the exact key `sourceFile` already names for that record, then run
+the two commands above; there's no per-record editing needed since the key is derived
+from data already in the catalogue.
 
-```ts
-iaIdentifier: "asar-us-sanadid-urdu",
-iaFilename: "asar-us-sanadid-urdu.pdf",   // optional, for the direct download link
-```
+### The archive.org path (superseded, kept for reference)
 
-either straight into `content/works.ts` for a one-off, or as `ia=`/`iaFile=` on the
-entry in `scripts/build-works.py` if it should survive the next regeneration. Set the
-item's language (or `page-progression` directly) on archive.org either way — it's what
-controls reading direction for Urdu and Persian items, and getting it wrong is
-immediately obvious to an Urdu reader and almost never noticed by the person who
-uploaded it.
-
-One record is already live this way — Aga Khan III's *India in Transition* points at an
-existing public-domain Archive item (`indiaintransitio00agakuoft`) so the embed path can
-be seen working. Replace it if you would rather serve your own scan.
+`scripts/generate-ia-upload.py` runs the equivalent pipeline against archive.org
+instead of R2 — plan, upload via the `ia` CLI, confirm, regenerate — and is still there
+if R2 ever needs a fallback or a second mirror. `iaIdentifier`/`iaFilename` on a record
+now only drive an optional "Also at the Internet Archive" citation line in the record
+panel; they no longer affect the viewer or the download link, both of which come from
+`r2Key`. One record carries this citation already — Allama Iqbal's *The Development of
+Metaphysics in Persia* happens to be an exact match (same title, same author, confirmed
+via the archive.org metadata API) for an existing public-domain item there.
 
 ## Where things live
 
@@ -89,13 +87,16 @@ be seen working. Replace it if you would rather serve your own scan.
 | `content/works.ts` | **Generated.** 61 catalogue entries over 64 scans |
 | `content/works.seed.json` | **Generated.** Measured page counts and byte sizes |
 | `content/works.catalog.json` | **Generated.** Machine-readable catalogue dump, read by `generate-ia-upload.py` |
-| `content/ia-map.json` | **Generated**, once uploads exist. `sourceFile` → confirmed archive.org identifier |
-| `lib/archive.ts` | archive.org URL builders, byte and page formatting |
+| `content/r2-map.json` | **Generated**, once uploads exist. `sourceFile` → confirmed live in R2 |
+| `content/ia-map.json` | **Generated**, archive.org path only. `sourceFile` → confirmed archive.org identifier |
+| `lib/storage.ts` | Builds the R2 URL a work's viewer and download link use |
+| `lib/archive.ts` | archive.org URL builders (citation only now), byte and page formatting |
 | `lib/catalogue.ts` | Lookups, shelf ordering, counts |
 | `components/WorkViewer.tsx` | The viewer. Single swap point for a custom reader |
 | `scripts/scan-content.mjs` | Walks `../content/`, measures every PDF |
 | `scripts/build-works.py` | Merges the prose table with the measurements |
-| `scripts/generate-ia-upload.py` | Bulk-upload pipeline — see "Bringing documents online" above |
+| `scripts/check-r2-upload.py` | Confirms uploads and fills in `r2Key` — see "Bringing documents online" above |
+| `scripts/generate-ia-upload.py` | archive.org path, superseded — see above |
 
 ### Regenerating the catalogue
 
@@ -140,11 +141,12 @@ Three things in particular need a decision rather than a check:
 
 - **No century-of-overlap ribbon** and **no completeness ledger or progress bars**, by
   instruction. Counts on the site are counts of what is held, never `N of M`.
-- **The viewer's own controls are archive.org's.** The canvas draws zoom, rotate, a page
-  field and a thumbnail filmstrip. BookReader supplies all four inside the iframe, and
-  drawing a second set outside it would give the reader two sets of controls that
-  disagree. The chrome around the frame — bar, language and direction label, download
-  button with its size stated — is ours.
+- **The viewer's own controls are the browser's.** The canvas draws zoom, rotate, a page
+  field and a thumbnail filmstrip. Every modern browser already renders a PDF in an
+  `<iframe>` with its own zoom, page navigation, search and print built in; drawing a
+  second set around it would give the reader two sets of controls that disagree. The
+  chrome around the frame — bar, language and direction label, download button with its
+  size stated — is ours.
 - **Portraits are duotoned.** The source photographs span ninety years and several
   processes, and their scan tints range from sepia through cold grey to one distinctly
   purple. They are flattened to a single treatment so the set reads as one collection.

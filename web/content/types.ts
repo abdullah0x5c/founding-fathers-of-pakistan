@@ -29,6 +29,11 @@ export interface Edition {
   pages: number;
   bytes: number;
   sourceFile: string;
+  /** set once scripts/check-r2-upload.py has confirmed this exact key is live in
+   * the bucket, with a byte size matching the local scan — never written by hand */
+  r2Key?: string;
+  /** an external citation only; not used to build the embedded viewer or the
+   * download link, both of which come from r2Key */
   iaIdentifier?: string;
   iaFilename?: string;
 }
@@ -51,12 +56,18 @@ export interface Work {
   rights: string;
   /** 40–90 words on what the document is and why it matters */
   intro: string;
-  /** archive.org item identifier — the single field to fill after upload */
+  /** an external citation only (e.g. a matching Internet Archive item found by
+   * chance); not used to build the embedded viewer or the download link */
   iaIdentifier?: string;
-  /** filename within the archive.org item, for the direct download link */
   iaFilename?: string;
-  /** path under content/, so every record can be traced back to its scan */
+  /** path under content/, so every record can be traced back to its scan —
+   * also the exact object key this file was uploaded to R2 under */
   sourceFile: string;
+  /** set once scripts/check-r2-upload.py has confirmed sourceFile is live in
+   * the bucket, with a byte size matching the local scan — never written by
+   * hand. Its value is always identical to sourceFile; its presence is what
+   * the viewer checks to decide whether the document can be embedded. */
+  r2Key?: string;
   /** plain statement of scan quality where it is worth warning about */
   scanNote?: string;
   /** true for scholarship *about* the figure rather than *by* them */

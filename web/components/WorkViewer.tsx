@@ -1,20 +1,22 @@
-import { iaEmbed, iaDetails, iaDownload, formatBytes, formatPages } from "@/lib/archive";
+import { formatBytes, formatPages, iaDetails } from "@/lib/archive";
+import { r2Url } from "@/lib/storage";
 import type { Work } from "@/content/types";
 import styles from "./WorkViewer.module.css";
 
 /**
  * The document. Everything the reader came for happens inside this frame.
  *
- * The scans are hosted on archive.org because they cannot be served from here —
- * the collection is 1.7 GB and one volume alone is 392 MB, which no browser should
- * be asked to pull down to show page one. Their BookReader already solves page-level
- * streaming for material this size, and it handles right-to-left page order itself
- * when the item's language metadata says Urdu or Persian, so the page order for the
- * Urdu half of the corpus is set at upload time rather than here.
+ * Scans are hosted in a Cloudflare R2 bucket the site owns, under the same key as
+ * the work's `sourceFile` — R2 was chosen over embedding archive.org's BookReader
+ * so the collection isn't dependent on a third party's item lifecycle, and because
+ * R2 charges nothing for egress even on a 392 MB file. The browser's own PDF
+ * viewer renders the embed; R2 serves byte ranges (`Accept-Ranges: bytes`), so it
+ * doesn't have to pull the whole file down before showing page one.
  *
- * The chrome around the frame is ours; what is inside it is theirs. Drawing our own
- * zoom, rotate, page field and filmstrip outside an iframe that already has all four
- * would give the reader two sets of controls that disagree with each other.
+ * `r2Key` is only ever set by scripts/check-r2-upload.py once a HEAD request has
+ * confirmed the object is actually live with the right byte size — never by hand
+ * — so its presence here is a real guarantee, not an assumption from a bulk
+ * upload command that merely looked like it worked.
  *
  * This component is the single swap point if a fully custom page-image viewer is
  * wanted later — the pages above it pass a Work and nothing else.
@@ -23,6 +25,7 @@ export default function WorkViewer({ work }: { work: Work }) {
   const rtl = work.lang === "Urdu" || work.lang === "Persian" || work.lang === "Arabic";
   const direction = rtl ? "right to left" : "left to right";
   const size = formatBytes(work.bytes);
+  const url = work.r2Key ? r2Url(work.r2Key) : null;
 
   return (
     <section className={styles.frame}>
@@ -30,12 +33,8 @@ export default function WorkViewer({ work }: { work: Work }) {
         <div className={styles.barLabel}>
           Document viewer · {work.lang}, {direction}
         </div>
-        {work.iaIdentifier ? (
-          <a
-            className={styles.download}
-            href={iaDownload(work.iaIdentifier, work.iaFilename)}
-            rel="noopener"
-          >
+        {url ? (
+          <a className={styles.download} href={url} download rel="noopener">
             Download · {size}
           </a>
         ) : (
@@ -43,12 +42,12 @@ export default function WorkViewer({ work }: { work: Work }) {
         )}
       </div>
 
-      {work.iaIdentifier ? (
+      {url ? (
         <div className={styles.stage}>
           <iframe
             className={styles.embed}
-            src={iaEmbed(work.iaIdentifier)}
-            title={`${work.title} — page images`}
+            src={url}
+            title={`${work.title} — scanned document`}
             allowFullScreen
             loading="lazy"
           />
@@ -61,7 +60,7 @@ export default function WorkViewer({ work }: { work: Work }) {
           </div>
           <p className={styles.pendingBody}>
             This document is held in the collection and has been catalogued, but it has not been
-            uploaded to the Internet Archive yet. The record above is complete; only the pages are
+            confirmed live in storage yet. The record above is complete; only the pages are
             missing.
           </p>
         </div>
@@ -78,7 +77,7 @@ export default function WorkViewer({ work }: { work: Work }) {
         </span>
         {work.iaIdentifier && (
           <a href={iaDetails(work.iaIdentifier)} rel="noopener">
-            Record at the Internet Archive
+            Also at the Internet Archive
           </a>
         )}
       </div>

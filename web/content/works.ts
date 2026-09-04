@@ -23,6 +23,7 @@ export const works: Work[] = [
     intro:
       "An antiquarian survey of the monuments, inscriptions and scholars of Delhi, and the author's first substantial book. Many of the buildings it records were destroyed in and after 1857, which makes the lithographed plates the substance of the volume rather than its decoration. The English translation, held here as a second edition, runs considerably longer than the Urdu.",
     sourceFile: "01-sir-syed-ahmad-khan/asar-us-sanadid.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/asar-us-sanadid.pdf",
     editions: [
       {
         label: "English translation — The Remnants of Ancient Heroes",
@@ -30,6 +31,7 @@ export const works: Work[] = [
         pages: 597,
         bytes: 30629843,
         sourceFile: "01-sir-syed-ahmad-khan/asar-us-sanadid-e2.pdf",
+        r2Key: "01-sir-syed-ahmad-khan/asar-us-sanadid-e2.pdf",
       },
     ],
     verify: [
@@ -51,6 +53,7 @@ export const works: Work[] = [
     intro:
       "A district-level narrative of the events of 1857 in Bijnor, written from the author's own position there as a subordinate judge. It is one of very few contemporaneous accounts of the rebellion written in Urdu by a serving official, and it reads as testimony rather than as history.",
     sourceFile: "01-sir-syed-ahmad-khan/sarkashi-zila-bijnor.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/sarkashi-zila-bijnor.pdf",
     verify: [
       "The 1858 date is from general knowledge.",
     ],
@@ -69,6 +72,7 @@ export const works: Work[] = [
     intro:
       "The best known of his political writings: an account of the causes of the rebellion, written for circulation among British officials and printed at the author's own expense. It argues that the rising had administrative and religious causes for which the Company's conduct was substantially responsible, and that the absence of Indian representation in the Legislative Council was the root failure.",
     sourceFile: "01-sir-syed-ahmad-khan/causes-of-the-indian-revolt.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/causes-of-the-indian-revolt.pdf",
     editions: [
       {
         label: "Translation and commentary by his European friends",
@@ -76,6 +80,7 @@ export const works: Work[] = [
         pages: 78,
         bytes: 6872993,
         sourceFile: "01-sir-syed-ahmad-khan/causes-of-the-indian-revolt-e2.pdf",
+        r2Key: "01-sir-syed-ahmad-khan/causes-of-the-indian-revolt-e2.pdf",
       },
     ],
     verify: [
@@ -97,6 +102,7 @@ export const works: Work[] = [
     intro:
       "A point-by-point answer to William Muir's Life of Mahomet, researched and largely printed in London during the author's visit of 1869 to 1870 and at his own expense. The English edition was issued under the title A Series of Essays on the Life of Mohammed, and is held here as a second edition.",
     sourceFile: "01-sir-syed-ahmad-khan/khutbat-e-ahmadiyya.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/khutbat-e-ahmadiyya.pdf",
     editions: [
       {
         label: "English edition — Life of Muhammad and subjects subsidiary thereto",
@@ -104,6 +110,7 @@ export const works: Work[] = [
         pages: 432,
         bytes: 22948000,
         sourceFile: "01-sir-syed-ahmad-khan/khutbat-e-ahmadiyya-e2.pdf",
+        r2Key: "01-sir-syed-ahmad-khan/khutbat-e-ahmadiyya-e2.pdf",
       },
     ],
     verify: [
@@ -123,6 +130,7 @@ export const works: Work[] = [
     intro:
       "A review contesting W. W. Hunter's claim that Indian Muslims were bound by religious obligation to rebel, and disputing his reading of the Wahhabi trials. Short, sharp, and the clearest statement of the author's argument that loyalty and faith were not in conflict.",
     sourceFile: "01-sir-syed-ahmad-khan/review-on-hunters-indian-musalmans.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/review-on-hunters-indian-musalmans.pdf",
     verify: [
       "The 1872 date is from general knowledge.",
     ],
@@ -141,6 +149,7 @@ export const works: Work[] = [
     intro:
       "An unfinished commentary on the Book of Genesis and the Gospels, written to argue that the Muslim scriptures and the Biblical ones could be read as continuous rather than as rivals. It is the most unusual thing he wrote, and it found almost no audience on either side.",
     sourceFile: "01-sir-syed-ahmad-khan/tabyin-ul-kalam.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/tabyin-ul-kalam.pdf",
     verify: [
       "Undated here. The work is usually given as Tabyīn ul-Kalām and dated to the early 1860s, but the date could not be established from the scan.",
     ],
@@ -159,6 +168,7 @@ export const works: Work[] = [
     intro:
       "His edition of Abū'l Faẓl's sixteenth-century administrative gazetteer of the Mughal empire, prepared with his own annotations. The editing of Persian chronicles was the scholarly work that preceded his political writing, and it is the reason the later argument is so heavily documented.",
     sourceFile: "01-sir-syed-ahmad-khan/ain-e-akbari.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/ain-e-akbari.pdf",
     verify: [
       "Undated here; the edition year could not be established from the scan.",
       "The extent of his own annotation versus the original text has not been checked.",
@@ -178,6 +188,7 @@ export const works: Work[] = [
     intro:
       "The record of the visit to England of 1869 to 1870 — the journey that produced the Khutbāt, the plan for Tahzīb ul-Akhlāq, and eventually the college at Aligarh. Written largely as letters home, it is candid about money, illness and homesickness in a way none of his public writing is.",
     sourceFile: "01-sir-syed-ahmad-khan/safarnama-e-london.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/safarnama-e-london.pdf",
     verify: [
       "Undated here; this is a later collected printing and its year could not be established.",
     ],
@@ -196,6 +207,7 @@ export const works: Work[] = [
     intro:
       "An account of a tour of the Punjab undertaken to raise support and funds for the Aligarh college. It is a fundraising diary as much as a travelogue, and it shows the institution being assembled town by town.",
     sourceFile: "01-sir-syed-ahmad-khan/safarnama-e-panjab.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/safarnama-e-panjab.pdf",
     verify: [
       "Undated here; the tour is usually placed in the 1880s but the year could not be established from the scan.",
     ],
@@ -213,6 +225,7 @@ export const works: Work[] = [
     intro:
       "A gathered volume of the essays and addresses on education that make the case Aligarh was built on: that the community's problem was not political disadvantage but the absence of modern instruction, and that the two could not be argued about separately.",
     sourceFile: "01-sir-syed-ahmad-khan/essays-advancement-for-learning.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/essays-advancement-for-learning.pdf",
     verify: [
       "Undated compilation; neither the year of publication nor the compiler could be established from the scan.",
     ],
@@ -230,6 +243,7 @@ export const works: Work[] = [
     intro:
       "A modern compilation edited by Shan Mohammad, gathering the political speeches and public letters into one volume. It is the most convenient single point of entry to his political writing, and — as with any compilation — its selection is itself an argument about what he was.",
     sourceFile: "01-sir-syed-ahmad-khan/writings-and-speeches.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/writings-and-speeches.pdf",
     verify: [
       "Publication year of this compilation could not be established from the scan.",
       "Modern editorial apparatus is likely in copyright; check before uploading to a public archive.",
@@ -249,6 +263,7 @@ export const works: Work[] = [
     intro:
       "The unfinished commentary that reads revelation as consistent with natural law, and the work that earned him the polemical label nechari. It attracted more published refutation in his lifetime than anything else he wrote. At over thirteen hundred pages this is the largest single document in the collection.",
     sourceFile: "01-sir-syed-ahmad-khan/tafsir-ul-quran.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/tafsir-ul-quran.pdf",
     verify: [
       "Undated here; the commentary appeared in volumes over roughly fifteen years and this scan's coverage has not been established.",
     ],
@@ -267,6 +282,7 @@ export const works: Work[] = [
     intro:
       "A life of the Mughal noble and scholar Farīd ud-Dīn, written as family history as much as biography — the author's own ancestry ran through the same Delhi service milieu. An early work, and one of the few places his antiquarian and religious interests meet directly.",
     sourceFile: "01-sir-syed-ahmad-khan/seerat-e-fareedia.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/seerat-e-fareedia.pdf",
     verify: [
       "Undated, and the attribution of subject is inferred from the title. Confirm both before publishing.",
     ],
@@ -285,6 +301,7 @@ export const works: Work[] = [
     intro:
       "A short devotional treatise on the remembrance of the Prophet, and among the earliest of his surviving writings. Read against the commentary of forty years later, it marks how far the argument travelled.",
     sourceFile: "01-sir-syed-ahmad-khan/jila-ul-quloob.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/jila-ul-quloob.pdf",
     verify: [
       "Undated. The title is transliterated here from the filename and should be checked against the title page.",
     ],
@@ -302,6 +319,7 @@ export const works: Work[] = [
     intro:
       "A study of Sir Syed's religious thought by the Jesuit scholar Christian W. Troll, concentrating on the theology rather than the politics. This is scholarship about him rather than writing by him, and it is catalogued separately for that reason.",
     sourceFile: "01-sir-syed-ahmad-khan/gospel-according-to-sayyid-ahmad-khan.pdf",
+    r2Key: "01-sir-syed-ahmad-khan/gospel-according-to-sayyid-ahmad-khan.pdf",
     secondary: true,
     byline: "Christian W. Troll",
     verify: [
@@ -322,6 +340,7 @@ export const works: Work[] = [
     intro:
       "The most widely read book by any of the eleven: a life of the Prophet and an account of the faith written for a sceptical English readership. It went through many editions and remains in print. Its readiness to argue on the ground of reason rather than authority made it a formative text for a generation of Indian Muslim students.",
     sourceFile: "02-syed-ameer-ali/the-spirit-of-islam.pdf",
+    r2Key: "02-syed-ameer-ali/the-spirit-of-islam.pdf",
     verify: [
       "The 1891 date is from general knowledge; this scan is of a later edition and its year has not been identified.",
       "This file was found misfiled in the Sir Syed Ahmad Khan folder and has been moved.",
@@ -340,6 +359,7 @@ export const works: Work[] = [
     intro:
       "A single-volume political history of the Muslim world from the seventh century onward, written to supply what the author regarded as an absent counterweight to European narratives of decline. It is a work of advocacy in the shape of a textbook, and was used as one for decades.",
     sourceFile: "02-syed-ameer-ali/a-short-history-of-the-saracens.pdf",
+    r2Key: "02-syed-ameer-ali/a-short-history-of-the-saracens.pdf",
     verify: [
       "The 1899 date is from general knowledge.",
     ],
@@ -357,6 +377,7 @@ export const works: Work[] = [
     intro:
       "A systematic treatment of Muslim personal law for use in Anglo-Indian courts, and the work that made his professional reputation. It became a standard authority and is still cited in South Asian judgments. At eight hundred and sixty pages it is the longest English volume in the collection.",
     sourceFile: "02-syed-ameer-ali/mohammedan-law.pdf",
+    r2Key: "02-syed-ameer-ali/mohammedan-law.pdf",
     verify: [
       "Undated here; the treatise ran to several revised editions and this scan's edition has not been identified.",
     ],
@@ -374,6 +395,7 @@ export const works: Work[] = [
     intro:
       "A lecture arguing that Islamic ethics rest on individual moral responsibility rather than on ritual compliance — the same case as the larger books, compressed to an evening's address.",
     sourceFile: "02-syed-ameer-ali/the-ethics-of-islam.pdf",
+    r2Key: "02-syed-ameer-ali/the-ethics-of-islam.pdf",
     verify: [
       "The 1893 date is from general knowledge.",
       "A second file in this folder, 'Islam by Syed Ameer Ali.pdf', is byte-for-byte identical to this one. It is catalogued once. Consider deleting the duplicate from the source collection.",
@@ -392,6 +414,7 @@ export const works: Work[] = [
     intro:
       "A short descriptive account of the festivals of the Muslim year, written for readers with no prior knowledge of them. Slight beside the treatises, but it shows the register he reached for when explaining rather than arguing.",
     sourceFile: "02-syed-ameer-ali/the-moslem-festivities.pdf",
+    r2Key: "02-syed-ameer-ali/the-moslem-festivities.pdf",
     verify: [
       "The 1892 date is taken from the filename; confirm against the title page.",
     ],
@@ -409,6 +432,7 @@ export const works: Work[] = [
     intro:
       "The autobiographical fragment he left, printed with a selection of letters and occasional pieces. The memoir breaks off well before the Privy Council years, so the most consequential part of his life is the part he did not write down.",
     sourceFile: "02-syed-ameer-ali/memoirs-and-other-writings.pdf",
+    r2Key: "02-syed-ameer-ali/memoirs-and-other-writings.pdf",
     verify: [
       "Undated; this is a posthumous compilation and neither its year nor its editor could be established from the scan.",
       "Scanned by the Digital Library of India — check their terms before redistributing.",
@@ -428,6 +452,7 @@ export const works: Work[] = [
     intro:
       "The most substantial book he produced: a theological work written partly in defence of Sir Syed's naturalist reading of the Qur'an and partly to hold the Aligarh position back from its more extreme formulations. It is the clearest statement of what the movement's second generation thought it was defending.",
     sourceFile: "03-nawab-mohsin-ul-mulk/aayaat-e-bayyenat.pdf",
+    r2Key: "03-nawab-mohsin-ul-mulk/aayaat-e-bayyenat.pdf",
     verify: [
       "Undated; the year could not be established from the scan.",
     ],
@@ -446,6 +471,7 @@ export const works: Work[] = [
     intro:
       "An argument on the limits of following established juristic authority and the conditions under which the ḥadīth may be acted on directly — the central methodological question of the Aligarh reform programme, argued in its own vocabulary rather than in the reformers'.",
     sourceFile: "03-nawab-mohsin-ul-mulk/taqleed-aur-amal-bil-hadees.pdf",
+    r2Key: "03-nawab-mohsin-ul-mulk/taqleed-aur-amal-bil-hadees.pdf",
     verify: [
       "Undated; the year could not be established from the scan.",
     ],
@@ -464,6 +490,7 @@ export const works: Work[] = [
     intro:
       "A treatise on love and longing in the devotional sense, standing somewhat apart from the controversialist writing that occupies the rest of his shelf. Evidence that the Aligarh administrator had a contemplative register he rarely used in public.",
     sourceFile: "03-nawab-mohsin-ul-mulk/kitabul-mohabbat-wal-shauq.pdf",
+    r2Key: "03-nawab-mohsin-ul-mulk/kitabul-mohabbat-wal-shauq.pdf",
     verify: [
       "Undated, and the attribution rests on the filename. Confirm authorship against the title page.",
     ],
@@ -482,6 +509,7 @@ export const works: Work[] = [
     intro:
       "Collected letters. The correspondence of the man who ran Aligarh after Sir Syed's death is candid about money, factions and the political calculation behind the Simla Deputation in a way none of the public documents are.",
     sourceFile: "03-nawab-mohsin-ul-mulk/makateeb.pdf",
+    r2Key: "03-nawab-mohsin-ul-mulk/makateeb.pdf",
     verify: [
       "Undated; this is a collected printing and neither its year nor its editor could be established.",
     ],
@@ -499,6 +527,7 @@ export const works: Work[] = [
     intro:
       "A reply to Sir Lepel Griffin's characterisation of Indian Muslims in the British press. It belongs to the same genre as Sir Syed's answer to Hunter — a rebuttal written in English, for English readers, contesting a description before it hardened into policy.",
     sourceFile: "03-nawab-mohsin-ul-mulk/response-to-lepel-griffin.pdf",
+    r2Key: "03-nawab-mohsin-ul-mulk/response-to-lepel-griffin.pdf",
     verify: [
       "Undated; the year and the original publication being answered could not be established from the scan.",
     ],
@@ -516,6 +545,7 @@ export const works: Work[] = [
     intro:
       "An address, printed as a pamphlet, of the kind the Muhammadan Educational Conference existed to circulate. The lecture was the movement's characteristic form: delivered to a few hundred, printed for a few thousand.",
     sourceFile: "03-nawab-mohsin-ul-mulk/the-first-lecture.pdf",
+    r2Key: "03-nawab-mohsin-ul-mulk/the-first-lecture.pdf",
     verify: [
       "Undated, and the occasion of the lecture is not identified in the filename. Confirm both from the document.",
     ],
@@ -534,6 +564,7 @@ export const works: Work[] = [
     intro:
       "A twenty-page account of a visit by Sir Habibullah Khan, printed as an occasional pamphlet. The smallest item on this shelf, and a reminder that much of the Aligarh paper trail consists of exactly this kind of thing.",
     sourceFile: "03-nawab-mohsin-ul-mulk/kaifiyat-tashreef-aawari.pdf",
+    r2Key: "03-nawab-mohsin-ul-mulk/kaifiyat-tashreef-aawari.pdf",
     verify: [
       "Undated; the visit is not dated in the filename.",
     ],
@@ -552,6 +583,7 @@ export const works: Work[] = [
     intro:
       "A working correspondence between the two men who ran Aligarh after Sir Syed. It is candid about money, factions and political calculation, and it is the best surviving record in this collection of how the Simla Deputation was actually assembled.",
     sourceFile: "04-nawab-viqar-ul-mulk/letters-of-viqar-ul-mulk-and-mohsin-ul-mulk.pdf",
+    r2Key: "04-nawab-viqar-ul-mulk/letters-of-viqar-ul-mulk-and-mohsin-ul-mulk.pdf",
     verify: [
       "Undated; this is a collected printing and neither its year nor its editor could be established.",
     ],
@@ -570,6 +602,7 @@ export const works: Work[] = [
     intro:
       "His stated position on the Muslim university question — the campaign to turn the Aligarh college into a degree-granting university independent of government control, and the issue on which he eventually resigned the trust secretaryship.",
     sourceFile: "04-nawab-viqar-ul-mulk/aimu-se-mutaliq-raye.pdf",
+    r2Key: "04-nawab-viqar-ul-mulk/aimu-se-mutaliq-raye.pdf",
     verify: [
       "Undated; the year could not be established from the scan.",
     ],
@@ -588,6 +621,7 @@ export const works: Work[] = [
     intro:
       "Sixteen pages arguing that a Muslim university had to provide religious instruction as well as modern subjects, against the view that it should confine itself to the second. The smallest document in the collection, and the sharpest statement of the disagreement that ran through Aligarh's second generation.",
     sourceFile: "04-nawab-viqar-ul-mulk/muslim-university-aur-mazhabi-taleem.pdf",
+    r2Key: "04-nawab-viqar-ul-mulk/muslim-university-aur-mazhabi-taleem.pdf",
     verify: [
       "Undated; the year could not be established from the scan.",
     ],
@@ -608,6 +642,7 @@ export const works: Work[] = [
     iaIdentifier: "indiaintransitio00agakuoft",
     iaFilename: "indiaintransitio00agakuoft.pdf",
     sourceFile: "05-aga-khan-iii/india-in-transition.pdf",
+    r2Key: "05-aga-khan-iii/india-in-transition.pdf",
     verify: [
       "Pointed at an existing Internet Archive copy (indiaintransitio00agakuoft, 1918, marked NOT_IN_COPYRIGHT) rather than at an upload of the local scan. Replace the identifier if you would rather serve your own copy; the local file is 324 pp. against the Archive item's 336 images, so the two printings may differ.",
     ],
@@ -625,6 +660,7 @@ export const works: Work[] = [
     intro:
       "Written near the end of a long public life, and the only sustained first-person account by any of the eleven of the negotiations that produced separate electorates, the Round Table Conferences and partition. He was present at all of them, which is a claim none of the others can make.",
     sourceFile: "05-aga-khan-iii/memoirs-world-enough-and-time.pdf",
+    r2Key: "05-aga-khan-iii/memoirs-world-enough-and-time.pdf",
     verify: [
       "The 1954 date is from general knowledge.",
       "Published 1954; its author died in 1957, so it is likely still in copyright in Pakistan. Check before uploading.",
@@ -644,6 +680,7 @@ export const works: Work[] = [
     intro:
       "Twenty-four pages, and the only item held for him. A call to action in the Khilafat register — the form he worked in, which was the meeting and the pamphlet rather than the book. That this shelf is nearly empty is a fact about how he worked, not a gap in the archive.",
     sourceFile: "06-maulana-shaukat-ali/paigham-e-amal.pdf",
+    r2Key: "06-maulana-shaukat-ali/paigham-e-amal.pdf",
     verify: [
       "Undated; the year could not be established from the scan.",
     ],
@@ -661,6 +698,7 @@ export const works: Work[] = [
     intro:
       "The first of two volumes gathering the English journalism and the platform speeches. The prose is the reason he is remembered as a writer: fast, ironic, addressed to English readers in their own register and entirely unintimidated by them.",
     sourceFile: "07-maulana-muhammad-ali-jauhar/selected-writings-and-speeches-vol-1.pdf",
+    r2Key: "07-maulana-muhammad-ali-jauhar/selected-writings-and-speeches-vol-1.pdf",
     verify: [
       "Undated; neither the year nor the editor of this compilation could be established from the scan.",
     ],
@@ -678,6 +716,7 @@ export const works: Work[] = [
     intro:
       "The second volume, running into the Khilafat years and the break with Congress. Read against the first, it tracks a writer moving from argument inside a shared polity to argument about whether one existed.",
     sourceFile: "07-maulana-muhammad-ali-jauhar/selected-writings-and-speeches-vol-2.pdf",
+    r2Key: "07-maulana-muhammad-ali-jauhar/selected-writings-and-speeches-vol-2.pdf",
     verify: [
       "Undated; neither the year nor the editor of this compilation could be established from the scan.",
     ],
@@ -714,6 +753,7 @@ export const works: Work[] = [
     intro:
       "Five hundred pages of collected essays and leading articles, the bulk of his surviving prose in one volume. This is where the journalism sits when it is read as a body of work rather than as a run of newspapers.",
     sourceFile: "07-maulana-muhammad-ali-jauhar/essays.pdf",
+    r2Key: "07-maulana-muhammad-ali-jauhar/essays.pdf",
     verify: [
       "Undated; neither the year nor the editor of this compilation could be established from the scan.",
     ],
@@ -731,6 +771,7 @@ export const works: Work[] = [
     intro:
       "On the Saudi conquest of the Hijaz and the question of who should hold custody of the holy cities — the issue that occupied the Khilafat movement after the caliphate itself was abolished, and that split it.",
     sourceFile: "07-maulana-muhammad-ali-jauhar/problem-of-hijaz-and-the-ibn-sauds.pdf",
+    r2Key: "07-maulana-muhammad-ali-jauhar/problem-of-hijaz-and-the-ibn-sauds.pdf",
     verify: [
       "Undated; the events described place it in the mid-1920s but the year could not be established from the scan.",
     ],
@@ -749,6 +790,7 @@ export const works: Work[] = [
     intro:
       "His collected verse. He took the pen-name Jauhar and wrote seriously in Urdu throughout, though the poetry has always been read in the shadow of the journalism rather than beside it.",
     sourceFile: "07-maulana-muhammad-ali-jauhar/majmua-kalam.pdf",
+    r2Key: "07-maulana-muhammad-ali-jauhar/majmua-kalam.pdf",
     verify: [
       "Undated; the year of this collected printing could not be established.",
     ],
@@ -769,6 +811,7 @@ export const works: Work[] = [
     scanNote:
       "Scanned at very high resolution: twenty-six pages occupy a hundred and seventy megabytes. Read it in the viewer rather than downloading it unless you need the full-resolution image.",
     sourceFile: "07-maulana-muhammad-ali-jauhar/jazbaat-e-jauhar.pdf",
+    r2Key: "07-maulana-muhammad-ali-jauhar/jazbaat-e-jauhar.pdf",
     verify: [
       "Undated; the imprisonment is not identified in the filename.",
     ],
@@ -786,6 +829,7 @@ export const works: Work[] = [
     intro:
       "Four pages, issued from Cambridge and signed by a handful of students. It is the first appearance in print of the name Pakistan and of the acronym its author built for it. The League's delegates to the Round Table Conference declined to take it up; within a decade it was the name of a national demand.",
     sourceFile: "08-chaudhry-rahmat-ali/now-or-never.pdf",
+    r2Key: "08-chaudhry-rahmat-ali/now-or-never.pdf",
     verify: [
       "The January 1933 date is widely reported; confirm it against the pamphlet's own imprint, which is in this scan.",
     ],
@@ -803,6 +847,7 @@ export const works: Work[] = [
     intro:
       "A restatement of the 1933 argument in far more absolute terms, rejecting any conception of a shared Indian nationality. Ten pages, and the distance between its tone and that of the first pamphlet is the whole history of the intervening years.",
     sourceFile: "08-chaudhry-rahmat-ali/the-millat-of-islam-and-the-menace-of-indianism.pdf",
+    r2Key: "08-chaudhry-rahmat-ali/the-millat-of-islam-and-the-menace-of-indianism.pdf",
     verify: [
       "Undated; usually placed around 1940 but the year could not be established from the scan.",
     ],
@@ -820,6 +865,7 @@ export const works: Work[] = [
     intro:
       "The full elaboration of his scheme, complete with maps proposing further Muslim states across the subcontinent. It is the most complete statement of a plan that was, by the time it appeared, already overtaken by the events it had helped to name.",
     sourceFile: "08-chaudhry-rahmat-ali/pakistan-the-fatherland-of-the-pak-nation.pdf",
+    r2Key: "08-chaudhry-rahmat-ali/pakistan-the-fatherland-of-the-pak-nation.pdf",
     verify: [
       "Undated; the book ran to several editions in the 1940s and this scan's edition has not been identified.",
     ],
@@ -837,6 +883,7 @@ export const works: Work[] = [
     intro:
       "A collected edition assembled long after his death, gathering the pamphlets with editorial apparatus. Useful as a single point of access, and worth reading as a document of how his reputation was being argued for in the 1970s.",
     sourceFile: "08-chaudhry-rahmat-ali/complete-works-volume-1.pdf",
+    r2Key: "08-chaudhry-rahmat-ali/complete-works-volume-1.pdf",
     verify: [
       "Year taken as 1978 from the filename; confirm against the title page.",
       "A 1978 compilation almost certainly carries editorial matter still in copyright. Check before uploading.",
@@ -856,6 +903,7 @@ export const works: Work[] = [
     intro:
       "The address to the All-India Muslim League in December 1930 proposing the amalgamation of Punjab, the North-West Frontier Province, Sindh and Baluchistan into a single state. Whether that was a proposal for a separate country or for an autonomous unit within a federated India is still argued over. This volume prints the address in both Urdu and English with the surrounding context, which is the right way to read a disputed text.",
     sourceFile: "09-allama-muhammad-iqbal/allahabad-address-1930.pdf",
+    r2Key: "09-allama-muhammad-iqbal/allahabad-address-1930.pdf",
     verify: [
       "The December 1930 date is from general knowledge.",
       "The volume is bilingual; it is catalogued as English because the editorial apparatus is in English, but roughly half the pages are Urdu.",
@@ -875,6 +923,7 @@ export const works: Work[] = [
     intro:
       "His first collection of Urdu verse, gathering roughly two decades of work in three parts arranged by period rather than by form: the early patriotic and nature poems, a middle section written as his politics sharpened, and the philosophical verse that follows. It is the volume by which most Urdu readers meet him first.",
     sourceFile: "09-allama-muhammad-iqbal/bang-e-dara.pdf",
+    r2Key: "09-allama-muhammad-iqbal/bang-e-dara.pdf",
     verify: [
       "The 1924 date is from general knowledge; this scan's printing and editor have not been identified.",
     ],
@@ -893,6 +942,7 @@ export const works: Work[] = [
     intro:
       "An Urdu verse translation of his first long Persian poem, which argues for the cultivation of the self, khudi, against both quietist mysticism and European materialism. The collection holds this translation rather than the Persian original; the poem's criticism of Hafiz caused a public controversy on first publication and the offending passage was removed from later Persian editions.",
     sourceFile: "09-allama-muhammad-iqbal/asrar-e-khudi.pdf",
+    r2Key: "09-allama-muhammad-iqbal/asrar-e-khudi.pdf",
     verify: [
       "The 1915 date is that of the original Persian poem, not of this Urdu translation, whose translator and printing year could not be established from the scan.",
       "Because only the translation is held, the work is catalogued as Urdu rather than Persian; if a Persian-original scan is added later this should probably become an edition of that entry instead of standing alone.",
@@ -912,6 +962,7 @@ export const works: Work[] = [
     intro:
       "An Urdu verse translation of the companion poem to Asrār-e-Khudī, turning from the self to the community. The two are usually read together; only the translation of this one is held here.",
     sourceFile: "09-allama-muhammad-iqbal/rumuz-e-bekhudi.pdf",
+    r2Key: "09-allama-muhammad-iqbal/rumuz-e-bekhudi.pdf",
     verify: [
       "The 1918 date is that of the original Persian poem; this translation's own translator and printing year could not be established from the scan.",
     ],
@@ -930,6 +981,7 @@ export const works: Work[] = [
     intro:
       "A reply, a century late, to Goethe's West-östlicher Divan — an East answering a West that had addressed it. Written partly in response to the intellectual exhaustion he saw in post-war Europe.",
     sourceFile: "09-allama-muhammad-iqbal/payam-e-mashriq.pdf",
+    r2Key: "09-allama-muhammad-iqbal/payam-e-mashriq.pdf",
     verify: [
       "Downloaded from a web aggregator rather than a named library or press; the specific printing behind this scan has not been identified.",
       "Confirm page count and completeness — 235 pages is plausible for this collection but has not been checked against a reference edition.",
@@ -949,6 +1001,7 @@ export const works: Work[] = [
     intro:
       "Persian lyric poetry in the ghazal form, named for the Psalms of David and written in a more overtly mystical register than the long philosophical poems around it. The second part turns to a sustained meditation on art and imagination.",
     sourceFile: "09-allama-muhammad-iqbal/zabur-e-ajam.pdf",
+    r2Key: "09-allama-muhammad-iqbal/zabur-e-ajam.pdf",
     verify: [
       "The 1927 date is from general knowledge; this scan's printing has not been identified.",
       "The numeric filename prefix suggests this was downloaded from a cataloguing site (possibly Rekhta); the original source has not been confirmed.",
@@ -968,6 +1021,7 @@ export const works: Work[] = [
     intro:
       "His major long poem, addressed to his son Javid and modelled distantly on the Divine Comedy: a journey through the spheres in the company of the medieval Persian poet Rumi, meeting historical and legendary figures along the way. Widely regarded as the summit of his Persian verse.",
     sourceFile: "09-allama-muhammad-iqbal/javed-nama.pdf",
+    r2Key: "09-allama-muhammad-iqbal/javed-nama.pdf",
     verify: [
       "The 1932 date is from general knowledge; this scan's printing, and whether it carries a translation or apparatus alongside the Persian text, has not been established.",
     ],
@@ -988,6 +1042,7 @@ export const works: Work[] = [
     scanNote:
       "At 812 pages for a poem usually printed under 150, this scan likely bundles the translation, commentary or other material alongside the text rather than standing alone. Check the contents before relying on the page count.",
     sourceFile: "09-allama-muhammad-iqbal/pas-cheh-bayad-kard.pdf",
+    r2Key: "09-allama-muhammad-iqbal/pas-cheh-bayad-kard.pdf",
     verify: [
       "The 1936 date is from general knowledge.",
       "The 812-page extent is far longer than typical standalone printings of this poem and has not been explained — check what else this particular scan contains before citing it as the poem alone.",
@@ -1008,6 +1063,7 @@ export const works: Work[] = [
     intro:
       "Widely regarded as the summit of his Urdu poetry, written after his visits to Spain, Egypt and Afghanistan. The poem on the mosque at Córdoba is here, along with much of the verse most commonly quoted from him in Pakistan.",
     sourceFile: "09-allama-muhammad-iqbal/bal-e-jibril.pdf",
+    r2Key: "09-allama-muhammad-iqbal/bal-e-jibril.pdf",
     verify: [
       "The 1935 date is from general knowledge; this scan's printing and editor have not been identified.",
     ],
@@ -1026,6 +1082,7 @@ export const works: Work[] = [
     intro:
       "Subtitled a declaration of war against the present age. Shorter, harder poems on education, women, politics and art, written in the last years of his life and organised by subject rather than by form.",
     sourceFile: "09-allama-muhammad-iqbal/zarb-e-kalim.pdf",
+    r2Key: "09-allama-muhammad-iqbal/zarb-e-kalim.pdf",
     verify: [
       "The 1936 date is from general knowledge; this scan's printing and editor have not been identified.",
     ],
@@ -1044,6 +1101,7 @@ export const works: Work[] = [
     intro:
       "His last collection, published after his death in April 1938: Persian quatrains followed by a shorter closing section of Urdu verse. The two languages he wrote in throughout his life sit side by side in one volume for the only time.",
     sourceFile: "09-allama-muhammad-iqbal/armaghan-e-hijaz.pdf",
+    r2Key: "09-allama-muhammad-iqbal/armaghan-e-hijaz.pdf",
     verify: [
       "Catalogued as Persian because the bulk of the collection is; confirm what proportion of this particular scan is the Urdu closing section.",
       "This scan's printing and editor have not been identified.",
@@ -1062,6 +1120,7 @@ export const works: Work[] = [
     intro:
       "Lectures delivered at Madras, Hyderabad and Aligarh, attempting a reconstruction of Islamic thought using the physics, biology and philosophy available in the early twentieth century. It remains among the most serious modern attempts at that project in English.",
     sourceFile: "09-allama-muhammad-iqbal/the-reconstruction-of-religious-thought-in-islam.pdf",
+    r2Key: "09-allama-muhammad-iqbal/the-reconstruction-of-religious-thought-in-islam.pdf",
     verify: [
       "The 1930 date is from general knowledge; this scan's printing (Lahore or the later Oxford University Press edition, which added a seventh lecture) has not been identified.",
     ],
@@ -1081,6 +1140,7 @@ export const works: Work[] = [
     iaIdentifier: "developmentofmet032082mbp",
     iaFilename: "developmentofmet032082mbp.pdf",
     sourceFile: "09-allama-muhammad-iqbal/the-development-of-metaphysics-in-persia.pdf",
+    r2Key: "09-allama-muhammad-iqbal/the-development-of-metaphysics-in-persia.pdf",
     verify: [
       "Pointed at an existing Internet Archive copy (developmentofmet032082mbp) whose title and creator match this thesis exactly, rather than at an upload of the local file — the two appear to be the same scan.",
       "The 1908 date is from general knowledge.",
@@ -1099,6 +1159,7 @@ export const works: Work[] = [
     intro:
       "A private notebook kept in 1910, published posthumously by his son Javid Iqbal. Aphoristic and unguarded in a way nothing he wrote for publication is, and the closest thing to an interior record he left.",
     sourceFile: "09-allama-muhammad-iqbal/stray-reflections.pdf",
+    r2Key: "09-allama-muhammad-iqbal/stray-reflections.pdf",
     verify: [
       "The notebook was kept in 1910 but not published until 1961; confirm this scan is of that first edited edition and not a later one.",
       "Edited and published in 1961 by Javid Iqbal (died 2015); the editorial apparatus is almost certainly still in copyright even though Iqbal's own 1910 text is not.",
@@ -1117,6 +1178,7 @@ export const works: Work[] = [
     intro:
       "A short compilation of a handful of his speeches from around independence, opening with the address to the Constituent Assembly of 14 August 1947. Five pages: a starting point rather than a collection, and the only item currently held for him.",
     sourceFile: "10-quaid-e-azam/speeches-1947.pdf",
+    r2Key: "10-quaid-e-azam/speeches-1947.pdf",
     verify: [
       "Downloaded from a web aggregator (ilide.info) rather than a named archive or press; the compiler and date of this particular compilation are unknown, and it may be a recent, separately copyrighted arrangement even though the speeches themselves are official records.",
       "Only a few speeches are included — confirm exactly which ones before citing this as representative of his oratory rather than as a sample.",
@@ -1136,6 +1198,7 @@ export const works: Work[] = [
     intro:
       "The speeches of the tour of the United States and Canada in May and June 1950: a new country's prime minister explaining it to an audience that had barely heard of it. It is the only document in this collection written from inside the state rather than in argument for it.",
     sourceFile: "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
+    r2Key: "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
     verify: [
       "The 1950 date is taken from the title, which is explicit.",
       "Published 1950; its author died in 1951, so it is likely still in copyright in Pakistan. Check before uploading.",

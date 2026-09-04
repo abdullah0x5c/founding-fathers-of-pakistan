@@ -76,12 +76,14 @@ export default async function WorkPage({
             <MetaRow label="Holder">{work.holder ?? "Not established"}</MetaRow>
             <MetaRow label="Rights">{work.rights}</MetaRow>
             <MetaRow label="Source">
-              {work.iaIdentifier ? (
-                <a href={iaDetails(work.iaIdentifier)} rel="noopener">
-                  Internet Archive · {work.iaIdentifier}
-                </a>
-              ) : (
-                "Not yet uploaded"
+              {work.r2Key ? "Held in the archive" : "Not yet uploaded"}
+              {work.iaIdentifier && (
+                <>
+                  {" · "}
+                  <a href={iaDetails(work.iaIdentifier)} rel="noopener">
+                    also at the Internet Archive
+                  </a>
+                </>
               )}
             </MetaRow>
           </div>

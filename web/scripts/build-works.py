@@ -13,6 +13,13 @@ used = set()
 IA_MAP_PATH = pathlib.Path("content/ia-map.json")
 ia_map = json.loads(IA_MAP_PATH.read_text()) if IA_MAP_PATH.exists() else {}
 
+# Populated by scripts/check-r2-upload.py once a HEAD request against the bucket
+# has confirmed a scan is live there with the right byte size. Absent entirely
+# until the first check — an empty mapping is the normal state for a fresh
+# checkout that hasn't verified anything yet.
+R2_MAP_PATH = pathlib.Path("content/r2-map.json")
+r2_map = json.loads(R2_MAP_PATH.read_text()) if R2_MAP_PATH.exists() else {}
+
 RIGHTS_PD = ("Public domain in Pakistan, where copyright runs for the author's life plus fifty years. "
              "Rights in the scan itself may rest separately with the institution that produced it.")
 RIGHTS_MODERN = ("The underlying text is in the public domain, but this printing carries modern editorial "
@@ -390,6 +397,8 @@ for r in W:
     if ia_file:
         out.append(f'    iaFilename: {q(ia_file)},')
     out.append(f'    sourceFile: {q(r["sourceFile"])},')
+    if r["sourceFile"] in r2_map:
+        out.append(f'    r2Key: {q(r["sourceFile"])},')
     if r.get("secondary"):
         out.append("    secondary: true,")
     if r.get("byline"):
@@ -409,6 +418,8 @@ for r in W:
                 out.append(f'        iaIdentifier: {q(emapped["identifier"])},')
             if emapped.get("filename"):
                 out.append(f'        iaFilename: {q(emapped["filename"])},')
+            if e["src"] in r2_map:
+                out.append(f'        r2Key: {q(e["src"])},')
             out.append("      },")
         out.append("    ],")
     if r.get("verify"):
