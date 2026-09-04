@@ -213,11 +213,6 @@ w("selected-writings-and-speeches-vol-2", MJ, "Selected Writings and Speeches, V
   "The second volume, running into the Khilafat years and the break with Congress. Read against the first, it tracks a writer moving from argument inside a shared polity to argument about whether one existed.",
   rights=RIGHTS_MODERN,
   verify=["Undated; neither the year nor the editor of this compilation could be established from the scan."])
-w("speeches", MJ, "Speeches of Maulana Muhammad Ali Jauhar", None, "", "Speeches", "English",
-  "07-maulana-muhammad-ali-jauhar/speeches.pdf",
-  "A short volume of the platform speeches, taken down as delivered. He was among the most effective orators of the period and the transcripts carry the timing, which the edited compilations tend to smooth away.",
-  scanNote="Scanned at very high resolution: seventy-two pages occupy nearly four hundred megabytes. Expect the download to be slow, and read it in the viewer rather than downloading it unless you need the full-resolution image.",
-  verify=["Undated; the year could not be established from the scan."])
 w("essays", MJ, "Essays of Maulana Muhammad Ali Jauhar", None, "", "Essays", "English",
   "07-maulana-muhammad-ali-jauhar/essays.pdf",
   "Five hundred pages of collected essays and leading articles, the bulk of his surviving prose in one volume. This is where the journalism sits when it is read as a body of work rather than as a run of newspapers.",

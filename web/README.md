@@ -18,10 +18,13 @@ The repository root is the archive folder; the site lives in `web/`. When import
 project, set **Root Directory** to `web`. Everything else is defaults — no build
 overrides.
 
-One optional environment variable: `NEXT_PUBLIC_R2_BASE_URL`, the bucket's public URL.
-`lib/storage.ts` falls back to the current one if it's unset, so it isn't required —
-set it only if you move to a custom domain instead of the `r2.dev` one, so a domain
-change doesn't need a code change too.
+One optional environment variable: `R2_BASE_URL`, the bucket's public URL. Note no
+`NEXT_PUBLIC_` prefix — every route here is statically generated, so this is only ever
+read on the server at build time and baked into the HTML; nothing reads it from the
+browser, so it doesn't need inlining into the client bundle. `lib/storage.ts` falls
+back to the current URL if it's unset, so setting it isn't required — do it only if you
+move to a custom domain instead of the `r2.dev` one, so a domain change doesn't need a
+code change too.
 
 `content/` (1.7 GB of scans) is gitignored. It never needs to reach Vercel — the site
 reads it from R2 at request time via `<iframe>`, not from the repo.

@@ -722,25 +722,6 @@ export const works: Work[] = [
     ],
   },
   {
-    slug: "speeches",
-    figure: "maulana-muhammad-ali-jauhar",
-    title: "Speeches of Maulana Muhammad Ali Jauhar",
-    year: "",
-    kind: "Speeches",
-    lang: "English",
-    pages: 72,
-    bytes: 410572909,
-    rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
-    intro:
-      "A short volume of the platform speeches, taken down as delivered. He was among the most effective orators of the period and the transcripts carry the timing, which the edited compilations tend to smooth away.",
-    scanNote:
-      "Scanned at very high resolution: seventy-two pages occupy nearly four hundred megabytes. Expect the download to be slow, and read it in the viewer rather than downloading it unless you need the full-resolution image.",
-    sourceFile: "07-maulana-muhammad-ali-jauhar/speeches.pdf",
-    verify: [
-      "Undated; the year could not be established from the scan.",
-    ],
-  },
-  {
     slug: "essays",
     figure: "maulana-muhammad-ali-jauhar",
     title: "Essays of Maulana Muhammad Ali Jauhar",

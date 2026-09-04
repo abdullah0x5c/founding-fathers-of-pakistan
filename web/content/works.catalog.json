@@ -597,22 +597,6 @@
     "editions": []
   },
   {
-    "slug": "speeches",
-    "figure": "maulana-muhammad-ali-jauhar",
-    "title": "Speeches of Maulana Muhammad Ali Jauhar",
-    "titleUrdu": null,
-    "year": "",
-    "kind": "Speeches",
-    "lang": "English",
-    "pages": 72,
-    "bytes": 410572909,
-    "intro": "A short volume of the platform speeches, taken down as delivered. He was among the most effective orators of the period and the transcripts carry the timing, which the edited compilations tend to smooth away.",
-    "sourceFile": "07-maulana-muhammad-ali-jauhar/speeches.pdf",
-    "secondary": false,
-    "alreadyMapped": false,
-    "editions": []
-  },
-  {
     "slug": "essays",
     "figure": "maulana-muhammad-ali-jauhar",
     "title": "Essays of Maulana Muhammad Ali Jauhar",
