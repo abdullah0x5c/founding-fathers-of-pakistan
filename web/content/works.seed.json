@@ -1,359 +1,457 @@
 [
   {
-    "sourceFile": "09. Allama Iqbal/Allama-Iqbal-Address-Allahbad-1930-Urdu-English-with-Background.pdf",
-    "folder": "09. Allama Iqbal",
-    "bytes": 10685081,
-    "pages": 64,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/A Muhammadan Commentary on the Holy Bible.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 22220688,
-    "pages": 424,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/A Translation of Causes by His European Friends.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 6872993,
-    "pages": 78,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Asar us Sanadid in Urdu.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 117462303,
-    "pages": 415,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Asar-us-Sanadid - (The Remnants of Ancient Heroes) -- Syed Ahmed Khan.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 30629843,
-    "pages": 597,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Causes of the Indian revolt - three essays -- Ahmad Khan, Sayyid.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 9096578,
-    "pages": 218,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Essays - Advancement for Learning & Education for Mooslims of India.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 75671851,
-    "pages": 354,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Khutbat Al Ahmadia - Khan, Sir Syed Ahmad.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 34841594,
-    "pages": 772,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Life of Muhammad and subjects subsidiary thereto = Khutbat -- Ahmad Khan, Sayyid, Sir.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 22948000,
-    "pages": 432,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Religious/Jila ul Quloob Ba Zikr e Mahmood.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 7742662,
-    "pages": 33,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Religious/Seerat e Fareedia by Sir Syed Ahmad Khan.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 36154506,
-    "pages": 134,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Religious/Tafseer ul Quraan - Sir Syed.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 34938779,
-    "pages": 1362,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Safarnama e London - Sir Syed.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 11497503,
-    "pages": 270,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Safarnama e Panjab - Sir Syed.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 8061394,
-    "pages": 424,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Sarkashi Zila Bijnor.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 46788817,
-    "pages": 354,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Sir Syed's Review on Dr. Hunters 'Indian Musalamaan'.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
-    "bytes": 4869841,
-    "pages": 90,
-    "readable": true
-  },
-  {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Sir Syeds Ain e Akbari.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
+    "sourceFile": "01-sir-syed-ahmad-khan/ain-e-akbari.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
     "bytes": 16458962,
     "pages": 366,
     "readable": true
   },
   {
-    "sourceFile": "1. Sir Syed Ahmed Khan/The Gospel According to Sayyid Ahmad Khan (1817-1898) Christian Troll.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
+    "sourceFile": "01-sir-syed-ahmad-khan/asar-us-sanadid-e2.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 30629843,
+    "pages": 597,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/asar-us-sanadid.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 117462303,
+    "pages": 415,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/causes-of-the-indian-revolt-e2.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 6872993,
+    "pages": 78,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/causes-of-the-indian-revolt.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 9096578,
+    "pages": 218,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/essays-advancement-for-learning.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 75671851,
+    "pages": 354,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/gospel-according-to-sayyid-ahmad-khan.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
     "bytes": 4823380,
     "pages": 406,
     "readable": true
   },
   {
-    "sourceFile": "1. Sir Syed Ahmed Khan/Writings and Speeches of Sir Syed Ahmad Khan - Compiled by Shan Mohammad.pdf",
-    "folder": "1. Sir Syed Ahmed Khan",
+    "sourceFile": "01-sir-syed-ahmad-khan/jila-ul-quloob.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 7742662,
+    "pages": 33,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/khutbat-e-ahmadiyya-e2.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 22948000,
+    "pages": 432,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/khutbat-e-ahmadiyya.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 34841594,
+    "pages": 772,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/review-on-hunters-indian-musalmans.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 4869841,
+    "pages": 90,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/safarnama-e-london.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 11497503,
+    "pages": 270,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/safarnama-e-panjab.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 8061394,
+    "pages": 424,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/sarkashi-zila-bijnor.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 46788817,
+    "pages": 354,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/seerat-e-fareedia.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 36154506,
+    "pages": 134,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/tabyin-ul-kalam.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 22220688,
+    "pages": 424,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/tafsir-ul-quran.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
+    "bytes": 34938779,
+    "pages": 1362,
+    "readable": true
+  },
+  {
+    "sourceFile": "01-sir-syed-ahmad-khan/writings-and-speeches.pdf",
+    "folder": "01-sir-syed-ahmad-khan",
     "bytes": 48962070,
     "pages": 282,
     "readable": true
   },
   {
-    "sourceFile": "11. Liaquat Ali Khan/Pakistan The Heart of Asia - Speeches in the United States and Canada, May and June, 1950 by the Prime Minister of Pakistan.pdf",
-    "folder": "11. Liaquat Ali Khan",
-    "bytes": 6538388,
-    "pages": 168,
+    "sourceFile": "02-syed-ameer-ali/DUPLICATE-of-ethics-of-islam.pdf",
+    "folder": "02-syed-ameer-ali",
+    "bytes": 4189233,
+    "pages": 98,
     "readable": true
   },
   {
-    "sourceFile": "2. Ameer Ali/A Short History of the Saracens - Ameer Ali.pdf",
-    "folder": "2. Ameer Ali",
+    "sourceFile": "02-syed-ameer-ali/a-short-history-of-the-saracens.pdf",
+    "folder": "02-syed-ameer-ali",
     "bytes": 39230634,
     "pages": 716,
     "readable": true
   },
   {
-    "sourceFile": "2. Ameer Ali/Ethics of Islam - Syed Ameer Ali.pdf",
-    "folder": "2. Ameer Ali",
-    "bytes": 4189233,
-    "pages": 98,
-    "readable": true
-  },
-  {
-    "sourceFile": "2. Ameer Ali/Islam by Syed Ameer Ali.pdf",
-    "folder": "2. Ameer Ali",
-    "bytes": 4189233,
-    "pages": 98,
-    "readable": true
-  },
-  {
-    "sourceFile": "2. Ameer Ali/Memoirs-And-Other-Writings-Of-Syed-Ameer-Ali - Digital Library of India.pdf",
-    "folder": "2. Ameer Ali",
+    "sourceFile": "02-syed-ameer-ali/memoirs-and-other-writings.pdf",
+    "folder": "02-syed-ameer-ali",
     "bytes": 42225782,
     "pages": 380,
     "readable": true
   },
   {
-    "sourceFile": "2. Ameer Ali/Mohammedan law (Ali, Syed Ameer, 1849-1928).pdf",
-    "folder": "2. Ameer Ali",
+    "sourceFile": "02-syed-ameer-ali/mohammedan-law.pdf",
+    "folder": "02-syed-ameer-ali",
     "bytes": 51538702,
     "pages": 860,
     "readable": true
   },
   {
-    "sourceFile": "2. Ameer Ali/The Moslem Festivities (1892) Syed Ameer Ali.pdf",
-    "folder": "2. Ameer Ali",
+    "sourceFile": "02-syed-ameer-ali/the-ethics-of-islam.pdf",
+    "folder": "02-syed-ameer-ali",
+    "bytes": 4189233,
+    "pages": 98,
+    "readable": true
+  },
+  {
+    "sourceFile": "02-syed-ameer-ali/the-moslem-festivities.pdf",
+    "folder": "02-syed-ameer-ali",
     "bytes": 6274256,
     "pages": 82,
     "readable": true
   },
   {
-    "sourceFile": "2. Ameer Ali/The Spirit Of Islam_ A History Of The Evolution And Ideals -- Ameer Ali.pdf",
-    "folder": "2. Ameer Ali",
+    "sourceFile": "02-syed-ameer-ali/the-spirit-of-islam.pdf",
+    "folder": "02-syed-ameer-ali",
     "bytes": 31825917,
     "pages": 600,
     "readable": true
   },
   {
-    "sourceFile": "3. Mohsin ul Mulk/Aayaat E Bayyenat - Nawab Mohsin ul Mulk.pdf",
-    "folder": "3. Mohsin ul Mulk",
+    "sourceFile": "03-nawab-mohsin-ul-mulk/aayaat-e-bayyenat.pdf",
+    "folder": "03-nawab-mohsin-ul-mulk",
     "bytes": 24596984,
     "pages": 361,
     "readable": true
   },
   {
-    "sourceFile": "3. Mohsin ul Mulk/Kaifiyat Tashreef Aawari Sir Habibullah Khan - Nawab Mohsin ul Mulk.pdf",
-    "folder": "3. Mohsin ul Mulk",
+    "sourceFile": "03-nawab-mohsin-ul-mulk/kaifiyat-tashreef-aawari.pdf",
+    "folder": "03-nawab-mohsin-ul-mulk",
     "bytes": 1028531,
     "pages": 20,
     "readable": true
   },
   {
-    "sourceFile": "3. Mohsin ul Mulk/Kitabul Mohabbat Wal Shauq - Nawab Mohsin ul Mulk.pdf",
-    "folder": "3. Mohsin ul Mulk",
+    "sourceFile": "03-nawab-mohsin-ul-mulk/kitabul-mohabbat-wal-shauq.pdf",
+    "folder": "03-nawab-mohsin-ul-mulk",
     "bytes": 3956242,
     "pages": 126,
     "readable": true
   },
   {
-    "sourceFile": "3. Mohsin ul Mulk/Makateeb - Nawab Mohsin ul Mulk.pdf",
-    "folder": "3. Mohsin ul Mulk",
+    "sourceFile": "03-nawab-mohsin-ul-mulk/makateeb.pdf",
+    "folder": "03-nawab-mohsin-ul-mulk",
     "bytes": 15798455,
     "pages": 150,
     "readable": true
   },
   {
-    "sourceFile": "3. Mohsin ul Mulk/Response to Lepel Griffin on Indian Muhammadans.pdf",
-    "folder": "3. Mohsin ul Mulk",
+    "sourceFile": "03-nawab-mohsin-ul-mulk/response-to-lepel-griffin.pdf",
+    "folder": "03-nawab-mohsin-ul-mulk",
     "bytes": 11743763,
     "pages": 54,
     "readable": true
   },
   {
-    "sourceFile": "3. Mohsin ul Mulk/Taqleed aur Amal bil Hadees.pdf",
-    "folder": "3. Mohsin ul Mulk",
+    "sourceFile": "03-nawab-mohsin-ul-mulk/taqleed-aur-amal-bil-hadees.pdf",
+    "folder": "03-nawab-mohsin-ul-mulk",
     "bytes": 9451499,
     "pages": 116,
     "readable": true
   },
   {
-    "sourceFile": "3. Mohsin ul Mulk/The First Lecture - Nawab Mohsin ul Mulk.pdf",
-    "folder": "3. Mohsin ul Mulk",
+    "sourceFile": "03-nawab-mohsin-ul-mulk/the-first-lecture.pdf",
+    "folder": "03-nawab-mohsin-ul-mulk",
     "bytes": 16901783,
     "pages": 66,
     "readable": true
   },
   {
-    "sourceFile": "4. Viqar ul Mulk/AIMU se Mutaliq Nawab Viqar ul Mulk ki Raye.pdf",
-    "folder": "4. Viqar ul Mulk",
+    "sourceFile": "04-nawab-viqar-ul-mulk/aimu-se-mutaliq-raye.pdf",
+    "folder": "04-nawab-viqar-ul-mulk",
     "bytes": 1552478,
     "pages": 46,
     "readable": true
   },
   {
-    "sourceFile": "4. Viqar ul Mulk/Letters of Viqar ul Mulk & Mohsin ul Mulk.pdf",
-    "folder": "4. Viqar ul Mulk",
+    "sourceFile": "04-nawab-viqar-ul-mulk/letters-of-viqar-ul-mulk-and-mohsin-ul-mulk.pdf",
+    "folder": "04-nawab-viqar-ul-mulk",
     "bytes": 10264319,
     "pages": 164,
     "readable": true
   },
   {
-    "sourceFile": "4. Viqar ul Mulk/Muslim University Aur Musalmanon Ki Mazhabi Taleem-o-tarbiyat - Viqar ul Mulk.pdf",
-    "folder": "4. Viqar ul Mulk",
+    "sourceFile": "04-nawab-viqar-ul-mulk/muslim-university-aur-mazhabi-taleem.pdf",
+    "folder": "04-nawab-viqar-ul-mulk",
     "bytes": 322516,
     "pages": 16,
     "readable": true
   },
   {
-    "sourceFile": "5. Agha Khan III/India In Transition - Aga Khan III.pdf",
-    "folder": "5. Agha Khan III",
+    "sourceFile": "05-aga-khan-iii/india-in-transition.pdf",
+    "folder": "05-aga-khan-iii",
     "bytes": 23531377,
     "pages": 324,
     "readable": true
   },
   {
-    "sourceFile": "5. Agha Khan III/The memoirs of Aga Khan - World Enough and Time - Aga Khan III, 1877-1957.pdf",
-    "folder": "5. Agha Khan III",
+    "sourceFile": "05-aga-khan-iii/memoirs-world-enough-and-time.pdf",
+    "folder": "05-aga-khan-iii",
     "bytes": 20084192,
     "pages": 400,
     "readable": true
   },
   {
-    "sourceFile": "6. Shawkat Ali/Paigham e Amal - by Maulana Shaukat Ali Khan.pdf",
-    "folder": "6. Shawkat Ali",
+    "sourceFile": "06-maulana-shaukat-ali/paigham-e-amal.pdf",
+    "folder": "06-maulana-shaukat-ali",
     "bytes": 6076950,
     "pages": 24,
     "readable": true
   },
   {
-    "sourceFile": "7. Maulana Muhammad Ali Jawhar/Essays of Molana Muhammad Ali Jawhar.pdf",
-    "folder": "7. Maulana Muhammad Ali Jawhar",
+    "sourceFile": "07-maulana-muhammad-ali-jauhar/essays.pdf",
+    "folder": "07-maulana-muhammad-ali-jauhar",
     "bytes": 15003772,
     "pages": 504,
     "readable": true
   },
   {
-    "sourceFile": "7. Maulana Muhammad Ali Jawhar/Majmua Kalam of Muhammad Ali Jawhar.pdf",
-    "folder": "7. Maulana Muhammad Ali Jawhar",
-    "bytes": 3359250,
-    "pages": 54,
-    "readable": true
-  },
-  {
-    "sourceFile": "7. Maulana Muhammad Ali Jawhar/Poetry whilst in Jail - Jazbaat e Jawhar.pdf",
-    "folder": "7. Maulana Muhammad Ali Jawhar",
+    "sourceFile": "07-maulana-muhammad-ali-jauhar/jazbaat-e-jauhar.pdf",
+    "folder": "07-maulana-muhammad-ali-jauhar",
     "bytes": 178799091,
     "pages": 26,
     "readable": true
   },
   {
-    "sourceFile": "7. Maulana Muhammad Ali Jawhar/Problem of Hijaz and the Ibn Sauds.pdf",
-    "folder": "7. Maulana Muhammad Ali Jawhar",
+    "sourceFile": "07-maulana-muhammad-ali-jauhar/majmua-kalam.pdf",
+    "folder": "07-maulana-muhammad-ali-jauhar",
+    "bytes": 3359250,
+    "pages": 54,
+    "readable": true
+  },
+  {
+    "sourceFile": "07-maulana-muhammad-ali-jauhar/problem-of-hijaz-and-the-ibn-sauds.pdf",
+    "folder": "07-maulana-muhammad-ali-jauhar",
     "bytes": 38016667,
     "pages": 176,
     "readable": true
   },
   {
-    "sourceFile": "7. Maulana Muhammad Ali Jawhar/Selected Writings And Speeches - Volume 2.pdf",
-    "folder": "7. Maulana Muhammad Ali Jawhar",
-    "bytes": 34641813,
-    "pages": 396,
-    "readable": true
-  },
-  {
-    "sourceFile": "7. Maulana Muhammad Ali Jawhar/Selected Writings And Speeches Of Mauluna Mohamed Ali, Volume 1.pdf",
-    "folder": "7. Maulana Muhammad Ali Jawhar",
+    "sourceFile": "07-maulana-muhammad-ali-jauhar/selected-writings-and-speeches-vol-1.pdf",
+    "folder": "07-maulana-muhammad-ali-jauhar",
     "bytes": 19566811,
     "pages": 252,
     "readable": true
   },
   {
-    "sourceFile": "7. Maulana Muhammad Ali Jawhar/Speeches of Maulana Muhammad Ali Jawhar.pdf",
-    "folder": "7. Maulana Muhammad Ali Jawhar",
+    "sourceFile": "07-maulana-muhammad-ali-jauhar/selected-writings-and-speeches-vol-2.pdf",
+    "folder": "07-maulana-muhammad-ali-jauhar",
+    "bytes": 34641813,
+    "pages": 396,
+    "readable": true
+  },
+  {
+    "sourceFile": "07-maulana-muhammad-ali-jauhar/speeches.pdf",
+    "folder": "07-maulana-muhammad-ali-jauhar",
     "bytes": 410572909,
     "pages": 72,
     "readable": true
   },
   {
-    "sourceFile": "8. Ch. Rahmat Ali/Complete Works Of Rahmat Ali Vol 1 (1978).pdf",
-    "folder": "8. Ch. Rahmat Ali",
+    "sourceFile": "08-chaudhry-rahmat-ali/complete-works-volume-1.pdf",
+    "folder": "08-chaudhry-rahmat-ali",
     "bytes": 12759720,
     "pages": 338,
     "readable": true
   },
   {
-    "sourceFile": "8. Ch. Rahmat Ali/Now_or_Never Pamphlet - Chaudhry Rahmat Ali.pdf",
-    "folder": "8. Ch. Rahmat Ali",
+    "sourceFile": "08-chaudhry-rahmat-ali/now-or-never.pdf",
+    "folder": "08-chaudhry-rahmat-ali",
     "bytes": 795843,
     "pages": 8,
     "readable": true
   },
   {
-    "sourceFile": "8. Ch. Rahmat Ali/Pakistan - Chaudhry Rahmat Ali.pdf",
-    "folder": "8. Ch. Rahmat Ali",
+    "sourceFile": "08-chaudhry-rahmat-ali/pakistan-the-fatherland-of-the-pak-nation.pdf",
+    "folder": "08-chaudhry-rahmat-ali",
     "bytes": 99314309,
     "pages": 386,
     "readable": true
   },
   {
-    "sourceFile": "8. Ch. Rahmat Ali/The Millat of Islam and the Menace of Indianism.pdf",
-    "folder": "8. Ch. Rahmat Ali",
+    "sourceFile": "08-chaudhry-rahmat-ali/the-millat-of-islam-and-the-menace-of-indianism.pdf",
+    "folder": "08-chaudhry-rahmat-ali",
     "bytes": 15348956,
     "pages": 10,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/allahabad-address-1930.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 10685081,
+    "pages": 64,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/armaghan-e-hijaz.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 4574134,
+    "pages": 64,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/asrar-e-khudi.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 4232639,
+    "pages": 87,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/bal-e-jibril.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 14372328,
+    "pages": 177,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/bang-e-dara.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 5990917,
+    "pages": 270,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/javed-nama.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 2608922,
+    "pages": 344,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/pas-cheh-bayad-kard.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 16701760,
+    "pages": 812,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/payam-e-mashriq.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 40980920,
+    "pages": 235,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/rumuz-e-bekhudi.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 26750380,
+    "pages": 103,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/stray-reflections.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 6025269,
+    "pages": 258,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/the-development-of-metaphysics-in-persia.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 7671232,
+    "pages": 184,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/the-reconstruction-of-religious-thought-in-islam.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 14180380,
+    "pages": 200,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/zabur-e-ajam.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 6823379,
+    "pages": 268,
+    "readable": true
+  },
+  {
+    "sourceFile": "09-allama-muhammad-iqbal/zarb-e-kalim.pdf",
+    "folder": "09-allama-muhammad-iqbal",
+    "bytes": 4258510,
+    "pages": 170,
+    "readable": true
+  },
+  {
+    "sourceFile": "10-quaid-e-azam/speeches-1947.pdf",
+    "folder": "10-quaid-e-azam",
+    "bytes": 135138,
+    "pages": 5,
+    "readable": true
+  },
+  {
+    "sourceFile": "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
+    "folder": "11-liaquat-ali-khan",
+    "bytes": 6538388,
+    "pages": 168,
     "readable": true
   }
 ]

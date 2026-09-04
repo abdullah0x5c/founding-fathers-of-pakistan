@@ -9,7 +9,7 @@ on the Internet Archive and read through their embedded BookReader.
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # 11 figure routes + 47 work routes + / and /about
+npm run build    # 11 figure routes + 61 work routes + / and /about
 ```
 
 ## Deploying to Vercel
@@ -86,7 +86,7 @@ be seen working. Replace it if you would rather serve your own scan.
 |---|---|
 | `content/types.ts` | The `Figure`, `Work` and `Edition` shapes |
 | `content/figures.ts` | The eleven, with biographies |
-| `content/works.ts` | **Generated.** 47 catalogue entries over 50 scans |
+| `content/works.ts` | **Generated.** 61 catalogue entries over 64 scans |
 | `content/works.seed.json` | **Generated.** Measured page counts and byte sizes |
 | `content/works.catalog.json` | **Generated.** Machine-readable catalogue dump, read by `generate-ia-upload.py` |
 | `content/ia-map.json` | **Generated**, once uploads exist. `sourceFile` → confirmed archive.org identifier |
@@ -120,7 +120,7 @@ Ameer Ali.pdf` is byte-identical to `Ethics of Islam` and is deliberately catalo
 
 Run `npm run dev` and read the dashed boxes. Every claim written from general knowledge
 rather than read off a scan is recorded in a `verify` array and rendered in development
-only — they never reach the production build. There are 82 of them, mostly
+only — they never reach the production build. There are 107 of them, mostly
 dates and attributions. They are the launch checklist.
 
 Three things in particular need a decision rather than a check:

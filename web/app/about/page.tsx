@@ -121,11 +121,13 @@ export default function AboutPage() {
 
           <h2>What is incomplete</h2>
           <p>
-            The collection is radically uneven, and the site does not hide it. One figure has
-            eighteen items and three have one apiece. Muhammad Ali Jinnah, the most famous of the
-            eleven, currently has none: he wrote no books, his corpus is speeches and correspondence
-            recorded by others, and the single file collected for him was an interrupted download
-            that cannot be opened. His page shows an empty shelf and explains why.
+            The collection is radically uneven, and the site does not hide it. Sir Syed Ahmad
+            Khan&rsquo;s shelf runs to eighteen items; Maulana Shaukat Ali&rsquo;s and Liaquat Ali
+            Khan&rsquo;s hold one apiece. Muhammad Ali Jinnah, the most famous of the eleven, has
+            exactly one: a five-page compilation of a handful of his speeches, downloaded from a web
+            aggregator rather than a named archive. He wrote no books, and his corpus is properly
+            speeches and correspondence recorded by others — this file is a genuine start on that
+            record, not a representative one, and his page says so.
           </p>
           <p>
             An archive that shows its gaps reads as honest; one that conceals them reads as

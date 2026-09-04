@@ -76,7 +76,7 @@ export default async function FigurePage({ params }: { params: Promise<{ figure:
               <MetaCell label="Died">{figure.died}</MetaCell>
               <MetaCell label="Places">{figure.places}</MetaCell>
               <MetaCell label="Works held">
-                {shelf.length === 0 ? "Nothing held" : `${shelf.length} items`}
+                {shelf.length === 0 ? "Nothing held" : `${shelf.length} item${shelf.length === 1 ? "" : "s"}`}
               </MetaCell>
             </div>
 
