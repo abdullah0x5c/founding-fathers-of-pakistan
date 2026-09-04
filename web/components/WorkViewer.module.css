@@ -55,13 +55,8 @@
 .stage {
   background: var(--stage);
   padding: 0;
-}
-
-.embed {
-  display: block;
-  width: 100%;
   height: min(78vh, 900px);
-  border: 0;
+  overflow-y: auto;
 }
 
 .pending {
