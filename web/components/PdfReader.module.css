@@ -1,110 +1,161 @@
+/* The reader: a thin control strip over a self-scrolling canvas stage. The
+   stage height shadows what the old iframe occupied — a fixed band inside the
+   work page, not the whole viewport. */
 .reader {
-  background: var(--stage);
+  display: flex;
+  flex-direction: column;
+  height: min(78vh, 900px);
 }
 
 .readerBar {
-  position: sticky;
-  top: 0;
-  z-index: 2;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 12px;
   padding: 10px 16px;
   border-bottom: 1px solid var(--on-ground-12);
-  background: var(--stage);
   font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  color: var(--on-ground-86);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-ground-62);
 }
 
-.pageCount {
-  white-space: nowrap;
+.readerZoom {
+  display: flex;
+  gap: 6px;
 }
 
-.grow {
-  flex: 1;
-}
-
-.zoomButton {
-  font-family: var(--mono);
-  font-size: 0.9375rem;
-  line-height: 1;
-  color: var(--gold);
+.readerBtn {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--on-ground-70);
   background: transparent;
   border: 1px solid var(--on-ground-12);
-  width: 28px;
-  height: 28px;
+  padding: 4px 10px;
+  line-height: 1;
   cursor: pointer;
 }
 
-.zoomButton:hover:not(:disabled) {
-  background: var(--gold);
-  color: var(--ground);
-}
-
-.zoomButton:disabled {
+.readerBtn:disabled {
   opacity: 0.35;
   cursor: default;
 }
 
-.status {
-  padding: clamp(32px, 6vw, 64px) 20px;
-  text-align: center;
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--on-ground-86);
+.readerBtn:not(:disabled):hover {
+  color: var(--gold);
+  border-color: rgba(201, 169, 107, 0.4);
 }
 
-.progress {
-  display: block;
+.readerStageWrap {
   position: relative;
-  margin: 14px auto 0;
-  max-width: 220px;
-  height: 3px;
-  background: var(--on-ground-12);
-  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+  display: flex;
 }
 
-.progressBar {
-  display: block;
-  height: 100%;
-  background: var(--gold);
-  transition: width 0.2s ease;
+.readerStage {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  outline: none;
 }
 
-.progressBar[data-indeterminate] {
+/* Sits over the (empty while loading) stage and unmounts once the document is
+   ready. pointer-events: none so it never blocks scroll or keyboard while a
+   page is resolving. */
+.readerOverlay {
   position: absolute;
-  top: 0;
-  width: 40% !important;
-  animation: indeterminate 1.2s ease-in-out infinite;
-}
-
-@keyframes indeterminate {
-  0% {
-    left: -40%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-.pages {
-  margin: 0 auto;
+  inset: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 16px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: clamp(32px, 6vw, 72px) 20px;
+  text-align: center;
+  background: var(--stage);
+  pointer-events: none;
 }
 
-.page {
-  position: relative;
+/* One placeholder per page, pre-sized with the document's aspect ratio so the
+   layout never jumps while a canvas is being fetched or rendered. Rendered
+   pages keep the same class; the canvas inside fills its slot. --rw is set
+   from JS as the zoom step — the widest a page ever grows. */
+.pageSlot {
   width: 100%;
-  background: var(--ground-sunk);
+  max-width: var(--rw, 980px);
+  margin: 14px auto;
+  background: var(--stage);
 }
 
-.canvas {
+.pageCanvas {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.readerLoader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.readerLoaderText {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.readerLoaderBar {
+  position: relative;
+  width: 140px;
+  height: 2px;
+  overflow: hidden;
+  background: var(--on-ground-12);
+}
+
+.readerLoaderFill {
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: var(--gold);
+  animation: readerFetch 1.1s ease-in-out infinite;
+}
+
+@keyframes readerFetch {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.readerError {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.readerErrorLabel {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.readerErrorBody {
+  margin: 6px 0 0;
+  max-width: 46ch;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--on-ground-86);
+  text-wrap: pretty;
 }

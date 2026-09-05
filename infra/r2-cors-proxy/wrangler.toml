@@ -1,0 +1,7 @@
+name = "ffop-r2-reader"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+# The bucket's public endpoint. Point this at the real you-uploaded-to bucket.
+BUCKET_ORIGIN = "https://pub-52015ba6ca1d4c5096d8546e93f6beb3.r2.dev"

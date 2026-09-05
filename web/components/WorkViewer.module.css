@@ -55,10 +55,10 @@
 .stage {
   background: var(--stage);
   padding: 0;
-  height: min(78vh, 900px);
-  overflow-y: auto;
 }
 
+/* The reader — its own control strip and self-scrolling page stage — lives in
+   PdfReader.module.css alongside the component. */
 .pending {
   background: var(--stage);
   min-height: min(34vh, 320px);

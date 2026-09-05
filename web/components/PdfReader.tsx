@@ -1,298 +1,494 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import type { PDFDocumentLoadingTask, PDFDocumentProxy } from "pdfjs-dist";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./PdfReader.module.css";
 
 /**
- * A self-hosted pdf.js reader: continuous vertical scroll through one <canvas>
- * per page, each page rendered only once it is about to scroll into view.
+ * The in-house reader: a virtualized pdf.js canvas renderer.
  *
- * pdf.js is loaded from /vendor/pdfjs/ (copied from node_modules by
- * scripts/copy-pdfjs.mjs on every install, see package.json's postinstall) —
- * not a CDN, and not bundled by webpack: the `webpackIgnore` comment below
- * keeps Next.js from trying to resolve it at build time, since it's meant to
- * be fetched at runtime as a plain static asset.
+ * Replaces the browser's native `<iframe>` PDF viewer. The native viewer (Chrome
+ * above all) pulls most of the file down before showing page one, which makes a
+ * linearized 117 MB scan feel broken. This reader instead opens the document
+ * over HTTP **range requests** (`getDocument({ url, disableAutoFetch: true, ... })`),
+ * so only the linearized head and the byte ranges of pages near the viewport are
+ * ever transferred, and renders each of those pages into a `<canvas>`.
  *
- * getDocument() is called with `disableAutoFetch: true` and a chunked
- * `rangeChunkSize`, so pdf.js streams byte ranges from R2 on demand instead
- * of downloading the whole scan up front. That only pays off because R2
- * serves `Accept-Ranges: bytes` (confirmed) and the PDFs themselves have been
- * linearized ("Fast Web View") — a non-linearized file keeps its xref table
- * at the end, forcing pdf.js to jump around the file just to find page one.
+ * Pages are rendered lazily: a scroll window keeps only the pages near the
+ * viewport in the DOM as `<canvas>` elements, evicts the ones far outside it
+ * (pdf.js keeps the page data cached, so re-scrolling is a fast re-draw rather
+ * than a re-fetch), and re-renders everything when the zoom step changes.
  *
- * No page-turn animation, no thumbnail filmstrip, no rotate control — just
- * scroll, a live page counter, and a fixed set of zoom widths stepped by
- * +/-. See web/docs/pdf-reader-reference.md for the reader this pattern is
- * adapted from.
+ * pdf.js itself is self-hosted — core + worker live under `/vendor/pdfjs/`
+ * (copied from node_modules by `scripts/copy-pdfjs.mjs` on every `npm install`,
+ * so the vendored copy always matches the pinned `pdfjs-dist` version) and is
+ * fetched at runtime, so the reader carries no CDN dependency and pdf.js isn't
+ * loaded until a document is actually opened.
+ *
+ * The PDF URL must be reachable from the browser with CORS headers — the R2
+ * bucket's `pub-…r2.dev` endpoint serves none, so in production this is the
+ * Cloudflare worker in `infra/r2-cors-proxy/` (see its README).
  */
 
-const ZOOM_STEPS = [620, 800, 980, 1180, 1400] as const;
-const DEFAULT_ZOOM_INDEX = 2;
-const RENDER_MARGIN = "1000px 0px";
+const WORKER_SRC = "/vendor/pdfjs/pdf.worker.min.mjs";
+const PDFJS_SRC = "/vendor/pdfjs/pdf.min.mjs";
 
-type LoadState =
-  | { phase: "loading"; loaded: number; total: number | null }
-  | { phase: "ready" }
-  | { phase: "error"; message: string };
+/** Global "zoom" is a stepped set of reader widths, not a CSS transform —
+ * matching the reference reader this was adapted from. Changing width tears
+ * down the visible canvases and re-renders them at the new scale. */
+const ZOOM_STEPS = [620, 800, 980, 1180, 1400];
+const DEFAULT_STEP = 2; // 980
 
-export default function PdfReader({ url, title }: { url: string; title: string }) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const pageRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const pdfDocRef = useRef<PDFDocumentProxy | null>(null);
-  const loadingTaskRef = useRef<PDFDocumentLoadingTask | null>(null);
+/** How far past the viewport a page is fetched; how much farther it must go
+ * before its canvas is evicted (hysteresis so a few px of scrolling doesn't
+ * thrash the renderer). */
+const RENDER_MARGIN = 1200;
+const EVICT_MARGIN = 2600;
+
+/** Cap the rendered size of a page in device pixels. These are ~150 dpi scans
+ * (~1167 px wide) — rendering past ~2000 device px is upsampling nothing. */
+const MAX_DEVICE_WIDTH = 2000;
+
+/** Vertical spacing applied by `.pageSlot`'s `margin: 14px auto`. Kept in sync
+ * with the CSS so the scroll math lines up with the layout. */
+const PAGE_GAP = 28;
+
+type PdfJs = typeof import("pdfjs-dist");
+
+interface PdfReaderProps {
+  url: string;
+  pages: number;
+  lang: string;
+}
+
+let pdfjsPromise: Promise<PdfJs> | null = null;
+
+function loadPdfjs(): Promise<PdfJs> {
+  if (!pdfjsPromise) {
+    // Fetched at runtime from public/vendor/pdfjs — deliberately not resolved
+    // by webpack/Next at build time.
+    pdfjsPromise = import(
+      /* webpackIgnore: true */
+      /* turbopackIgnore: true */
+      PDFJS_SRC
+    ).then((mod) => {
+      mod.GlobalWorkerOptions.workerSrc = WORKER_SRC;
+      return mod as PdfJs;
+    });
+  }
+  return pdfjsPromise;
+}
+
+export default function PdfReader({ url, pages }: PdfReaderProps) {
+  const stageRef = useRef<HTMLDivElement>(null);
+
+  const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
+  const [total, setTotal] = useState(pages);
+  const [current, setCurrent] = useState(1);
+  const [zoomIdx, setZoomIdx] = useState(DEFAULT_STEP);
+
+  // Mutable reader state shared by the scroll/zoom/render loops. The stage is
+  // deliberately never given React children — every DOM node inside it is owned
+  // imperatively, so React and the renderer can't fight over the same element.
+  const totalRef = useRef(pages);
+  const docRef = useRef<any>(null);
+  const slotsRef = useRef<Map<number, HTMLDivElement>>(new Map());
   const renderedRef = useRef<Set<number>>(new Set());
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const visibleRatiosRef = useRef<Map<number, number>>(new Map());
+  const pendingRef = useRef<Set<number>>(new Set());
+  const tasksRef = useRef<Map<number, { cancel: () => void }>>(new Map());
+  const ratiosRef = useRef<number[]>([]);
+  const topsRef = useRef<number[]>([]);
+  const slotWRef = useRef<number>(0);
+  const zoomIdxRef = useRef(DEFAULT_STEP);
+  const rafRef = useRef<number | null>(null);
 
-  const [state, setState] = useState<LoadState>({ phase: "loading", loaded: 0, total: null });
-  const [numPages, setNumPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [zoomIndex, setZoomIndex] = useState(DEFAULT_ZOOM_INDEX);
+  const recomputeTops = useCallback(() => {
+    const ratios = ratiosRef.current;
+    const width = slotWRef.current;
+    const tops = new Array<number>(ratios.length + 1);
+    let y = 0;
+    tops[0] = 0;
+    for (let i = 0; i < ratios.length; i++) {
+      y += width / ratios[i] + PAGE_GAP;
+      tops[i + 1] = y;
+    }
+    topsRef.current = tops;
+  }, []);
 
-  // Load the document once per URL.
-  useEffect(() => {
-    let cancelled = false;
-    setState({ phase: "loading", loaded: 0, total: null });
-    setNumPages(0);
-    setCurrentPage(1);
-    renderedRef.current.clear();
-    pageRefs.current = [];
-
-    async function load() {
-      const pdfjsUrl = "/vendor/pdfjs/pdf.min.mjs";
-      const pdfjsLib = (await import(
-        /* webpackIgnore: true */
-        /* turbopackIgnore: true */
-        pdfjsUrl
-      )) as typeof import("pdfjs-dist");
-      if (cancelled) return;
-
-      pdfjsLib.GlobalWorkerOptions.workerSrc = "/vendor/pdfjs/pdf.worker.min.mjs";
-
-      const task = pdfjsLib.getDocument({
-        url,
-        disableAutoFetch: true,
-        disableStream: false,
-        rangeChunkSize: 65536,
-      });
-      loadingTaskRef.current = task;
-
-      task.onProgress = ({ loaded, total }: { loaded: number; total: number }) => {
-        if (cancelled) return;
-        setState({ phase: "loading", loaded, total: total || null });
-      };
-
-      try {
-        const pdfDoc: PDFDocumentProxy = await task.promise;
-        if (cancelled) {
-          task.destroy();
-          return;
-        }
-        pdfDocRef.current = pdfDoc;
-        setNumPages(pdfDoc.numPages);
-        setState({ phase: "ready" });
-      } catch (err) {
-        if (cancelled) return;
-        setState({
-          phase: "error",
-          message: err instanceof Error ? err.message : "The scan failed to load.",
-        });
+  /** Page number whose top edge is just before `y` (i.e. the page containing it). */
+  const pageAt = useCallback((y: number): number => {
+    const tops = topsRef.current;
+    if (tops.length === 0) return 1;
+    let lo = 0;
+    let hi = tops.length - 2;
+    let ans = 1;
+    while (lo <= hi) {
+      const mid = (lo + hi) >> 1;
+      if (tops[mid] <= y) {
+        ans = mid + 1;
+        lo = mid + 1;
+      } else {
+        hi = mid - 1;
       }
     }
+    return Math.min(ans, totalRef.current);
+  }, []);
 
-    load();
+  const evictPage = useCallback((n: number) => {
+    const task = tasksRef.current.get(n);
+    if (task) {
+      try {
+        task.cancel();
+      } catch {
+        /* already finished */
+      }
+      tasksRef.current.delete(n);
+    }
+    const slot = slotsRef.current.get(n);
+    if (slot) slot.replaceChildren();
+    // The placeholder keeps the page's aspect ratio, so the layout holds.
+    renderedRef.current.delete(n);
+    pendingRef.current.delete(n);
+  }, []);
+
+  const renderPage = useCallback(
+    async (n: number) => {
+      const doc = docRef.current;
+      if (!doc || pendingRef.current.has(n) || renderedRef.current.has(n)) return;
+      const slot = slotsRef.current.get(n);
+      const width = slotWRef.current;
+      if (!slot || width === 0) return;
+
+      pendingRef.current.add(n);
+      try {
+        const page = await doc.getPage(n);
+        const base = page.getViewport({ scale: 1 });
+        const ratio = base.width / base.height;
+        const dpr = Math.min(
+          (typeof window !== "undefined" ? window.devicePixelRatio : 1) || 1,
+          MAX_DEVICE_WIDTH / width
+        );
+        const viewport = page.getViewport({ scale: (width * dpr) / base.width });
+
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.floor(viewport.width));
+        canvas.height = Math.max(1, Math.floor(viewport.height));
+        canvas.className = styles.pageCanvas;
+        const ctx = canvas.getContext("2d", { alpha: false });
+        if (!ctx) {
+          pendingRef.current.delete(n);
+          return;
+        }
+
+        if (ratiosRef.current[n - 1] !== ratio) {
+          ratiosRef.current[n - 1] = ratio;
+          slot.style.aspectRatio = `${base.width} / ${base.height}`;
+          recomputeTops();
+        }
+        slot.replaceChildren(canvas);
+
+        const task = page.render({ canvas, viewport });
+        tasksRef.current.set(n, task);
+        try {
+          await task.promise;
+          renderedRef.current.add(n);
+        } catch {
+          // Cancelled (scrolled far away) or failed — drop the in-progress
+          // canvas so the placeholder shows and a later pass re-renders it.
+          if (slot.firstElementChild === canvas) slot.replaceChildren();
+        } finally {
+          tasksRef.current.delete(n);
+        }
+      } catch {
+        /* transient getPage failure — the next pass will retry */
+      } finally {
+        pendingRef.current.delete(n);
+      }
+    },
+    [recomputeTops]
+  );
+
+  const renderVisible = useCallback(() => {
+    const stage = stageRef.current;
+    // Safe before the document exists: renderPage no-ops while `docRef` is null.
+    if (!stage) return;
+    const tops = topsRef.current;
+    if (tops.length === 0) return;
+    const first = pageAt(Math.max(0, stage.scrollTop - RENDER_MARGIN));
+    const last = pageAt(stage.scrollTop + stage.clientHeight + RENDER_MARGIN);
+    for (let n = first; n <= Math.min(last, totalRef.current); n++) {
+      void renderPage(n);
+    }
+  }, [pageAt, renderPage]);
+
+  const rerenderAll = useCallback(() => {
+    for (const task of tasksRef.current.values()) {
+      try {
+        task.cancel();
+      } catch {
+        /* ignore */
+      }
+    }
+    tasksRef.current.clear();
+    for (const n of renderedRef.current) {
+      const slot = slotsRef.current.get(n);
+      if (slot) slot.replaceChildren();
+    }
+    renderedRef.current.clear();
+    pendingRef.current.clear();
+    recomputeTops();
+    renderVisible();
+  }, [recomputeTops, renderVisible]);
+
+  // Wire up zoom and keep `slotWRef` in sync with the actual laid-out width.
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const width = ZOOM_STEPS[zoomIdx];
+    zoomIdxRef.current = zoomIdx;
+    stage.style.setProperty("--rw", `${width}px`);
+    slotWRef.current = Math.min(stage.clientWidth || width, width);
+    recomputeTops();
+    if (docRef.current) rerenderAll();
+  }, [zoomIdx, recomputeTops, rerenderAll]);
+
+  // Open the document and build the page skeleton.
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage || !url) return;
+
+    let cancelled = false;
+    let doc: any = null;
+
+    (async () => {
+      try {
+        const pdfjs = await loadPdfjs();
+        if (cancelled) return;
+
+        const loadingTask = pdfjs.getDocument({
+          url,
+          rangeChunkSize: 1 << 20,
+          disableAutoFetch: true,
+          disableStream: false,
+        });
+        doc = await loadingTask.promise;
+        if (cancelled) {
+          doc.destroy();
+          return;
+        }
+        docRef.current = doc;
+        totalRef.current = doc.numPages;
+        setTotal(doc.numPages);
+
+        // First page's viewport gives the placeholder ratio for every scan
+        // (most scans are uniform; mixed-format volumes self-correct per page
+        // the moment each one renders).
+        const first = await doc.getPage(1);
+        const base = first.getViewport({ scale: 1 });
+        const ratio = base.width / base.height;
+
+        stage.style.setProperty("--rw", `${ZOOM_STEPS[zoomIdxRef.current]}px`);
+        slotWRef.current = Math.min(stage.clientWidth, ZOOM_STEPS[zoomIdxRef.current]);
+
+        const ratios = new Array<number>(doc.numPages).fill(ratio);
+        ratiosRef.current = ratios;
+        recomputeTops();
+
+        const slots = slotsRef.current;
+        for (let n = 1; n <= doc.numPages; n++) {
+          const slot = document.createElement("div");
+          slot.className = styles.pageSlot;
+          slot.style.aspectRatio = `${base.width} / ${base.height}`;
+          slot.setAttribute("data-page", String(n));
+          slot.setAttribute("aria-hidden", "true");
+          stage.appendChild(slot);
+          slots.set(n, slot);
+        }
+
+        if (!cancelled) {
+          setStatus("ready");
+          renderVisible();
+        }
+      } catch {
+        if (!cancelled) setStatus("error");
+      }
+    })();
 
     return () => {
       cancelled = true;
-      observerRef.current?.disconnect();
-      loadingTaskRef.current?.destroy();
-      loadingTaskRef.current = null;
-      pdfDocRef.current = null;
+      for (const task of tasksRef.current.values()) {
+        try {
+          task.cancel();
+        } catch {
+          /* ignore */
+        }
+      }
+      tasksRef.current.clear();
+      if (doc) doc.destroy();
+      docRef.current = null;
+      slotsRef.current.clear();
+      renderedRef.current.clear();
+      pendingRef.current.clear();
+      if (stage) stage.replaceChildren();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
-  // Once the document is ready and placeholders exist, size each placeholder
-  // by page 1's aspect ratio and start observing them.
+  // Scroll: update the current page readout and evict canvases far outside the
+  // viewport, in one rAF-throttled pass (no IO observer — the math is cheaper
+  // and gives the eviction hysteresis for free).
   useEffect(() => {
-    if (state.phase !== "ready" || numPages === 0) return;
-    const pdfDoc = pdfDocRef.current;
-    const container = containerRef.current;
-    if (!pdfDoc || !container) return;
+    const stage = stageRef.current;
+    if (!stage) return;
 
-    let cancelled = false;
+    const onScroll = () => {
+      if (rafRef.current != null) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        const tops = topsRef.current;
+        if (tops.length === 0) return;
 
-    async function sizePlaceholders() {
-      const page1 = await pdfDoc!.getPage(1);
-      if (cancelled) return;
-      const viewport = page1.getViewport({ scale: 1 });
-      const aspectRatio = viewport.width / viewport.height;
-      pageRefs.current.forEach((el) => {
-        if (el) el.style.aspectRatio = `${aspectRatio}`;
-      });
-    }
+        const scrollTop = stage.scrollTop;
+        const clientHeight = stage.clientHeight;
 
-    sizePlaceholders();
+        const next = pageAt(scrollTop + clientHeight / 2);
+        setCurrent((prev) => (prev === next ? prev : next));
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const el = entry.target as HTMLDivElement;
-          const pageNum = Number(el.dataset.page);
-          if (entry.isIntersecting) {
-            visibleRatiosRef.current.set(pageNum, entry.intersectionRatio);
-            renderPage(pageNum);
-          } else {
-            visibleRatiosRef.current.delete(pageNum);
-          }
+        const minTop = scrollTop - EVICT_MARGIN;
+        const maxBottom = scrollTop + clientHeight + EVICT_MARGIN;
+        for (const n of renderedRef.current) {
+          const top = tops[n - 1];
+          const bottom = top + slotWRef.current / ratiosRef.current[n - 1];
+          if (bottom < minTop || top > maxBottom) evictPage(n);
         }
-        let best = currentPage;
-        let bestRatio = -1;
-        visibleRatiosRef.current.forEach((ratio, page) => {
-          if (ratio > bestRatio) {
-            bestRatio = ratio;
-            best = page;
-          }
-        });
-        if (bestRatio >= 0) setCurrentPage(best);
-      },
-      { root: null, rootMargin: RENDER_MARGIN, threshold: [0, 0.25, 0.5, 0.75, 1] }
-    );
-    observerRef.current = observer;
-    pageRefs.current.forEach((el) => el && observer.observe(el));
 
-    return () => {
-      cancelled = true;
-      observer.disconnect();
+        // Render pages that have just come into the window (the scroll pass is
+        // the render trigger — there is no separate observer).
+        renderVisible();
+      });
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.phase, numPages]);
 
-  async function renderPage(pageNum: number) {
-    const pdfDoc = pdfDocRef.current;
-    const placeholder = pageRefs.current[pageNum - 1];
-    if (!pdfDoc || !placeholder || renderedRef.current.has(pageNum)) return;
-    renderedRef.current.add(pageNum);
+    stage.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      stage.removeEventListener("scroll", onScroll);
+      if (rafRef.current != null) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    };
+  }, [evictPage, pageAt, renderVisible]);
 
-    try {
-      const page = await pdfDoc.getPage(pageNum);
-      const cssWidth = placeholder.clientWidth;
-      const unscaled = page.getViewport({ scale: 1 });
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const scale = (cssWidth / unscaled.width) * dpr;
-      const viewport = page.getViewport({ scale });
-
-      const canvas = document.createElement("canvas");
-      canvas.width = Math.ceil(viewport.width);
-      canvas.height = Math.ceil(viewport.height);
-      canvas.className = styles.canvas;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
-
-      placeholder.replaceChildren(canvas);
-      await page.render({ canvas, canvasContext: ctx, viewport }).promise;
-    } catch {
-      renderedRef.current.delete(pageNum);
-    }
-  }
-
-  function rerenderVisible() {
-    renderedRef.current.clear();
-    pageRefs.current.forEach((el) => {
-      if (!el) return;
-      el.replaceChildren();
-      const rect = el.getBoundingClientRect();
-      if (rect.bottom > -1000 && rect.top < window.innerHeight + 1000) {
-        renderPage(Number(el.dataset.page));
+  // Resize: re-measure the laid-out width and re-render the visible window.
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(() => {
+      const width = ZOOM_STEPS[zoomIdxRef.current];
+      const next = Math.min(stage.clientWidth || width, width);
+      if (Math.abs(next - slotWRef.current) > 2) {
+        slotWRef.current = next;
+        recomputeTops();
+        renderVisible();
       }
     });
-  }
+    ro.observe(stage);
+    return () => ro.disconnect();
+  }, [recomputeTops, renderVisible]);
 
-  function zoom(direction: 1 | -1) {
-    setZoomIndex((i) => {
-      const next = Math.min(ZOOM_STEPS.length - 1, Math.max(0, i + direction));
-      if (next !== i) requestAnimationFrame(rerenderVisible);
-      return next;
-    });
-  }
+  const onStageKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        stage.scrollBy({ top: Math.round(stage.clientHeight * 0.8) });
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        stage.scrollBy({ top: -Math.round(stage.clientHeight * 0.8) });
+        break;
+      case "PageDown":
+        e.preventDefault();
+        stage.scrollBy({ top: Math.max(1, Math.round(stage.clientHeight * 0.9)) });
+        break;
+      case "PageUp":
+        e.preventDefault();
+        stage.scrollBy({ top: -Math.max(1, Math.round(stage.clientHeight * 0.9)) });
+        break;
+      case "Home":
+        e.preventDefault();
+        stage.scrollTo({ top: 0 });
+        break;
+      case "End":
+        e.preventDefault();
+        stage.scrollTo({ top: stage.scrollHeight });
+        break;
+    }
+  };
 
-  const maxWidth = ZOOM_STEPS[zoomIndex];
+  const atMinZoom = zoomIdx === 0;
+  const atMaxZoom = zoomIdx === ZOOM_STEPS.length - 1;
 
   return (
-    <div className={styles.reader}>
+    <div className={styles.reader} role="region" aria-label="Document reader">
       <div className={styles.readerBar}>
-        <span className={styles.pageCount}>
-          {numPages > 0 ? (
-            <>
-              {currentPage} / {numPages}
-            </>
-          ) : (
-            "—"
-          )}
+        <span aria-live="polite">
+          Page {Math.min(current, total || 1)} / {(total || pages).toLocaleString("en-US")}
         </span>
-        <span className={styles.grow} />
-        <button
-          type="button"
-          className={styles.zoomButton}
-          aria-label="Narrower"
-          onClick={() => zoom(-1)}
-          disabled={zoomIndex === 0}
-        >
-          &minus;
-        </button>
-        <button
-          type="button"
-          className={styles.zoomButton}
-          aria-label="Wider"
-          onClick={() => zoom(1)}
-          disabled={zoomIndex === ZOOM_STEPS.length - 1}
-        >
-          +
-        </button>
+        <div className={styles.readerZoom}>
+          <button
+            type="button"
+            className={styles.readerBtn}
+            aria-label="Zoom out"
+            disabled={status !== "ready" || atMinZoom}
+            onClick={() => setZoomIdx((i) => Math.max(0, i - 1))}
+          >
+            &minus;
+          </button>
+          <button
+            type="button"
+            className={styles.readerBtn}
+            aria-label="Zoom in"
+            disabled={status !== "ready" || atMaxZoom}
+            onClick={() => setZoomIdx((i) => Math.min(ZOOM_STEPS.length - 1, i + 1))}
+          >
+            +
+          </button>
+        </div>
       </div>
 
-      {state.phase === "error" ? (
-        <div className={styles.status}>
-          <p>{state.message}</p>
-          <p>Use the download link above to read this scan directly instead.</p>
-        </div>
-      ) : (
-        <>
-          {state.phase === "loading" && (
-            <p className={styles.status}>
-              Loading {title}&hellip;
-              <span className={styles.progress}>
-                <i
-                  className={styles.progressBar}
-                  style={
-                    state.total
-                      ? { width: `${Math.min(100, (state.loaded / state.total) * 100)}%` }
-                      : undefined
-                  }
-                  data-indeterminate={state.total ? undefined : "true"}
-                />
-              </span>
-            </p>
-          )}
+      <div className={styles.readerStageWrap}>
+        <div
+          ref={stageRef}
+          className={styles.readerStage}
+          tabIndex={0}
+          onKeyDown={onStageKeyDown}
+          aria-label="Scan pages"
+        />
+
+        {status !== "ready" && (
           <div
-            ref={containerRef}
-            className={styles.pages}
-            style={{ maxWidth: `${maxWidth}px` }}
+            className={styles.readerOverlay}
+            role={status === "error" ? "alert" : "status"}
           >
-            {Array.from({ length: numPages }, (_, i) => (
-              <div
-                key={i}
-                ref={(el) => {
-                  pageRefs.current[i] = el;
-                }}
-                data-page={i + 1}
-                className={styles.page}
-              />
-            ))}
+            {status === "loading" ? (
+              <>
+                <span className={styles.readerLoaderText}>Loading the scan&hellip;</span>
+                <span className={styles.readerLoaderBar}>
+                  <span className={styles.readerLoaderFill} />
+                </span>
+              </>
+            ) : (
+              <>
+                <div className={styles.readerErrorLabel}>This document could not be opened</div>
+                <p className={styles.readerErrorBody}>
+                  The scan may not have finished uploading to the archive yet, or the
+                  connection was interrupted. The record above is complete; try again shortly.
+                </p>
+              </>
+            )}
           </div>
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 }

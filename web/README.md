@@ -18,13 +18,19 @@ The repository root is the archive folder; the site lives in `web/`. When import
 project, set **Root Directory** to `web`. Everything else is defaults — no build
 overrides.
 
-One optional environment variable: `R2_BASE_URL`, the bucket's public URL. Note no
-`NEXT_PUBLIC_` prefix — every route here is statically generated, so this is only ever
-read on the server at build time and baked into the HTML; nothing reads it from the
-browser, so it doesn't need inlining into the client bundle. `lib/storage.ts` falls
-back to the current URL if it's unset, so setting it isn't required — do it only if you
-move to a custom domain instead of the `r2.dev` one, so a domain change doesn't need a
-code change too.
+The one environment variable that matters for the reader: `R2_BASE_URL`, the
+bucket's **CORS-enabled** public URL. Note no `NEXT_PUBLIC_` prefix — every route
+here is statically generated, so this is only ever read on the server at build
+time and baked into the HTML; nothing reads it from the browser at runtime.
+`lib/storage.ts` falls back to the committed `pub-….r2.dev` URL if it's unset.
+
+**The reader needs CORS on that URL.** `PdfReader` renders pages by fetching PDF
+byte ranges from the browser — a cross-origin `fetch` — so the storage endpoint
+must answer `Access-Control-Allow-Origin`. The bucket's raw `pub-….r2.dev`
+endpoint serves no CORS headers and can't be configured (R2 CORS applies to
+custom domains only), so by default the reader cannot reach it; request the
+worker in `infra/r2-cors-proxy/` (deploy steps in its README) and set
+`R2_BASE_URL` to its URL at build time.
 
 `content/` (1.7 GB of scans) is gitignored. It never needs to reach Vercel — the site
 reads it from R2 at request time via `<iframe>`, not from the repo.
@@ -92,10 +98,13 @@ via the archive.org metadata API) for an existing public-domain item there.
 | `content/works.catalog.json` | **Generated.** Machine-readable catalogue dump, read by `generate-ia-upload.py` |
 | `content/r2-map.json` | **Generated**, once uploads exist. `sourceFile` → confirmed live in R2 |
 | `content/ia-map.json` | **Generated**, archive.org path only. `sourceFile` → confirmed archive.org identifier |
-| `lib/storage.ts` | Builds the R2 URL a work's viewer and download link use |
+| `lib/storage.ts` | Builds the R2 URL a work's reader and download link use |
 | `lib/archive.ts` | archive.org URL builders (citation only now), byte and page formatting |
 | `lib/catalogue.ts` | Lookups, shelf ordering, counts |
-| `components/WorkViewer.tsx` | The viewer. Single swap point for a custom reader |
+| `components/WorkViewer.tsx` | The frame: bar, reader/pending swap point, footer |
+| `components/PdfReader.tsx` | The reader itself: pdf.js canvas renderer, ranged + virtualized |
+| `public/vendor/pdfjs/pdf.worker.min.mjs` | Self-hosted pdf.js worker |
+| `infra/r2-cors-proxy/` | Cloudflare Worker adding CORS to R2 range requests — see "Deploying to Vercel" |
 | `scripts/scan-content.mjs` | Walks `../content/`, measures every PDF |
 | `scripts/build-works.py` | Merges the prose table with the measurements |
 | `scripts/check-r2-upload.py` | Confirms uploads and fills in `r2Key` — see "Bringing documents online" above |
@@ -144,12 +153,12 @@ Three things in particular need a decision rather than a check:
 
 - **No century-of-overlap ribbon** and **no completeness ledger or progress bars**, by
   instruction. Counts on the site are counts of what is held, never `N of M`.
-- **The viewer's own controls are the browser's.** The canvas draws zoom, rotate, a page
-  field and a thumbnail filmstrip. Every modern browser already renders a PDF in an
-  `<iframe>` with its own zoom, page navigation, search and print built in; drawing a
-  second set around it would give the reader two sets of controls that disagree. The
-  chrome around the frame — bar, language and direction label, download button with its
-  size stated — is ours.
+- **The reader is our own.** The scans render in-page via a custom pdf.js reader
+  (`components/PdfReader.tsx`) rather than the browser's native PDF plugin: it streams
+  byte ranges from R2 and rasterizes only the pages near the viewport, so a 117 MB scan
+  opens in seconds instead of after a full download. It draws a slim page counter and
+  zoom steps of its own; print and search, being per-panel native-viewer features, are
+  not reproduced.
 - **Portraits are duotoned.** The source photographs span ninety years and several
   processes, and their scan tints range from sepia through cold grey to one distinctly
   purple. They are flattened to a single treatment so the set reads as one collection.

@@ -2,6 +2,7 @@
 # Anchored to the repo root: without the leading slash this would also match
 # web/content/, which holds the site's TypeScript catalogue data, not scans.
 /content/
+/linearized-content/
 
 # Linearized ("Fast Web View") copies of /content/, generated for re-upload
 # to R2 so the browser's PDF viewer can render page 1 before the rest of a
