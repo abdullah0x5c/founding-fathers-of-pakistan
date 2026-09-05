@@ -1,24 +1,14 @@
-.frame {
-  background: var(--ground-sunk);
-  border: 1px solid rgba(201, 169, 107, 0.26);
+/* A quiet presentation: the pages are the document. The frame is gone; the
+   download link sits above the reader like a caption, not a chrome strip. */
+.viewer {
+  margin-top: clamp(14px, 2.5vw, 30px);
+  scroll-margin-top: 24px;
 }
 
-.bar {
+.downloadRow {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 13px 16px;
-  border-bottom: 1px solid var(--on-ground-12);
-}
-
-.barLabel {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--on-ground-62);
+  justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
 .download {
@@ -26,41 +16,18 @@
   font-size: 0.625rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ground);
-  background: var(--gold);
-  padding: 9px 14px;
-  text-decoration: none;
-  white-space: nowrap;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(201, 169, 107, 0.4);
 }
 
 .download:hover {
-  background: var(--gold-bright);
-  color: var(--ground);
+  color: var(--gold-bright);
 }
 
-.downloadOff {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--on-ground-62);
-  border: 1px solid var(--on-ground-12);
-  padding: 8px 14px;
-  white-space: nowrap;
-}
-
-/* The stage is a mid neutral, not near black. Aged and yellowed paper against
-   near black reads as dirty; this is dark enough to frame a scan and let it
-   read as bright without souring the paper tone. */
-.stage {
-  background: var(--stage);
-  padding: 0;
-}
-
-/* The reader — its own control strip and self-scrolling page stage — lives in
-   PdfReader.module.css alongside the component. */
 .pending {
-  background: var(--stage);
+  margin-top: clamp(14px, 2.5vw, 30px);
   min-height: min(34vh, 320px);
   display: flex;
   flex-direction: column;
@@ -96,24 +63,8 @@
   text-wrap: pretty;
 }
 
-.foot {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border-top: 1px solid var(--on-ground-12);
-  font-family: var(--mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--on-ground-62);
-}
-
 .scanNote {
-  padding: 12px 16px;
-  border-top: 1px solid var(--on-ground-12);
+  margin-top: 18px;
   font-size: 0.9375rem;
   line-height: 1.6;
   color: var(--on-ground-86);

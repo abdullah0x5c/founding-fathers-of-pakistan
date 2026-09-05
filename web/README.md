@@ -33,12 +33,12 @@ worker in `infra/r2-cors-proxy/` (deploy steps in its README) and set
 `R2_BASE_URL` to its URL at build time.
 
 `content/` (1.7 GB of scans) is gitignored. It never needs to reach Vercel — the site
-reads it from R2 at request time via `<iframe>`, not from the repo.
+reads it from R2 at request time (the reader's ranged fetch), not from the repo.
 
 ## Bringing documents online
 
 Every work page already exists and shows its full record. Where a work has no
-`r2Key`, the viewer shows a quiet "scan not yet online" panel instead of an embed.
+`r2Key`, the reader area shows a quiet "scan not yet online" panel.
 
 ### Uploading to R2
 
@@ -101,8 +101,8 @@ via the archive.org metadata API) for an existing public-domain item there.
 | `lib/storage.ts` | Builds the R2 URL a work's reader and download link use |
 | `lib/archive.ts` | archive.org URL builders (citation only now), byte and page formatting |
 | `lib/catalogue.ts` | Lookups, shelf ordering, counts |
-| `components/WorkViewer.tsx` | The frame: bar, reader/pending swap point, footer |
-| `components/PdfReader.tsx` | The reader itself: pdf.js canvas renderer, ranged + virtualized |
+| `components/WorkViewer.tsx` | The document: reader (or "not yet online" panel) + the quiet download link |
+| `components/PdfReader.tsx` | The reader: windowed pdf.js canvas renderer — the DOM holds only a few pages near the viewport over a full-height spacer, pages auto-fit (capped at the scan's resolution), keyboard nav, a fading page pill, scroll-position memory |
 | `public/vendor/pdfjs/pdf.worker.min.mjs` | Self-hosted pdf.js worker |
 | `infra/r2-cors-proxy/` | Cloudflare Worker adding CORS to R2 range requests — see "Deploying to Vercel" |
 | `scripts/scan-content.mjs` | Walks `../content/`, measures every PDF |
@@ -153,12 +153,19 @@ Three things in particular need a decision rather than a check:
 
 - **No century-of-overlap ribbon** and **no completeness ledger or progress bars**, by
   instruction. Counts on the site are counts of what is held, never `N of M`.
-- **The reader is our own.** The scans render in-page via a custom pdf.js reader
-  (`components/PdfReader.tsx`) rather than the browser's native PDF plugin: it streams
-  byte ranges from R2 and rasterizes only the pages near the viewport, so a 117 MB scan
-  opens in seconds instead of after a full download. It draws a slim page counter and
-  zoom steps of its own; print and search, being per-panel native-viewer features, are
-  not reproduced.
+- **The pages are the document — there is no viewer chrome.** A work's scans
+  render in-page via a custom pdf.js reader (`components/PdfReader.tsx`) that
+  looks like the book itself: a full-width column of pages, auto-fitted to the
+  container (capped at the scan's native resolution, so nothing upscales
+  blurry), the next page simply below the one above it as you scroll. It
+  streams byte ranges from R2 over a sliding window — only a handful of page
+  slots and canvases exist for the viewport, over a spacer that carries the
+  document's full height — so a 117 MB scan opens in seconds instead of after
+  a full download, and a 415-page volume never means 415 DOM nodes. The only
+  reader UI is a page pill that fades after you stop scrolling; arrows,
+  PageUp/PageDown, Home and End drive the pages from the keyboard, and the last
+  scroll position is remembered per visit. Print and search, being per-panel
+  native-viewer features, are not reproduced.
 - **Portraits are duotoned.** The source photographs span ninety years and several
   processes, and their scan tints range from sepia through cold grey to one distinctly
   purple. They are flattened to a single treatment so the set reads as one collection.

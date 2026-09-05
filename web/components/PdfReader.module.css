@@ -1,39 +1,93 @@
-/* The reader: a thin control strip over a self-scrolling canvas stage. The
-   stage height shadows what the old iframe occupied — a fixed band inside the
-   work page, not the whole viewport. */
+/* The reader is the document itself — no toolbar, no frame. A fixed-height
+   scroll band on the work page; the pages inside are the book. */
 .reader {
   display: flex;
-  flex-direction: column;
-  height: min(78vh, 900px);
+  height: min(82vh, 960px);
 }
 
-.readerBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--on-ground-12);
+.readerStageWrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.readerStage {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  outline: none;
+  background: transparent;
+}
+
+/* The full estimated height of the book; page slots position themselves
+   absolutely over it, so the scrollbar always reflects the whole document
+   while the DOM only ever holds the pages near the viewport. */
+.spacer {
+  width: 1px;
+  margin: 0;
+}
+
+/* One page, centred at its accumulated vertical offset. --checked in JS: width
+   is set inline so it always tracks the auto-fit measure. */
+.pageSlot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+/* The printed leaf. A hairline ring + a deep soft shadow let each scan read as
+   a page sitting on the site, not a rectangle pasted in. */
+.pageCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  box-shadow:
+    0 0 0 1px rgba(201, 169, 107, 0.1),
+    0 18px 56px rgba(0, 0, 0, 0.55);
+}
+
+/* The only reader UI there is: a tiny page pill that appears on scroll and
+   fades out on its own. */
+.pill {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 14px;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--on-ground-12);
+  background: var(--ground-sunk);
   font-family: var(--mono);
   font-size: 0.625rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--on-ground-62);
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 240ms ease;
+  pointer-events: none;
 }
 
-.readerZoom {
-  display: flex;
-  gap: 6px;
+.pill[data-hidden] {
+  opacity: 0;
 }
 
 .readerBtn {
   font: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--on-ground-70);
   background: transparent;
   border: 1px solid var(--on-ground-12);
-  padding: 4px 10px;
+  padding: 8px 16px;
+  margin-top: 4px;
   line-height: 1;
   cursor: pointer;
 }
@@ -48,25 +102,9 @@
   border-color: rgba(201, 169, 107, 0.4);
 }
 
-.readerStageWrap {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  display: flex;
-}
-
-.readerStage {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-gutter: stable;
-  outline: none;
-}
-
-/* Sits over the (empty while loading) stage and unmounts once the document is
-   ready. pointer-events: none so it never blocks scroll or keyboard while a
-   page is resolving. */
+/* Covers the empty stage before the document resolves. The loading state is
+   informational (pointer-events: none so it never blocks scroll/keyboard);
+   the error state carries the retry button, so it accepts clicks. */
 .readerOverlay {
   position: absolute;
   inset: 0;
@@ -78,25 +116,12 @@
   gap: 14px;
   padding: clamp(32px, 6vw, 72px) 20px;
   text-align: center;
-  background: var(--stage);
+  background: transparent;
   pointer-events: none;
 }
 
-/* One placeholder per page, pre-sized with the document's aspect ratio so the
-   layout never jumps while a canvas is being fetched or rendered. Rendered
-   pages keep the same class; the canvas inside fills its slot. --rw is set
-   from JS as the zoom step — the widest a page ever grows. */
-.pageSlot {
-  width: 100%;
-  max-width: var(--rw, 980px);
-  margin: 14px auto;
-  background: var(--stage);
-}
-
-.pageCanvas {
-  display: block;
-  width: 100%;
-  height: auto;
+.readerOverlayInteractive {
+  pointer-events: auto;
 }
 
 .readerLoader {
