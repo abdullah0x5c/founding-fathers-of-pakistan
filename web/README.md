@@ -101,8 +101,8 @@ via the archive.org metadata API) for an existing public-domain item there.
 | `lib/storage.ts` | Builds the R2 URL a work's reader and download link use |
 | `lib/archive.ts` | archive.org URL builders (citation only now), byte and page formatting |
 | `lib/catalogue.ts` | Lookups, shelf ordering, counts |
-| `components/WorkViewer.tsx` | The document: reader (or "not yet online" panel) + the quiet download link |
-| `components/PdfReader.tsx` | The reader: windowed pdf.js canvas renderer — the DOM holds only a few pages near the viewport over a full-height spacer, pages auto-fit (capped at the scan's resolution), keyboard nav, a fading page pill, scroll-position memory |
+| `components/WorkViewer.tsx` | The document itself: reader (or "not yet online" panel) — no frame around it |
+| `components/PdfReader.tsx` | The reader: windowed pdf.js canvas renderer — the DOM holds only a few pages near the viewport over a full-height spacer, pages auto-fit (capped at the scan's resolution), keyboard nav, a right-edge page counter that's clickable to edit the page number and jump, scroll-position memory |
 | `public/vendor/pdfjs/pdf.worker.min.mjs` | Self-hosted pdf.js worker |
 | `infra/r2-cors-proxy/` | Cloudflare Worker adding CORS to R2 range requests — see "Deploying to Vercel" |
 | `scripts/scan-content.mjs` | Walks `../content/`, measures every PDF |
@@ -161,11 +161,15 @@ Three things in particular need a decision rather than a check:
   streams byte ranges from R2 over a sliding window — only a handful of page
   slots and canvases exist for the viewport, over a spacer that carries the
   document's full height — so a 117 MB scan opens in seconds instead of after
-  a full download, and a 415-page volume never means 415 DOM nodes. The only
-  reader UI is a page pill that fades after you stop scrolling; arrows,
-  PageUp/PageDown, Home and End drive the pages from the keyboard, and the last
-  scroll position is remembered per visit. Print and search, being per-panel
-  native-viewer features, are not reproduced.
+  a full download, and a 415-page volume never means 415 DOM nodes. The reader
+  is not a fixed box: it sits in normal flow and runs as one long scroll to
+  the last page, with no toolbar, download row or page footer beneath it. The
+  only reader UI is a small page counter fixed to the right edge that fades
+  when you stop scrolling — click it and it becomes a number input, and
+  typing a page jumps straight there. Arrows, PageUp/PageDown, Home and End
+  drive the pages from the keyboard, and the last scroll position is
+  remembered per visit. Print and search, being per-panel native-viewer
+  features, are not reproduced.
 - **Portraits are duotoned.** The source photographs span ninety years and several
   processes, and their scan tints range from sepia through cold grey to one distinctly
   purple. They are flattened to a single treatment so the set reads as one collection.

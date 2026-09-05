@@ -13,8 +13,8 @@ import styles from "./WorkViewer.module.css";
  * lifecycle, and because R2 charges nothing for egress even on a 392 MB file.
  * R2 serves byte ranges (`Accept-Ranges: bytes`); `PdfReader` renders the
  * linearized PDF over range requests, so it never pulls the whole file down.
- * There is no frame around it — the pages *are* the document, and the only
- * extra the frame used to carry, the download link, is a quiet line above.
+ * There is no frame around it — the page *is* the document, one long scroll to
+ * the last page. No toolbar, no download row, no footer beneath the book.
  *
  * `r2Key` is only ever set by scripts/check-r2-upload.py once a HEAD request
  * has confirmed the object is actually live with the right byte size — never by
@@ -29,11 +29,6 @@ export default function WorkViewer({ work }: { work: Work }) {
     <>
       {url ? (
         <div className={styles.viewer}>
-          <div className={styles.downloadRow}>
-            <a className={styles.download} href={url} download rel="noopener">
-              Download the scan · {size}
-            </a>
-          </div>
           <PdfReader url={url} pages={work.pages} lang={work.lang} />
         </div>
       ) : (
@@ -49,8 +44,6 @@ export default function WorkViewer({ work }: { work: Work }) {
           </p>
         </div>
       )}
-
-      {work.scanNote && <div className={styles.scanNote}>{work.scanNote}</div>}
     </>
   );
 }

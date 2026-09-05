@@ -1,29 +1,8 @@
-/* A quiet presentation: the pages are the document. The frame is gone; the
-   download link sits above the reader like a caption, not a chrome strip. */
+/* A quiet presentation: the pages are the document. There is no frame and no
+   chrome around the reader — the reader simply runs to the end of the book. */
 .viewer {
   margin-top: clamp(14px, 2.5vw, 30px);
   scroll-margin-top: 24px;
-}
-
-.downloadRow {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-}
-
-.download {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: rgba(201, 169, 107, 0.4);
-}
-
-.download:hover {
-  color: var(--gold-bright);
 }
 
 .pending {
@@ -59,14 +38,6 @@
   max-width: 46ch;
   font-size: 0.9375rem;
   line-height: 1.65;
-  color: var(--on-ground-86);
-  text-wrap: pretty;
-}
-
-.scanNote {
-  margin-top: 18px;
-  font-size: 0.9375rem;
-  line-height: 1.6;
   color: var(--on-ground-86);
   text-wrap: pretty;
 }

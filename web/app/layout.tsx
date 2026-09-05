@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Bodoni_Moda, Spectral, IBM_Plex_Mono, Noto_Nastaliq_Urdu } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
-import SiteFooter from "@/components/SiteFooter";
 import GrainOverlay from "@/components/GrainOverlay";
 import "./globals.css";
 
@@ -54,7 +53,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <GrainOverlay />
         <SiteHeader />
         {children}
-        <SiteFooter />
       </body>
     </html>
   );

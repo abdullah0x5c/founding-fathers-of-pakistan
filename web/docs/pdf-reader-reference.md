@@ -98,15 +98,14 @@ Confirmed by fetching the live page and reading its shipped JS directly
   IntersectionObserver order, mirror the scroll direction, etc.) — nothing
   here does that for you.
 - **This is a scroll-through-canvases reader, not a paginated book UI.** No
-  page-turn animation, no thumbnail filmstrip, no rotate control — just
-  continuous vertical scroll with a live page counter and a global zoom step.
-  Decide whether that's the desired reading experience before using this as
-  the target shape.
+  page-turn animation, no thumbnail filmstrip, no rotate control — just one
+  long vertical scroll to the last page, with a right-edge page counter that
+  is clickable to type a page number and jump. Decide whether that's the
+  desired reading experience before using this as the target shape.
 - **Self-host the two pdf.js files** (`pdf.min.mjs` + `pdf.worker.min.mjs`)
   under `public/vendor/pdfjs/` rather than a CDN, matching the reference site
   and keeping the reader working offline/without a third-party dependency.
-- **`WorkViewer.tsx`'s doc comment already names itself as "the single swap
-  point"** if a custom viewer is wanted later — a pdf.js-based reader built on
-  this pattern would replace the `<iframe>` branch in that component, keeping
-  the download link, page/size metadata footer, and "not yet online" panel
-  around it unchanged.
+- **`WorkViewer.tsx` is now the render spot for `PdfReader.tsx`** — it wraps
+  the reader with no frame around it: no download row, no page/size metadata
+  footer, and no site footer beneath the book, just the "not yet online"
+  panel for works without a confirmed `r2Key`.

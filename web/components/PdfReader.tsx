@@ -5,7 +5,10 @@ import styles from "./PdfReader.module.css";
 
 /**
  * The in-house reader: pages rendered to <canvas>, laid out as the document
- * itself — scroll, and the next page is simply the next block on the page.
+ * itself — the scan pages *are* the page. There is no reader box and no
+ * toolbar: the book simply runs as one long scroll to the last page, and a
+ * small page counter sits on the right edge, click it and it turns into a
+ * number you can type to jump to any page.
  *
  * It is windowed infinite scroll underneath: the DOM holds only the slots near
  * the viewport (a small sliding window), absolutely positioned over a spacer
@@ -15,9 +18,9 @@ import styles from "./PdfReader.module.css";
  * re-fetch.
  *
  * Width is automatic: a page renders at the reader width, capped at the scan's
- * natural resolution so it never upscales past what the pixels hold. There is
- * no toolbar — a small page pill appears when you scroll and fades out. The
- * last scroll position is remembered between visits (per document).
+ * natural resolution so it never upscales past what the pixels hold. The last
+ * scroll position is remembered between visits (per document), and the current
+ * page drives the right-edge counter.
  *
  * Every piece of reader state lives in one per-load `Session` (see below):
  * React StrictMode mounts components twice in dev, and an effect that mutates
@@ -40,7 +43,7 @@ const PDFJS_SRC = "/vendor/pdfjs/pdf.min.mjs";
 
 /** How far above the viewport a page is fetched and held. The window these
  * build around the viewport is the whole virtualization: slots exist for
- * `[pageAt(scrollTop - RENDER_ABOVE), pageAt(scrollTop + clientHeight +
+ * `[pageAt(scrollTop - RENDER_ABOVE), pageAt(scrollTop + innerHeight +
  * RENDER_BELOW)]`, and everything outside that window is removed. */
 const RENDER_ABOVE = 1500;
 const RENDER_BELOW = 2200;
@@ -65,8 +68,12 @@ const PAGE_GAP = 52;
  * canvas) while the reader is idle. */
 const PREFETCH_DEPTH = 2;
 
-/** How long the page pill stays after the last scroll. */
-const PILL_MS = 1400;
+/** How long the page counter stays after the last scroll. */
+const PILL_MS = 2000;
+
+/** Sticky header height + a gutter: when jumping to a page we align its top
+ * just below this, so the target page starts clear of the pinned header. */
+const JUMP_OFFSET = 82;
 
 /** All mutable reader state for one document load. A fresh one is created per
  * load; every async closing over one must verify `sessionRef.current` is still
@@ -144,6 +151,19 @@ function pageAt(s: Session, y: number): number {
   return Math.max(1, Math.min(ans, s.total));
 }
 
+/** Where the reader stage sits in the document, in window-scroll Y terms.
+ * The stage is in normal flow, so its top edge depends on the content above it
+ * (the page metadata) — virtualization and page jumps are measured from here. */
+function stageTop(): number {
+  const el = document.querySelector(`.${styles.readerStage}`) as HTMLElement | null;
+  return el ? el.getBoundingClientRect().top + window.scrollY : 0;
+}
+
+/** Current viewport height (cached for listeners that shouldn't re-query). */
+function viewportH(): number {
+  return window.innerHeight || 0;
+}
+
 export default function PdfReader({ url, pages }: PdfReaderProps) {
   const stageRef = useRef<HTMLDivElement>(null);
   const sessionRef = useRef<Session | null>(null);
@@ -154,14 +174,17 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
   const [pill, setPill] = useState(false);
   const [attempt, setAttempt] = useState(0);
 
+  // The right-edge counter is clickable → it becomes a small number input.
+  const [editing, setEditing] = useState(false);
+  const [inputVal, setInputVal] = useState("");
+
   const genRef = useRef(0);
   const rafRef = useRef<number | null>(null);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pillTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastPageRef = useRef(0);
 
-  /** Drop a page: cancel its render, remove its slot, forget it. The placeholder
-   * (slot) never existed as a separate concept — eviction is whole-slot. */
+  /** Drop a page: cancel its render, remove its slot, forget it. */
   const evict = useCallback((s: Session, n: number) => {
     const task = s.tasks.get(n);
     if (task) {
@@ -258,15 +281,18 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
   }, []);
 
   /** The single window pass: sync the slot set with the viewport window, paint
-   * the unpainted pages in it, and warm the pages just beyond. */
+   * the unpainted pages in it, and warm the pages just beyond. Scroll offsets
+   * are measured from the stage's document top, so `window.scrollY - stageTop`
+   * is how far into the book the viewport sits. */
   const renderWindow = useCallback(
     (s: Session) => {
       const stage = stageRef.current;
       if (!stage || s.tops.length === 0) return;
       if (sessionRef.current !== s) return;
 
-      const first = pageAt(s, Math.max(0, stage.scrollTop - RENDER_ABOVE));
-      const last = pageAt(s, stage.scrollTop + stage.clientHeight + RENDER_BELOW);
+      const inside = Math.max(0, window.scrollY - stageTop());
+      const first = pageAt(s, inside - RENDER_ABOVE);
+      const last = pageAt(s, inside + viewportH() + RENDER_BELOW);
 
       for (const n of [...s.slots.keys()]) {
         if (n < first || n > last) evict(s, n);
@@ -388,8 +414,13 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
         stage.appendChild(spacer);
         positionSlots(s);
 
-        stage.scrollTop = start;
-        setCurrent(pageAt(s, start + (stage.clientHeight || 0) / 2));
+        // Restore where the reader sat, then seed the counter + first window.
+        window.scrollTo({
+          top: Math.min(stageTop() + start, document.body.scrollHeight),
+          behavior: "instant",
+        });
+        setCurrent(pageAt(s, Math.max(0, window.scrollY - stageTop()) + viewportH() / 2));
+        setPill(true);
 
         if (!cancelled && genRef.current === gen) {
           setStatus("ready");
@@ -423,13 +454,10 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, attempt]);
 
-  // Scroll: everything the reader does on scroll lives here — current page,
-  // the fading pill, the saved position, and the window pass — in a single
-  // rAF-throttled sweep (rAF also throttles to zero while the tab is hidden).
+  // Scroll (of the whole window now — the book is the page): current page,
+  // the appearing counter, the saved position, and the window pass, all in a
+  // single rAF-throttled sweep (rAF also throttles to zero while hidden).
   useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-
     const onScroll = () => {
       if (rafRef.current != null) return;
       rafRef.current = requestAnimationFrame(() => {
@@ -437,8 +465,8 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
         const s = sessionRef.current;
         if (!s || s.tops.length === 0) return;
 
-        const scrollTop = stage.scrollTop;
-        const next = pageAt(s, scrollTop + (stage.clientHeight || 0) / 2);
+        const inside = Math.max(0, window.scrollY - stageTop());
+        const next = pageAt(s, inside + viewportH() / 2);
         if (next !== lastPageRef.current) {
           lastPageRef.current = next;
           setCurrent(next);
@@ -449,7 +477,7 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
         if (saveTimer.current) clearTimeout(saveTimer.current);
         saveTimer.current = setTimeout(() => {
           try {
-            sessionStorage.setItem(storageKey(url), String(stage.scrollTop));
+            sessionStorage.setItem(storageKey(url), String(inside));
           } catch {
             /* ignore */
           }
@@ -458,9 +486,9 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
       });
     };
 
-    stage.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      stage.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScroll);
       if (rafRef.current != null) {
         cancelAnimationFrame(rafRef.current);
         rafRef.current = null;
@@ -483,7 +511,8 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
       const next = Math.min(stage.clientWidth || 0, cap);
       if (Math.abs(next - s.slotW) < 3 || next === 0) return;
 
-      const anchorPage = pageAt(s, stage.scrollTop + (stage.clientHeight || 0) / 2);
+      const inside = Math.max(0, window.scrollY - stageTop());
+      const anchorPage = pageAt(s, inside + viewportH() / 2);
       const oldTop = s.tops[anchorPage - 1] ?? 0;
 
       s.slotW = next;
@@ -491,7 +520,7 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
       positionSlots(s);
 
       const newTop = s.tops[anchorPage - 1] ?? 0;
-      stage.scrollTop += newTop - oldTop;
+      window.scrollTo({ top: window.scrollY + (newTop - oldTop), behavior: "instant" });
 
       // Width change means stale pixel sizes: rebuild the visible canvases.
       for (const task of s.tasks.values()) {
@@ -519,91 +548,146 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
   }, [positionSlots, renderWindow]);
 
   const onStageKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-    const stage = stageRef.current;
-    if (!stage) return;
     switch (e.key) {
       case " ":
+      case "PageDown":
         e.preventDefault();
-        stage.scrollBy({ top: Math.round(stage.clientHeight * 0.9) });
+        window.scrollBy({ top: Math.round(viewportH() * 0.9) });
         break;
       case "ArrowDown":
         e.preventDefault();
-        stage.scrollBy({ top: Math.round(stage.clientHeight * 0.8) });
+        window.scrollBy({ top: Math.round(viewportH() * 0.8) });
         break;
       case "ArrowUp":
         e.preventDefault();
-        stage.scrollBy({ top: -Math.round(stage.clientHeight * 0.8) });
-        break;
-      case "PageDown":
-        e.preventDefault();
-        stage.scrollBy({ top: Math.max(1, Math.round(stage.clientHeight * 0.9)) });
+        window.scrollBy({ top: -Math.round(viewportH() * 0.8) });
         break;
       case "PageUp":
         e.preventDefault();
-        stage.scrollBy({ top: -Math.max(1, Math.round(stage.clientHeight * 0.9)) });
+        window.scrollBy({ top: -Math.round(viewportH() * 0.9) });
         break;
       case "Home":
         e.preventDefault();
-        stage.scrollTo({ top: 0 });
+        window.scrollTo({ top: 0, behavior: "instant" });
         break;
       case "End":
         e.preventDefault();
-        stage.scrollTo({ top: stage.scrollHeight });
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" });
         break;
     }
+  };
+
+  /** The counter turns into a number input on click; committing (Enter or blur)
+   * parses the value and jumps so that page's top sits just below the header. */
+  const beginEdit = () => {
+    setInputVal(String(current));
+    setEditing(true);
+    setPill(true);
+  };
+
+  const cancelEdit = () => setEditing(false);
+
+  const commitEdit = () => {
+    const s = sessionRef.current;
+    const wanted = parseInt(inputVal, 10);
+    const max = s?.total ?? total ?? pages;
+    if (s && s.tops.length > 0 && Number.isFinite(wanted)) {
+      const n = Math.max(1, Math.min(wanted || 1, max));
+      window.scrollTo({
+        top: stageTop() + (s.tops[n - 1] ?? 0) - JUMP_OFFSET,
+        behavior: "instant",
+      });
+      setCurrent(n);
+    }
+    setEditing(false);
+    setPill(true);
+    if (pillTimer.current) clearTimeout(pillTimer.current);
+    pillTimer.current = setTimeout(() => setPill(false), PILL_MS);
   };
 
   const shownTotal = (total || pages).toLocaleString("en-US");
 
   return (
     <div className={styles.reader} role="region" aria-label="Document">
-      <div className={styles.readerStageWrap}>
-        <div
-          ref={stageRef}
-          className={styles.readerStage}
-          tabIndex={0}
-          onKeyDown={onStageKeyDown}
-          aria-label="Document pages"
-        />
+      <div
+        ref={stageRef}
+        className={styles.readerStage}
+        tabIndex={0}
+        onKeyDown={onStageKeyDown}
+        aria-label="Document pages"
+      />
 
-        <div className={styles.pill} aria-live="polite" data-hidden={pill ? undefined : "true"}>
-          Page {Math.min(current, total || 1)} / {shownTotal}
-        </div>
-
-        {status !== "ready" && (
-          <div
-            className={`${styles.readerOverlay} ${
-              status === "error" ? styles.readerOverlayInteractive : ""
-            }`}
-            role={status === "error" ? "alert" : "status"}
+      <div
+        className={styles.pill}
+        data-hidden={pill ? undefined : "true"}
+        aria-live="polite"
+      >
+        {editing ? (
+          <form
+            className={styles.pillForm}
+            onSubmit={(e) => {
+              e.preventDefault();
+              commitEdit();
+            }}
           >
-            {status === "loading" ? (
-              <>
-                <span className={styles.readerLoaderText}>Loading the scan&hellip;</span>
-                <span className={styles.readerLoaderBar}>
-                  <span className={styles.readerLoaderFill} />
-                </span>
-              </>
-            ) : (
-              <>
-                <div className={styles.readerErrorLabel}>This document could not be opened</div>
-                <p className={styles.readerErrorBody}>
-                  The scan may not have finished uploading to the archive yet, or the
-                  connection was interrupted. The record above is complete; try again in a
-                  moment.
-                </p>
-                <button
-                  type="button"
-                  className={styles.readerBtn}
-                  onClick={() => setAttempt((a) => a + 1)}
-                >
-                  Try again
-                </button>
-              </>
-            )}
-          </div>
+            <input
+              autoFocus
+              className={styles.pillInput}
+              aria-label="Jump to page"
+              inputMode="numeric"
+              value={inputVal}
+              onChange={(e) => setInputVal(e.target.value)}
+              onBlur={commitEdit}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  cancelEdit();
+                }
+              }}
+            />
+            <span className={styles.pillTotal}>/ {shownTotal}</span>
+          </form>
+        ) : (
+          <button type="button" className={styles.pillLabel} onClick={beginEdit}>
+            Page {Math.min(current, total || 1)} / {shownTotal}
+          </button>
         )}
       </div>
+
+      {status !== "ready" && (
+        <div
+          className={`${styles.readerOverlay} ${
+            status === "error" ? styles.readerOverlayInteractive : ""
+          }`}
+          role={status === "error" ? "alert" : "status"}
+        >
+          {status === "loading" ? (
+            <>
+              <span className={styles.readerLoaderText}>Loading the scan&hellip;</span>
+              <span className={styles.readerLoaderBar}>
+                <span className={styles.readerLoaderFill} />
+              </span>
+            </>
+          ) : (
+            <>
+              <div className={styles.readerErrorLabel}>This document could not be opened</div>
+              <p className={styles.readerErrorBody}>
+                The scan may not have finished uploading to the archive yet, or the
+                connection was interrupted. The record above is complete; try again in a
+                moment.
+              </p>
+              <button
+                type="button"
+                className={styles.readerBtn}
+                onClick={() => setAttempt((a) => a + 1)}
+              >
+                Try again
+              </button>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }

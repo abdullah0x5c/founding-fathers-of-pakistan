@@ -1,22 +1,15 @@
-/* The reader is the document itself — no toolbar, no frame. A fixed-height
-   scroll band on the work page; the pages inside are the book. */
-.reader {
-  display: flex;
-  height: min(82vh, 960px);
-}
+/* The reader is the document itself — no toolbar, no frame, no fixed box. It
+   sits in normal flow and scrolls with the page, so the book runs as one long
+   scroll to the last page. */
 
-.readerStageWrap {
+.reader {
   position: relative;
-  flex: 1;
-  min-height: 0;
+  width: 100%;
 }
 
 .readerStage {
   position: relative;
-  height: 100%;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-gutter: stable;
+  width: 100%;
   outline: none;
   background: transparent;
 }
@@ -29,8 +22,8 @@
   margin: 0;
 }
 
-/* One page, centred at its accumulated vertical offset. --checked in JS: width
-   is set inline so it always tracks the auto-fit measure. */
+/* One page, centred at its accumulated vertical offset. Width is set inline so
+   it always tracks the auto-fit measure. */
 .pageSlot {
   position: absolute;
   left: 0;
@@ -50,31 +43,75 @@
     0 18px 56px rgba(0, 0, 0, 0.55);
 }
 
-/* The only reader UI there is: a tiny page pill that appears on scroll and
-   fades out on its own. */
+/* The only reader UI there is: a page counter fixed to the right edge, centred
+   on the viewport. It appears on scroll and fades on its own; click it and it
+   turns into a number input that jumps to the typed page. */
 .pill {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 14px;
-  z-index: 2;
+  position: fixed;
+  top: 50%;
+  right: clamp(12px, 2vw, 26px);
+  transform: translateY(-50%);
+  z-index: 20;
   padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid var(--on-ground-12);
-  background: var(--ground-sunk);
+  background: rgba(7, 42, 33, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   font-family: var(--mono);
   font-size: 0.625rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--on-ground-62);
+  color: var(--on-ground-70);
   white-space: nowrap;
   opacity: 1;
   transition: opacity 240ms ease;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .pill[data-hidden] {
   opacity: 0;
+  pointer-events: none;
+}
+
+.pillLabel {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.pillLabel:hover {
+  color: var(--gold);
+}
+
+.pillForm {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.pillInput {
+  width: 4.5em;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--gold);
+  background: transparent;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--gold-bright);
+  outline: none;
+  text-align: right;
+}
+
+.pillTotal {
+  color: var(--on-ground-62);
 }
 
 .readerBtn {
@@ -102,13 +139,14 @@
   border-color: rgba(201, 169, 107, 0.4);
 }
 
-/* Covers the empty stage before the document resolves. The loading state is
+/* Covers the viewport before the document resolves. The loading state is
    informational (pointer-events: none so it never blocks scroll/keyboard);
-   the error state carries the retry button, so it accepts clicks. */
+   the error state carries the retry button, so it accepts clicks. Fixed to the
+   window because the stage itself now spans the whole book. */
 .readerOverlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 1;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,19 +154,12 @@
   gap: 14px;
   padding: clamp(32px, 6vw, 72px) 20px;
   text-align: center;
-  background: transparent;
+  background: var(--ground);
   pointer-events: none;
 }
 
 .readerOverlayInteractive {
   pointer-events: auto;
-}
-
-.readerLoader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
 }
 
 .readerLoaderText {
@@ -159,13 +190,6 @@
   to {
     transform: translateX(100%);
   }
-}
-
-.readerError {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
 }
 
 .readerErrorLabel {
