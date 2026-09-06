@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import UrduText from "@/components/UrduText";
@@ -38,12 +37,6 @@ export default async function FigurePage({ params }: { params: Promise<{ figure:
 
   return (
     <main className={`${styles.main} soft-in`}>
-      <div className={styles.crumb}>
-        <Link href="/">The Eleven</Link>
-        <span className={styles.slash}>·</span>
-        {figure.name}
-      </div>
-
       <div className="mount">
         <div className={`${styles.leaf} speck`}>
           {/* The name written large and faint across the head of the leaf, the
@@ -83,7 +76,7 @@ export default async function FigurePage({ params }: { params: Promise<{ figure:
                   <p>
                     He wrote no books. What survives is speeches, legislative interventions,
                     statements and correspondence, recorded by others and published in compilations
-                    of uneven editorial quality — a bibliographic problem rather than an absence of
+                    of uneven editorial quality: a bibliographic problem rather than an absence of
                     material.
                   </p>
                   <p>

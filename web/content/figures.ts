@@ -21,7 +21,7 @@ export const figures: Figure[] = [
     bio: [
       "Born in Delhi in 1817 into a family attached to the late Mughal court, Syed Ahmad Khan entered the judicial service of the East India Company in 1838 and served as a subordinate judge across the North Western Provinces for three decades. His first substantial book, an antiquarian survey of the monuments of Delhi, appeared in 1847 and remains a record of buildings that were later destroyed.",
       "The rebellion of 1857 reorganised his work. He wrote a district history of the revolt from his own post at Bijnor, then the pamphlet arguing that the rising had administrative causes for which the Company's own conduct was substantially responsible. After a visit to England in 1869 he founded the journal Tahzīb ul-Akhlāq and, in 1875, the Muhammadan Anglo-Oriental College at Aligarh, which became a university in 1920.",
-      "His theology — reading revelation as consistent with natural law — drew a large body of published refutation in his lifetime, and the commentary he left unfinished at his death is the reason for it. His place in the prehistory of Pakistan is genuinely disputed: the Meerut and Lucknow speeches of 1888 are read by some historians as an early two-nation argument and by others as a defence of minority representation within a single Indian polity. He died at Aligarh in March 1898.",
+      "His theology, reading revelation as consistent with natural law, drew a large body of published refutation in his lifetime, and the commentary he left unfinished at his death is the reason for it. His place in the prehistory of Pakistan is genuinely disputed: the Meerut and Lucknow speeches of 1888 are read by some historians as an early two-nation argument and by others as a defence of minority representation within a single Indian polity. He died at Aligarh in March 1898.",
     ],
     verify: [
       "Life dates 1817–1898 and the 1838 entry into Company service are from general knowledge, not from the scans.",
@@ -41,7 +41,7 @@ export const figures: Figure[] = [
     bio: [
       "Syed Ameer Ali was born near Chinsurah in Bengal in 1849, read law in London, and was called to the bar at the Inner Temple in 1873. He practised in Calcutta, sat on the Bengal Legislative Council, and served as a judge of the Calcutta High Court.",
       "In 1877 he founded the Central National Muhammadan Association, among the first organised political bodies for Indian Muslims. He settled in England in 1904 and became the first Indian appointed to the Judicial Committee of the Privy Council, where he sat for the rest of his life. His treatise on Mohammedan law, held here in full, became a standard authority in Anglo-Indian courts and is still cited in South Asian judgments.",
-      "He wrote for English readers as much as Indian ones, and his history and apologetics did more than any other body of work to shape late Victorian understanding of Islam. The Spirit of Islam is the most widely read book by any of the eleven, and its confidence — arguing on the ground of reason rather than authority — made it a formative text for a generation of Indian Muslim students.",
+      "He wrote for English readers as much as Indian ones, and his history and apologetics did more than any other body of work to shape late Victorian understanding of Islam. The Spirit of Islam is the most widely read book by any of the eleven, and its confidence, arguing on the ground of reason rather than authority, made it a formative text for a generation of Indian Muslim students.",
     ],
     verify: [
       "Life dates 1849–1928, the 1873 call to the bar, and the Privy Council appointment are from general knowledge.",
@@ -61,7 +61,7 @@ export const figures: Figure[] = [
     bio: [
       "Syed Mehdi Ali, titled Mohsin ul Mulk, was born at Etawah in 1837. He served in the revenue administration of the North Western Provinces, then entered the service of the Nizam of Hyderabad, rising to a senior revenue post before retiring and returning north.",
       "After Sir Syed's death in 1898 he became secretary of the Aligarh college trust and, in practice, the leader of the Aligarh movement for the next decade. He led the campaign over the official status of Urdu that followed the Nagri resolution of 1900, and was among the organisers of the Simla Deputation of 1906 that preceded the founding of the All-India Muslim League.",
-      "He wrote in Urdu, and mostly in the shorter forms — essays, lectures, letters and theological argument rather than books. The correspondence held here, read alongside Viqar ul Mulk's, is the closest thing the collection has to a working record of how Aligarh was actually run.",
+      "He wrote in Urdu, and mostly in the shorter forms: essays, lectures, letters and theological argument rather than books. The correspondence held here, read alongside Viqar ul Mulk's, is the closest thing the collection has to a working record of how Aligarh was actually run.",
     ],
     verify: [
       "Life dates 1837–1907 and the Hyderabad service are from general knowledge.",
@@ -80,7 +80,7 @@ export const figures: Figure[] = [
     portrait: "/portraits/viqar-ul-mulk.jpg",
     bio: [
       "Mushtaq Husain, titled Viqar ul Mulk, was born at Amroha in 1841 and worked in the British judicial service before entering the Hyderabad administration, where he served for many years.",
-      "He succeeded Mohsin ul Mulk as secretary of the Aligarh college trust and held the post until his resignation over the college's relationship with the government. A member of the Simla Deputation, he was among the founders of the All-India Muslim League at Dacca in December 1906. He spent his last years arguing for a Muslim university independent of government control — the subject of the pamphlet held here.",
+      "He succeeded Mohsin ul Mulk as secretary of the Aligarh college trust and held the post until his resignation over the college's relationship with the government. A member of the Simla Deputation, he was among the founders of the All-India Muslim League at Dacca in December 1906. He spent his last years arguing for a Muslim university independent of government control, the subject of the pamphlet held here.",
       "His holdings in this collection are small and almost entirely documentary: a statement of his position on the Aligarh Muslim University question, a pamphlet on religious education, and his correspondence with Mohsin ul Mulk. Taken together they are less a body of writing than a paper trail, which is what he was.",
     ],
     verify: [
@@ -100,7 +100,7 @@ export const figures: Figure[] = [
     portrait: "/portraits/agha-khan-iii.jpg",
     bio: [
       "Sultan Muhammad Shah, Aga Khan III, was born in Karachi in 1877 and succeeded as hereditary Imam of the Nizari Ismailis in childhood. He was educated privately and in England.",
-      "He led the Simla Deputation of 1906 and was the first president of the All-India Muslim League. He represented India at the Round Table Conferences and led the Indian delegation to the League of Nations, where he was elected president of the Assembly in 1937 — the only one of the eleven to hold an international office of that rank.",
+      "He led the Simla Deputation of 1906 and was the first president of the All-India Muslim League. He represented India at the Round Table Conferences and led the Indian delegation to the League of Nations, where he was elected president of the Assembly in 1937, the only one of the eleven to hold an international office of that rank.",
       "The two works held here bracket his public life. India in Transition, written during the First World War, proposes a federated South Asia of largely self-governing provinces within the Empire, an idea that reads very differently after 1940 than it did when published. The memoirs, written near the end, are the only sustained first-person account by any of the eleven of the negotiations that produced separate electorates and, eventually, partition.",
     ],
     verify: [
@@ -126,7 +126,7 @@ export const figures: Figure[] = [
     note: "His principal contribution was organisational rather than written. The note filed with this collection records that his most substantial published work was the running of the newspaper Zamindar, which is not held here and is available elsewhere online.",
     verify: [
       "Life dates 1873–1938 and the Central Legislative Assembly service are from general knowledge.",
-      "The Zamindar attribution comes from the Readme.txt filed with this folder and has not been independently checked. Zamindar is more usually associated with Maulana Zafar Ali Khan — confirm before publishing this note.",
+      "The Zamindar attribution comes from the Readme.txt filed with this folder and has not been independently checked. Zamindar is more usually associated with Maulana Zafar Ali Khan; confirm before publishing this note.",
     ],
   },
   {
@@ -142,7 +142,7 @@ export const figures: Figure[] = [
     bio: [
       "Muhammad Ali was born at Rampur in 1878, educated at Aligarh and at Lincoln College, Oxford, and served briefly in the Rampur and Baroda administrations before leaving for journalism.",
       "He founded the English weekly Comrade and the Urdu daily Hamdard, and made both into the sharpest Muslim political papers in India. Interned during the First World War, he emerged to lead the Khilafat movement with his brother and, in 1923, to preside over the Indian National Congress. He broke with Gandhi and with Congress over the following years, attended the Round Table Conference in London in 1930, and died there in January 1931. He is buried in Jerusalem, at his own request.",
-      "He is the best represented of the eleven after Sir Syed, and the range is unusual: selected writings in two volumes, collected essays, a book on the Hijaz question, and the poetry he wrote in jail. The prose is the reason he is remembered as a writer — fast, ironic, and entirely unintimidated by the readership it addressed.",
+      "He is the best represented of the eleven after Sir Syed, and the range is unusual: selected writings in two volumes, collected essays, a book on the Hijaz question, and the poetry he wrote in jail. The prose is the reason he is remembered as a writer: fast, ironic, and entirely unintimidated by the readership it addressed.",
     ],
     verify: [
       "Life dates 1878–1931, the Oxford college, the 1923 Congress presidency and the Jerusalem burial are from general knowledge.",
@@ -162,7 +162,7 @@ export const figures: Figure[] = [
     bio: [
       "Rahmat Ali was born in Hoshiarpur district in 1897, taught and practised law in Lahore, and went up to Cambridge in 1930. He took a law degree there and spent almost the whole of the rest of his life in England.",
       "In January 1933 he issued a four-page pamphlet, Now or Never, which proposed the name Pakistan for a separate northern homeland and set out an acronym for it. The Muslim League leadership dismissed the idea at the time and he was never admitted to its inner circle. He opposed the 1947 settlement as a truncated version of his proposal, returned briefly to Pakistan and was asked to leave. He died at Cambridge in 1951 and is buried there.",
-      "Historians disagree substantially about how much causal weight his pamphlets carry — whether he named a movement that was already coming or supplied the idea that made one possible. The collection holds the 1933 pamphlet itself, the 1940 restatement, the full elaboration of the scheme, and a collected volume, which is enough to follow the argument hardening across eighteen years.",
+      "Historians disagree substantially about how much causal weight his pamphlets carry: whether he named a movement that was already coming or supplied the idea that made one possible. The collection holds the 1933 pamphlet itself, the 1940 restatement, the full elaboration of the scheme, and a collected volume, which is enough to follow the argument hardening across eighteen years.",
     ],
     verify: [
       "Life dates 1897–1951, the 1930 arrival at Cambridge and the Cambridge burial are from general knowledge.",
@@ -182,7 +182,7 @@ export const figures: Figure[] = [
     bio: [
       "Muhammad Iqbal was born at Sialkot in 1877, studied philosophy at Government College Lahore and then at Cambridge, and took a doctorate in Germany on Persian metaphysics. He was called to the bar and practised in Lahore for the rest of his life.",
       "He wrote in Urdu and in Persian, and is the only one of the eleven whose reputation rests principally on poetry. The long Persian poems develop a philosophy of the self, khudi, against both quietist mysticism and European materialism, and his Reconstruction lectures are the most ambitious work of modern Islamic philosophy written in English.",
-      "Held here are all three books of Urdu verse, the run of long Persian poems from Asrār-e-Khudī to his final collection, the Reconstruction lectures, his doctoral thesis, the notebook published after his death, and the 1930 presidential address at Allahabad that proposed a consolidated Muslim state in north-west India — a text still argued over, since whether it meant a separate country or an autonomous unit within a federated India was never settled by its author. Two of the long Persian poems are held only as later Urdu verse translations rather than in the original.",
+      "Held here are all three books of Urdu verse, the run of long Persian poems from Asrār-e-Khudī to his final collection, the Reconstruction lectures, his doctoral thesis, the notebook published after his death, and the 1930 presidential address at Allahabad that proposed a consolidated Muslim state in north-west India, a text still argued over, since whether it meant a separate country or an autonomous unit within a federated India was never settled by its author. Two of the long Persian poems are held only as later Urdu verse translations rather than in the original.",
     ],
     verify: [
       "Life dates 1877–1938, the Cambridge and Munich studies, and the 1930 Allahabad address are from general knowledge.",
@@ -202,7 +202,7 @@ export const figures: Figure[] = [
     bio: [
       "Muhammad Ali Jinnah was born in Karachi in 1876, called to the bar at Lincoln's Inn while still in his teens, and built a commanding practice in Bombay. He entered the Imperial Legislative Council in 1910 and was for years the most prominent advocate of Hindu-Muslim cooperation, joining the Muslim League while remaining in Congress and helping to draft the Lucknow Pact of 1916.",
       "He withdrew from Indian politics in the early 1930s and practised law in London, returning in 1934 to lead the League. From the Lahore session of March 1940 he pressed the demand for separate states in the Muslim-majority regions, and in August 1947 became the first Governor-General of Pakistan. He died at Karachi thirteen months later.",
-      "He wrote no books. His corpus is speeches, legislative interventions, statements and correspondence, recorded by others and published in compilations of uneven editorial quality. That is a bibliographic problem rather than an absence of material — and it is why this page is empty while the others are not.",
+      "He wrote no books. His corpus is speeches, legislative interventions, statements and correspondence, recorded by others and published in compilations of uneven editorial quality. That is a bibliographic problem rather than an absence of material, and it is why this page is empty while the others are not.",
     ],
     verify: [
       "Life dates 1876–1948, the 1910 Legislative Council entry and the 1916 Lucknow Pact are from general knowledge.",
@@ -221,7 +221,7 @@ export const figures: Figure[] = [
     portrait: "/portraits/liaquat-ali-khan.jpg",
     bio: [
       "Liaquat Ali Khan was born at Karnal in 1895, educated at Aligarh and at Oxford, and was called to the bar in London. He entered provincial politics in the United Provinces in the mid-1920s and joined the Muslim League, becoming its general secretary and Jinnah's closest working colleague through the years of the Pakistan demand.",
-      "He served as finance member of the interim government in 1946 and became the first Prime Minister of Pakistan in August 1947. He held the office through the state's first four years — the refugee crisis, the first Kashmir war, the framing of the Objectives Resolution — until he was assassinated at Rawalpindi in October 1951.",
+      "He served as finance member of the interim government in 1946 and became the first Prime Minister of Pakistan in August 1947. He held the office through the state's first four years (the refugee crisis, the first Kashmir war, the framing of the Objectives Resolution) until he was assassinated at Rawalpindi in October 1951.",
       "The single item held here is the record of his 1950 tour of the United States and Canada: the speeches of a new country's prime minister explaining it to an audience that had barely heard of it. It is the only document in this collection written from inside the state rather than in argument for it.",
     ],
     note: "He was not among the ten folders this archive was assembled from, and whether he belongs on a list of founding fathers rather than of successors is a reasonable question. He is included because the collection holds his work and because the alternative was to leave a sourced volume unfiled.",

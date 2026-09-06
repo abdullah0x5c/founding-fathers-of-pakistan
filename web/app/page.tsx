@@ -43,7 +43,7 @@ export default function Home() {
             <div className={styles.lead}>
               <p className={styles.leadEn}>
                 Between {lifespan.from} and 1950 a small number of men argued a country into
-                existence — in treatises, law reports, pamphlets, newspapers, poetry and speeches.
+                existence: in treatises, law reports, pamphlets, newspapers, poetry and speeches.
                 Among them were a district judge, a High Court barrister, a philosopher-poet, two
                 nawabs of the Aligarh trust, a hereditary Imam, a pair of brothers who ran a
                 newspaper, and a student at Cambridge who coined the name. They disagreed with one
@@ -53,7 +53,7 @@ export default function Home() {
               <div className={`gutter ${styles.leadGutter}`} aria-hidden="true" />
 
               <UrduText as="p" className={styles.leadUr}>
-                ۱۸۴۷ء اور ۱۹۵۰ء کے درمیان چند افراد نے ایک ملک کو دلیل کے زور پر وجود میں لایا —
+                ۱۸۴۷ء اور ۱۹۵۰ء کے درمیان چند افراد نے ایک ملک کو دلیل کے زور پر وجود میں لایا،
                 رسالوں، عدالتی فیصلوں، پمفلٹوں، اخبارات، شاعری اور تقریروں کے ذریعے۔ اِن میں ایک
                 ضلعی جج، ہائی کورٹ کا ایک بیرسٹر، ایک فلسفی شاعر، علی گڑھ ٹرسٹ کے دو نواب، ایک
                 موروثی امام، ایک اخبار چلانے والے دو بھائی، اور کیمبرج کا ایک طالبِ علم شامل تھے جس
@@ -78,10 +78,6 @@ export default function Home() {
           <span className="diamond" aria-hidden="true" />
           <h2 className={`display ${styles.sectionTitle}`}>The Eleven</h2>
           <span className={styles.sectionFill} aria-hidden="true" />
-          <span className={styles.sectionNote}>
-            in the collection&rsquo;s own order &nbsp;·&nbsp;{" "}
-            <span className="folio">f. 2r</span>
-          </span>
         </div>
         <div className={`illum ${styles.sectionRule}`} aria-hidden="true" />
 

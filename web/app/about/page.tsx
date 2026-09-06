@@ -27,7 +27,7 @@ export default function AboutPage() {
           <h2>What this is</h2>
           <p>
             A reading archive of the primary writings of eleven figures associated with the founding
-            of Pakistan. It holds {totalWorks} catalogued works in {totalScans} scanned documents —
+            of Pakistan. It holds {totalWorks} catalogued works in {totalScans} scanned documents:
             treatises, speeches, letters, poetry, law reports and pamphlets, in English and Urdu.
             Each figure has a page with a life and a shelf; each work has a page with a record and
             the document itself.
@@ -48,7 +48,7 @@ export default function AboutPage() {
           </p>
           <p>
             Ten of the eleven come from the folders of the source archive this site was built from,
-            in that archive&rsquo;s own order — roughly chronological by the start of public
+            in that archive&rsquo;s own order, roughly chronological by the start of public
             activity rather than by birth. The eleventh, Liaquat Ali Khan, was added because the
             collection held a volume of his speeches that was sitting unfiled, and leaving a sourced
             document out of the catalogue seemed worse than the awkwardness of including a
@@ -69,8 +69,8 @@ export default function AboutPage() {
             The documents were gathered from public sources as scanned PDFs. Provenance was not
             recorded at the time of collection, so the holder field on most records currently reads
             &ldquo;not established.&rdquo; That is a real gap and it is shown as one rather than
-            filled with a plausible guess. Where the scan itself names a holding institution — the
-            Digital Library of India volume, for example — that is recorded.
+            filled with a plausible guess. Where the scan itself names a holding institution, as the
+            Digital Library of India volume does, that is recorded.
           </p>
           <p>
             The scans are hosted by the Internet Archive rather than by this site. The collection
@@ -98,8 +98,8 @@ export default function AboutPage() {
               copyright even though the underlying text is not.
             </li>
             <li>
-              <strong>Secondary scholarship.</strong> One item — a study of Sir Syed by Christian W.
-              Troll — is scholarship about a figure rather than writing by one. It is catalogued
+              <strong>Secondary scholarship.</strong> One item, a study of Sir Syed by Christian W.
+              Troll, is scholarship about a figure rather than writing by one. It is catalogued
               under a separate heading and marked as in copyright.
             </li>
             <li>
@@ -118,7 +118,7 @@ export default function AboutPage() {
             The eleven portraits are public-domain photographs, each sourced individually with its
             author, date and licence recorded in{" "}
             <a href="/portraits/CREDITS.md">the portrait credits</a>. Three are limited by their
-            sources rather than by processing — the best free images that exist of those men are
+            sources rather than by processing; the best free images that exist of those men are
             small or grainy. No portrait here is generated, reconstructed or illustrated.
           </p>
 
@@ -129,7 +129,7 @@ export default function AboutPage() {
             Khan&rsquo;s hold one apiece. Muhammad Ali Jinnah, the most famous of the eleven, has
             exactly one: a five-page compilation of a handful of his speeches, downloaded from a web
             aggregator rather than a named archive. He wrote no books, and his corpus is properly
-            speeches and correspondence recorded by others — this file is a genuine start on that
+            speeches and correspondence recorded by others; this file is a genuine start on that
             record, not a representative one, and his page says so.
           </p>
           <p>
@@ -150,7 +150,7 @@ export default function AboutPage() {
                 <span>
                   {f.n} {f.name}
                 </span>
-                <span className={styles.ledgerCount}>{n === 0 ? "—" : n}</span>
+                <span className={styles.ledgerCount}>{n}</span>
               </Link>
             );
           })}

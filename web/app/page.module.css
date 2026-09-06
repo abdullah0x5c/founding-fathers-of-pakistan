@@ -163,13 +163,6 @@
   background: var(--rule);
 }
 
-.sectionNote {
-  font-family: var(--body);
-  font-style: italic;
-  font-size: 0.9375rem;
-  color: var(--on-ground-74);
-}
-
 .sectionRule {
   margin-bottom: 38px;
 }
@@ -220,9 +213,5 @@
   .leaf {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 34px 22px;
-  }
-
-  .sectionNote {
-    display: none;
   }
 }

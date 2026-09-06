@@ -4,24 +4,6 @@
   padding: 0 clamp(16px, 4vw, 40px) clamp(24px, 4vw, 48px);
 }
 
-.crumb {
-  padding: 28px 0 20px;
-  font-family: var(--body);
-  font-variant: small-caps;
-  font-size: 1rem;
-  letter-spacing: 0.06em;
-  color: var(--on-ground-74);
-}
-
-.crumb a {
-  text-decoration: none;
-}
-
-.slash {
-  color: var(--gold);
-  padding: 0 8px;
-}
-
 /* The leaf. One cream sheet carrying both halves of the spread, so the gutter
    between them is a rule drawn on the paper rather than a gap in it. */
 .leaf {

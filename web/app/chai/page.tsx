@@ -36,7 +36,7 @@ export default function ChaiPage() {
             <UrduText as="p" className={styles.blurb}>
               یہ مجموعہ کسی ادارے کی مدد کے بغیر، فرصت کے وقت میں تیار کیا گیا ہے۔ اسکین جمع کرنے،
               محفوظ رکھنے اور صفحہ بہ صفحہ درست کرنے کا کام جاری ہے۔ اگر آپ چاہیں تو ایک چائے کے
-              برابر مدد بھیج سکتے ہیں — اِس سے ہوسٹنگ کا خرچ اور اگلے اسکین کی گنجائش نکلتی ہے۔
+              برابر مدد بھیج سکتے ہیں۔ اِس سے ہوسٹنگ کا خرچ اور اگلے اسکین کی گنجائش نکلتی ہے۔
             </UrduText>
           </div>
 
@@ -88,9 +88,7 @@ export default function ChaiPage() {
 
             <p className={styles.noteEn}>
               Put your name in the transfer note, and the name of anything you would like to see
-              scanned next. Every note is read, and the requests decide which folder is worked on
-              first. Nothing here is a subscription and nothing is owed — the collection stays open
-              to read either way.
+              scanned next. Every note is read.
             </p>
 
             <UrduText as="p" className={styles.noteUr}>
@@ -99,15 +97,13 @@ export default function ChaiPage() {
             </UrduText>
           </div>
 
+          {/* The ornament now closes the leaf on its own, which is what a
+              terminal mark is for. */}
           <div className={styles.ornament} aria-hidden="true">
             <span className={styles.pip} />
             <span className="diamond" />
             <span className={styles.pip} />
           </div>
-
-          <p className={styles.close}>
-            Chai is what this costs. The scans are public domain; the hosting is not.
-          </p>
         </div>
       </div>
     </main>
