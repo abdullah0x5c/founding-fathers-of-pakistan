@@ -43,39 +43,61 @@
     0 18px 56px rgba(0, 0, 0, 0.55);
 }
 
-/* The only reader UI there is: a page counter fixed to the right edge, centred
-   on the viewport. It appears on scroll and fades on its own; click it and it
-   turns into a number input that jumps to the typed page. */
+/* The only reader UI there is: the page counter. It is permanently visible and
+   sits immediately off the right edge of the leaf, level with the middle of the
+   viewport, so it reads as a foliation mark written in the margin of the page
+   rather than as a floating control pinned to the window.
+
+   `--page-w` is the measured page width, published by PdfReader on load and on
+   every resize. `--pill-w` is fixed because the position is computed from the
+   page's right edge outward, and a shrink-to-fit box cannot be offset by its
+   own width in CSS. Click it and it becomes a number input that jumps. */
 .pill {
+  --pill-w: 8.5em;
+  --pill-gap: 22px;
   position: fixed;
   top: 50%;
-  right: clamp(12px, 2vw, 26px);
+  left: calc(50% + var(--page-w, 720px) / 2 + var(--pill-gap));
   transform: translateY(-50%);
+  width: var(--pill-w);
   z-index: 20;
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--on-ground-12);
-  background: rgba(11, 44, 32, 0.82);
+  padding: 10px 14px;
+  border: 1px solid var(--rule-bronze);
+  background: rgba(11, 44, 32, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   font-family: var(--body);
   font-variant: small-caps;
-  font-size: 0.875rem;
-  letter-spacing: 0.12em;
-  color: var(--on-ground-74);
-  white-space: nowrap;
-  opacity: 1;
-  transition: opacity 240ms ease;
+  font-size: 1.125rem;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  color: var(--gold);
+  text-align: center;
   pointer-events: auto;
 }
 
-.pill[data-hidden] {
-  opacity: 0;
-  pointer-events: none;
+/* Below this there is no margin left beside the leaf to write in, so the
+   counter returns to the window's right edge rather than sitting on top of the
+   scan. The threshold is the 1180px content column plus room for the counter on
+   both sides, so the page never has to shift to make space for it. */
+@media (max-width: 1520px) {
+  .pill {
+    left: auto;
+    right: clamp(10px, 1.6vw, 22px);
+  }
+}
+
+@media (max-width: 560px) {
+  .pill {
+    --pill-w: 7.5em;
+    font-size: 1rem;
+    padding: 8px 10px;
+  }
 }
 
 .pillLabel {
   display: block;
+  width: 100%;
   padding: 0;
   border: 0;
   background: transparent;
@@ -93,11 +115,12 @@
 .pillForm {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  justify-content: center;
+  gap: 6px;
 }
 
 .pillInput {
-  width: 4.5em;
+  width: 3.2em;
   padding: 0;
   border: 0;
   border-bottom: 1px solid var(--gold);

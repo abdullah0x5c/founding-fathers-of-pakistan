@@ -3,8 +3,9 @@
 Profile pictures for the Founding Fathers of Pakistan site.
 
 Most images are **512×512 JPEG**, square-cropped from the sources below and centred on the
-face. Two are not: `allama-iqbal.jpg` and `viqar-ul-mulk.jpg` are the unmodified Wikimedia
-originals, at their own dimensions. See the notes on image quality below.
+face. Three are not: `allama-iqbal.jpg`, `viqar-ul-mulk.jpg` and `quaid-e-azam.jpg` are the
+unmodified Wikimedia originals, at their own dimensions. See the notes on image quality
+below.
 
 Every source is in the **public domain**. Attribution is not legally required for these,
 but it is recorded here so the images can be re-fetched, verified, or replaced later.
@@ -20,7 +21,7 @@ but it is recorded here so the images can be re-fetched, verified, or replaced l
 | 7 | Maulana Muhammad Ali Jawhar | `maulana-muhammad-ali-jawhar.jpg` | [Molana-Muhammad-Ali.jpg](https://commons.wikimedia.org/wiki/File:Molana-Muhammad-Ali.jpg) | Unknown | before 1931 | Public domain |
 | 8 | Ch. Rahmat Ali | `ch-rahmat-ali.jpg` | [Choudhry Rahmat Ali.jpg](https://commons.wikimedia.org/wiki/File:Choudhry_Rahmat_Ali.jpg) | Unknown | Unknown | Public domain |
 | 9 | Allama Iqbal | `allama-iqbal.jpg` | [Allama Iqbal.jpg](https://commons.wikimedia.org/wiki/File:Allama_Iqbal.jpg) | Iqbal Academy Pakistan | by 1938 | Public domain |
-| 10 | Quaid e Azam | `quaid-e-azam.jpg` | [Jinnah1945c.jpg](https://commons.wikimedia.org/wiki/File:Jinnah1945c.jpg) | Unknown | 1945 | Public domain |
+| 10 | Quaid e Azam | `quaid-e-azam.jpg` | [Mohammad Ali Jinnah, 1910.jpg](https://commons.wikimedia.org/wiki/File:Mohammad_Ali_Jinnah,_1910.jpg) | Unknown | 1910 | Public domain (PD-US-expired, PD-Pakistan) |
 
 ## Notes on image quality
 
@@ -42,6 +43,14 @@ these men, not processing errors:
 distance the best portrait in the set. It is a tall three-quarter profile rather than a
 square crop, so unlike the others it does need `object-position` tuning: the head sits high
 in the frame.
+
+**`quaid-e-azam.jpg`** is the Wikimedia original at **1080×1308**, unmodified. It was
+requested as `File:Quaid6_edited.jpg`, which is now a redirect: the file was renamed on
+Commons to `File:Mohammad Ali Jinnah, 1910.jpg`, and the table above records the current
+title so it can be re-fetched. Its 0.83 aspect is very close to the 0.84 of the portrait
+frame, so it is cropped hardly at all. It shows Jinnah as a barrister around 1910 rather
+than as the statesman of the 1940s, which suits a shelf whose one holding is his early
+speeches.
 
 ## Suggested CSS
 

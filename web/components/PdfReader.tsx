@@ -6,9 +6,10 @@ import styles from "./PdfReader.module.css";
 /**
  * The in-house reader: pages rendered to <canvas>, laid out as the document
  * itself — the scan pages *are* the page. There is no reader box and no
- * toolbar: the book simply runs as one long scroll to the last page, and a
- * small page counter sits on the right edge, click it and it turns into a
- * number you can type to jump to any page.
+ * toolbar: the book simply runs as one long scroll to the last page, and the
+ * page counter sits permanently beside the leaf, level with the middle of the
+ * viewport; click it and it turns into a number you can type to jump to any
+ * page.
  *
  * It is windowed infinite scroll underneath: the DOM holds only the slots near
  * the viewport (a small sliding window), absolutely positioned over a spacer
@@ -20,7 +21,7 @@ import styles from "./PdfReader.module.css";
  * Width is automatic: a page renders at the reader width, capped at the scan's
  * natural resolution so it never upscales past what the pixels hold. The last
  * scroll position is remembered between visits (per document), and the current
- * page drives the right-edge counter.
+ * page drives the counter.
  *
  * Every piece of reader state lives in one per-load `Session` (see below):
  * React StrictMode mounts components twice in dev, and an effect that mutates
@@ -67,9 +68,6 @@ const PAGE_GAP = 52;
 /** How many pages past the window to warm in pdf.js's cache (data only, no
  * canvas) while the reader is idle. */
 const PREFETCH_DEPTH = 2;
-
-/** How long the page counter stays after the last scroll. */
-const PILL_MS = 2000;
 
 /** Sticky header height + a gutter: when jumping to a page we align its top
  * just below this, so the target page starts clear of the pinned header. */
@@ -171,18 +169,28 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
   const [total, setTotal] = useState(pages);
   const [current, setCurrent] = useState(1);
-  const [pill, setPill] = useState(false);
   const [attempt, setAttempt] = useState(0);
 
-  // The right-edge counter is clickable → it becomes a small number input.
+  // The counter is clickable → it becomes a small number input.
   const [editing, setEditing] = useState(false);
   const [inputVal, setInputVal] = useState("");
 
   const genRef = useRef(0);
   const rafRef = useRef<number | null>(null);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const pillTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastPageRef = useRef(0);
+
+  /** The reader root. Carries the measured page width as a custom property so
+   * the counter can sit beside the leaf without JS positioning it. */
+  const readerRef = useRef<HTMLDivElement | null>(null);
+
+  /** Publish the page measure to CSS. The counter is placed off the right edge
+   * of the page rather than off the right edge of the window, so it has to know
+   * how wide the page currently is; this is the only channel it needs, and it
+   * costs no re-render. */
+  const publishPageWidth = useCallback((w: number) => {
+    readerRef.current?.style.setProperty("--page-w", `${Math.round(w)}px`);
+  }, []);
 
   /** Drop a page: cancel its render, remove its slot, forget it. */
   const evict = useCallback((s: Session, n: number) => {
@@ -406,6 +414,7 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
 
         s.ratios = new Array<number>(doc.numPages).fill(ratio);
         s.slotW = Math.min(stage.clientWidth || 0, s.cap);
+        publishPageWidth(s.slotW);
         recomputeTops(s);
 
         const spacer = document.createElement("div");
@@ -420,7 +429,6 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
           behavior: "instant",
         });
         setCurrent(pageAt(s, Math.max(0, window.scrollY - stageTop()) + viewportH() / 2));
-        setPill(true);
 
         if (!cancelled && genRef.current === gen) {
           setStatus("ready");
@@ -471,9 +479,6 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
           lastPageRef.current = next;
           setCurrent(next);
         }
-        setPill(true);
-        if (pillTimer.current) clearTimeout(pillTimer.current);
-        pillTimer.current = setTimeout(() => setPill(false), PILL_MS);
         if (saveTimer.current) clearTimeout(saveTimer.current);
         saveTimer.current = setTimeout(() => {
           try {
@@ -493,7 +498,6 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
         cancelAnimationFrame(rafRef.current);
         rafRef.current = null;
       }
-      if (pillTimer.current) clearTimeout(pillTimer.current);
       if (saveTimer.current) clearTimeout(saveTimer.current);
     };
   }, [renderWindow, url]);
@@ -516,6 +520,7 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
       const oldTop = s.tops[anchorPage - 1] ?? 0;
 
       s.slotW = next;
+      publishPageWidth(next);
       recomputeTops(s);
       positionSlots(s);
 
@@ -582,7 +587,6 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
   const beginEdit = () => {
     setInputVal(String(current));
     setEditing(true);
-    setPill(true);
   };
 
   const cancelEdit = () => setEditing(false);
@@ -600,15 +604,12 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
       setCurrent(n);
     }
     setEditing(false);
-    setPill(true);
-    if (pillTimer.current) clearTimeout(pillTimer.current);
-    pillTimer.current = setTimeout(() => setPill(false), PILL_MS);
   };
 
   const shownTotal = (total || pages).toLocaleString("en-US");
 
   return (
-    <div className={styles.reader} role="region" aria-label="Document">
+    <div ref={readerRef} className={styles.reader} role="region" aria-label="Document">
       <div
         ref={stageRef}
         className={styles.readerStage}
@@ -617,11 +618,7 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
         aria-label="Document pages"
       />
 
-      <div
-        className={styles.pill}
-        data-hidden={pill ? undefined : "true"}
-        aria-live="polite"
-      >
+      <div className={styles.pill} aria-live="polite">
         {editing ? (
           <form
             className={styles.pillForm}
