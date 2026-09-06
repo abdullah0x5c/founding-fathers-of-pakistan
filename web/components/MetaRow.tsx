@@ -1,26 +1,29 @@
 import styles from "./MetaRow.module.css";
 
 /**
- * The label-and-value pair that does most of the archival work on this site.
- * Setting catalogue metadata in mono while prose stays in serif separates the
- * record from the writing, which carries more of the archival feel than any other
- * single choice in the system.
+ * One line of the colophon — the label-and-value pair that does most of the
+ * archival work on this site.
+ *
+ * The label is set in small capitals and ranged right against the value, so the
+ * labels form a straight edge down the middle of the block and the values hang
+ * off it. That alignment is what makes a list of fields read as a record rather
+ * than as a caption, and it is why the label column is a fixed measure.
  */
 export function MetaRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className={styles.row}>
-      <div className={styles.label}>{label}</div>
-      <div className={styles.value}>{children}</div>
+      <span className={styles.label}>{label}</span>
+      <span className={styles.value}>{children}</span>
     </div>
   );
 }
 
-/** The same pair on one of the light paper plates. */
+/** The same pair stacked, for narrow columns where 7.5em of label will not fit. */
 export function MetaCell({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className={styles.rowPaper}>
-      <div className={styles.labelPaper}>{label}</div>
-      <div className={styles.valuePaper}>{children}</div>
+    <div className={styles.cell}>
+      <div className={styles.cellLabel}>{label}</div>
+      <div className={styles.cellValue}>{children}</div>
     </div>
   );
 }

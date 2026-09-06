@@ -1,54 +1,56 @@
 .row {
   display: grid;
-  grid-template-columns: 92px 1fr;
-  column-gap: 16px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--on-ground-12);
+  grid-template-columns: 7.5em 1fr;
+  gap: 14px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
 }
 
 .label {
-  font-family: var(--mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding-top: 5px;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-align: right;
 }
 
 .value {
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: var(--on-ground-86);
+  color: var(--ink);
+  text-wrap: pretty;
 }
 
-/* the same pair set on a light plate */
-.rowPaper {
-  border-bottom: none;
-  padding-bottom: 0;
-  display: block;
+/* Values the record does not carry are set in italic grey rather than left
+   blank — an empty cell reads as a rendering fault, "not established" reads as
+   a fact about the collection. */
+.value em {
+  font-style: italic;
+  color: var(--muted-2);
 }
 
-.labelPaper {
-  font-family: var(--mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.cell {
+  min-width: 0;
+}
+
+.cellLabel {
+  font-variant: small-caps;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
   color: var(--muted);
 }
 
-.valuePaper {
-  margin-top: 5px;
+.cellValue {
+  margin-top: 3px;
   font-size: 0.9375rem;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--ink);
 }
 
-@media (max-width: 420px) {
+@media (max-width: 460px) {
   .row {
     grid-template-columns: 1fr;
-    row-gap: 2px;
+    gap: 0;
   }
+
   .label {
-    padding-top: 0;
+    text-align: left;
   }
 }

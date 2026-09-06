@@ -1,16 +1,16 @@
 .main {
-  max-width: 1560px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 clamp(16px, 4vw, 60px);
+  padding: 0 clamp(16px, 4vw, 40px) clamp(24px, 4vw, 48px);
 }
 
 .crumb {
-  padding: 28px 0 0;
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--on-ground-62);
+  padding: 28px 0 20px;
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--on-ground-74);
 }
 
 .crumb a {
@@ -18,106 +18,204 @@
 }
 
 .slash {
-  color: rgba(201, 169, 107, 0.7);
-  padding: 0 4px;
+  color: var(--gold);
+  padding: 0 8px;
 }
 
-.columns {
+/* The leaf. One cream sheet carrying both halves of the spread, so the gutter
+   between them is a rule drawn on the paper rather than a gap in it. */
+.leaf {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+.ghost {
+  position: absolute;
+  top: 6px;
+  right: -70px;
+  font-size: clamp(70px, 11vw, 150px);
+  line-height: 1.6;
+  color: rgba(15, 58, 42, 0.055);
+  white-space: nowrap;
+  pointer-events: none;
+  margin: 0;
+  /* Kept to the recto half. Run across the whole leaf it competes with the
+     shelf entries on the verso, which are small type on the same paper. */
+  max-width: 52%;
+  overflow: hidden;
+}
+
+.spread {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(28px, 3.4vw, 56px);
-  padding: clamp(24px, 3.4vw, 48px) 0 clamp(40px, 7vw, 90px);
+  position: relative;
+}
+
+.verso {
+  flex: 1 1 300px;
+  min-width: 0;
+  padding: 44px 26px 44px clamp(20px, 4vw, 52px);
+}
+
+.recto {
+  flex: 1 1 340px;
+  min-width: 0;
+  padding: 44px clamp(20px, 4vw, 52px) 44px 26px;
+}
+
+/* The binding. The same illuminated stack as everywhere else, stood on end and
+   given a faint ground behind it, or the ruling floats with nothing to sit
+   against. Drawn here rather than with the global `.gutter` because the mobile
+   rule below has to turn it back through ninety degrees. */
+.spine {
+  flex: none;
+  width: 16px;
+  background-color: rgba(184, 135, 59, 0.06);
+  background-image: linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--gold), var(--gold)), linear-gradient(var(--bronze), var(--bronze));
+  background-size: 2px 100%, 1px 100%, 3px 100%;
+  background-position: 5px 0, 8px 0, 10px 0;
+  background-repeat: no-repeat;
+}
+
+.folio {
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.folioRight {
+  text-align: right;
+  margin-bottom: 14px;
+}
+
+.versoTitle {
+  font-size: 1.1875rem;
+  letter-spacing: 0.1em;
+  margin: 0 0 14px;
+}
+
+.versoRule {
+  margin-bottom: 22px;
+}
+
+.note {
+  margin: 0 0 22px;
+  padding-left: 14px;
+  border-left: 2px solid var(--rule-bronze);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  font-style: italic;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.list {
+  display: grid;
+  gap: 18px;
+}
+
+.versoFoot {
+  margin-top: 26px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-bronze);
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* Jinnah. The emptiest page in the collection, and the one that best shows the
+   method — so it gets a real explanation rather than a blank table. */
+.empty {
+  border: 1px solid var(--rule-bronze);
+  padding: clamp(18px, 3vw, 26px);
+}
+
+.emptyLabel {
+  font-family: var(--display);
+  font-size: 0.875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rubric);
+}
+
+.empty p {
+  margin: 12px 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+/* ── the recto head ── */
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
   align-items: flex-start;
 }
 
-/* Left: the plate. A light card on the dark ground, arched at the head. */
-.plate {
-  flex: 1 1 420px;
-  max-width: 560px;
-  position: sticky;
-  top: 88px;
-  background: var(--paper);
-  color: var(--ink);
-  border-radius: 50% 50% 3px 3px / 13% 13% 3px 3px;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(201, 169, 107, 0.4);
+.portraitFrame {
+  flex: none;
+  width: 150px;
+  padding: 8px;
+  border: 1px solid rgba(184, 135, 59, 0.6);
 }
 
-.portraitFrame {
+.portraitWindow {
   position: relative;
-  aspect-ratio: 4 / 3.4;
-  background: var(--paper-sunk);
+  aspect-ratio: 0.82;
 }
 
 .portrait {
   object-fit: cover;
-  object-position: center 20%;
-  filter: grayscale(1) contrast(1.05) brightness(1.06);
+  object-position: 50% 28%;
+  filter: sepia(0.42) contrast(1.04);
+  clip-path: url(#pishtaq-arch);
 }
 
-/* Same duotone as the index plates, so a figure looks the same in both places. */
-.duotone {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: var(--plate-bg);
-  mix-blend-mode: soft-light;
-  opacity: 0.6;
-}
-
-.plateBody {
-  padding: clamp(24px, 3vw, 40px) clamp(22px, 3vw, 42px) clamp(30px, 3.4vw, 46px);
-}
-
-.plateTop {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.plateN {
-  color: var(--gold-deep);
-}
-
-.name {
-  margin: 14px 0 0;
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: clamp(1.75rem, 3.2vw, 2.9rem);
-  line-height: 1.04;
-  letter-spacing: -0.022em;
+.names {
+  flex: 1 1 180px;
+  min-width: 0;
 }
 
 .nameUrdu {
-  margin-top: 4px;
-  color: var(--urdu-muted);
-  font-size: 1.5rem;
+  font-size: clamp(1.75rem, 3.2vw, 2.375rem);
+  color: var(--ink);
+  margin: 0;
 }
 
-.plateRule {
-  height: 1px;
-  border: 0;
-  background: rgba(168, 140, 78, 0.5);
-  margin: 24px 0 22px;
+.name {
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+  letter-spacing: 0.05em;
+  margin: 2px 0 6px;
+  color: var(--ink);
 }
 
-.metaGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 18px 22px;
+.dates {
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.9375rem;
+  letter-spacing: 0.06em;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.headRule {
+  margin: 30px 0 22px;
 }
 
 .bio p {
-  margin: 0 0 15px;
-  font-size: 1.0625rem;
-  line-height: 1.68;
-  color: var(--ink-2);
+  margin: 0 0 16px;
+  color: var(--ink);
   text-wrap: pretty;
 }
 
@@ -125,95 +223,58 @@
   margin-bottom: 0;
 }
 
-/* Right: the shelf. */
-.shelf {
-  flex: 1 1 480px;
-  min-width: 300px;
-}
-
-.shelfHead {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.shelfTitle {
+/* The versal. A single capital taken out of the text and set in a ruled box in
+   rubric — the mark that tells you a section has begun, and the one piece of
+   ornament on this page that carries information. */
+.bioOpen::first-letter {
+  float: left;
   font-family: var(--display);
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-size: 1.875rem;
+  line-height: 1;
+  padding: 9px 11px;
+  margin: 6px 12px 0 0;
+  color: var(--rubric);
+  border: 1px solid var(--bronze);
+  background: rgba(201, 162, 39, 0.1);
+  box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 4px rgba(201, 162, 39, 0.6);
 }
 
-.shelfCount {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--on-ground-62);
-  text-align: right;
-}
-
-.note {
-  margin: 20px 0 0;
-  padding: 14px 16px;
-  border-left: 2px solid var(--rule);
-  font-size: 0.9375rem;
-  line-height: 1.65;
-  color: var(--on-ground-86);
-  text-wrap: pretty;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 22px;
-}
-
-.foot {
-  margin-top: 26px;
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  line-height: 2;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--on-ground-62);
-}
-
-/* Jinnah. The emptiest page in the collection, and the one that best shows
-   the method — so it gets a real explanation rather than a blank table. */
-.empty {
-  margin-top: 22px;
-  border: 1px solid var(--rule-soft);
-  background: var(--ground-sunk);
-  padding: clamp(20px, 3vw, 34px);
-}
-
-.emptyLabel {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.emptyBody {
-  margin: 14px 0 0;
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  color: var(--on-ground-86);
-  text-wrap: pretty;
-}
-
-.emptyBody + .emptyBody {
-  margin-top: 12px;
-}
-
+/* Below 900px the album cannot open: the leaves stack, the spine becomes a
+   horizontal rule between them, and the shelf follows the life rather than
+   facing it. */
 @media (max-width: 900px) {
-  .plate {
-    position: static;
+  .verso,
+  .recto {
+    flex-basis: 100%;
+    padding: 34px clamp(18px, 5vw, 34px);
+  }
+
+  .recto {
+    order: 1;
+    padding-bottom: 0;
+  }
+
+  .spine {
+    order: 2;
+    width: 100%;
+    height: 14px;
+    margin: 26px 0;
+    background-image: linear-gradient(var(--bronze), var(--bronze)),
+      linear-gradient(var(--gold), var(--gold)), linear-gradient(var(--bronze), var(--bronze));
+    background-size: 100% 2px, 100% 1px, 100% 3px;
+    background-position: 0 4px, 0 7px, 0 9px;
+  }
+
+  .verso {
+    order: 3;
+    padding-top: 0;
+  }
+
+  .folioRight {
+    text-align: left;
+  }
+
+  .ghost {
+    display: none;
   }
 }

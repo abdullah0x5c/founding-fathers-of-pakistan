@@ -1,13 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import UrduText from "./UrduText";
+import { urduNumeral } from "@/lib/urdu";
 import type { Figure } from "@/content/types";
 import styles from "./FigurePlate.module.css";
 
 /**
- * One figure on the index. The plates alternate between two heights and every
- * second and fourth in a row of five is pushed down, so the grid reads as a set
- * of hung frames rather than as a product listing.
+ * One figure on the index, mounted the way a portrait is mounted in an album:
+ * cut to a pishtaq arch, laid on a cross-hatched bronze field, bordered, then
+ * captioned on a dark plaque cut from the ground itself. The leaf numeral sits
+ * in a roundel over the top-left corner, half off the mount, as a scribe's
+ * foliation mark does.
+ *
+ * The plates are a plain grid here — the alternating drop the old design used
+ * belongs to a gallery hang, not to an album, where facing leaves are ruled to
+ * the same height on purpose.
  */
 export default function FigurePlate({
   figure,
@@ -18,39 +25,39 @@ export default function FigurePlate({
   workCount: number;
   index: number;
 }) {
-  const aspect = index % 2 === 0 ? "3 / 4.15" : "3 / 3.55";
-  const offset = index % 2 === 1 ? 34 : 0;
-
   return (
     <Link
       href={`/f/${figure.slug}`}
-      className={`${styles.plate} rise-in`}
-      style={{ marginTop: offset, animationDelay: `${index * 55}ms` }}
+      className={`${styles.plate} mounted rise-in`}
+      style={{ animationDelay: `${index * 55}ms` }}
     >
-      <div className={styles.frame} style={{ aspectRatio: aspect }}>
-        <Image
-          src={figure.portrait}
-          alt={`Portrait of ${figure.name}`}
-          fill
-          sizes="(max-width: 600px) 45vw, (max-width: 1000px) 30vw, 320px"
-          className={styles.portrait}
-        />
-        <span className={styles.duotone} aria-hidden="true" />
+      <div className={`${styles.frame} hatch`}>
+        <div className={styles.window}>
+          <Image
+            src={figure.portrait}
+            alt={`Portrait of ${figure.name}`}
+            fill
+            sizes="(max-width: 700px) 45vw, (max-width: 1080px) 30vw, 260px"
+            className={styles.portrait}
+          />
+        </div>
       </div>
-      <div className={styles.rule} aria-hidden="true" />
-      <div className={styles.line}>
-        <span className={styles.n}>{figure.n}</span>
-        <span className={styles.dates}>
-          {figure.born}–{figure.died}
-        </span>
+
+      <div className={styles.plaque}>
+        <UrduText className={styles.urdu} align="center">
+          {figure.nameUrdu}
+        </UrduText>
+        <div className={styles.name}>{figure.name}</div>
+        <div className={styles.role}>
+          {figure.role} · {figure.born}–{figure.died}
+        </div>
+        <div className={styles.held}>
+          {workCount === 0 ? "nothing held" : `${workCount} work${workCount === 1 ? "" : "s"} held`}
+        </div>
       </div>
-      <div className={styles.name}>{figure.name}</div>
-      <UrduText className={styles.urdu} align="left">
-        {figure.nameUrdu}
-      </UrduText>
-      <div className={styles.role}>
-        {figure.role} ·{" "}
-        {workCount === 0 ? "nothing held" : `${workCount} work${workCount === 1 ? "" : "s"}`}
+
+      <div className={styles.numeral} aria-hidden="true">
+        {urduNumeral(Number(figure.n))}
       </div>
     </Link>
   );

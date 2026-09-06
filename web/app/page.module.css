@@ -1,125 +1,240 @@
 .main {
-  max-width: 1560px;
+  max-width: 1180px;
   margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 40px);
 }
 
-.masthead {
-  padding: clamp(48px, 9vw, 132px) clamp(16px, 4vw, 60px) clamp(32px, 5vw, 60px);
+/* --------------------------------------------------------------------------
+   f. 1r — the sarlauh
+   -------------------------------------------------------------------------- */
+
+.opening {
+  padding: 56px 0 clamp(56px, 8vw, 104px);
 }
 
-.titleRow {
+.folioRight {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: clamp(20px, 5vw, 72px);
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.mountInner {
+  border: 1px solid var(--rule);
+  padding: clamp(20px, 3vw, 34px) clamp(14px, 2vw, 20px) 30px;
+  /* light falling from the head of the leaf, as gold leaf catches it */
+  background: linear-gradient(180deg, rgba(201, 162, 39, 0.09), rgba(201, 162, 39, 0) 42%);
+}
+
+/* The illuminated headpiece itself: a cream panel domed at the head, the shape
+   of the ornamental block that opens a manuscript. */
+.sarlauh {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  background-color: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--bronze);
+  border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+  padding: clamp(40px, 6vw, 64px) clamp(20px, 4vw, 40px) 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Quarter-round flourishes in the corners — the mark a limner leaves where two
+   ruled borders meet. */
+.corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.cornerBL {
+  left: 9px;
+  bottom: 9px;
+  border-left: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  border-bottom-left-radius: 100%;
+}
+
+.cornerBR {
+  right: 9px;
+  bottom: 9px;
+  border-right: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  border-bottom-right-radius: 100%;
+}
+
+/* Gulzar at display size. The Urdu title leads and the English follows, because
+   the title of the collection is the Urdu one. */
+.titleUrdu {
+  font-size: clamp(2.875rem, 7.2vw, 5.5rem);
+  color: var(--ink);
+  padding: 0 8px;
+  margin: 0;
+}
+
+.titleRule {
+  max-width: 340px;
+  margin: 26px auto 22px;
 }
 
 .title {
-  font-size: clamp(2.75rem, 8.4vw, 7.6rem);
-  line-height: 0.92;
-  max-width: 12ch;
+  font-size: clamp(1.3125rem, 2.7vw, 2.0625rem);
+  color: var(--ink);
+  margin: 0 0 8px;
 }
 
-.titleUrdu {
-  color: rgba(201, 169, 107, 0.7);
-  padding-bottom: 0.4em;
-  white-space: nowrap;
-  font-size: clamp(1.75rem, 4vw, 3.4rem);
+.subtitle {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  margin-bottom: 34px;
 }
 
-.hr {
-  margin: clamp(28px, 4vw, 56px) 0 0;
+.foot {
+  margin: 0 clamp(-20px, -4vw, -40px);
+  height: 6px;
+  background: var(--ground);
+  border-top: 2px solid var(--bronze);
 }
 
+/* The lead, set as two facing columns of one argument in two languages. Neither
+   is a translation caption of the other; they are the same paragraph, ruled
+   apart, and they are given equal width on purpose. */
 .lead {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(24px, 5vw, 80px);
-  margin-top: clamp(26px, 3.5vw, 48px);
+  gap: 40px;
+  justify-content: center;
+  max-width: 980px;
+  margin: 52px auto 0;
 }
 
-.leadMain {
+.leadEn {
+  flex: 1 1 320px;
+  min-width: 0;
   margin: 0;
-  flex: 1 1 380px;
-  max-width: 600px;
-  font-size: 1.1875rem;
-  line-height: 1.72;
-  color: var(--on-ground-86);
+  color: var(--on-ground-92);
   text-wrap: pretty;
 }
 
-.leadAside {
+.leadUr {
+  flex: 1 1 320px;
+  min-width: 0;
   margin: 0;
-  flex: 1 1 300px;
-  max-width: 440px;
-  font-size: 1.0625rem;
-  line-height: 1.72;
-  color: var(--on-ground-62);
+  font-size: 1rem;
+  line-height: 2.35;
+  color: var(--on-ground-92);
+}
+
+.leadClose {
+  max-width: 660px;
+  margin: 38px auto 0;
+  color: var(--on-ground-74);
+  font-style: italic;
   text-wrap: pretty;
 }
 
-.stat {
-  margin-top: clamp(24px, 3.5vw, 44px);
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-  line-height: 2;
-}
+/* --------------------------------------------------------------------------
+   f. 2r — the eleven
+   -------------------------------------------------------------------------- */
 
 .section {
-  padding: clamp(32px, 5vw, 76px) clamp(16px, 4vw, 60px) clamp(40px, 7vw, 90px);
+  padding: 0 0 clamp(48px, 7vw, 96px);
 }
 
 .sectionHead {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px;
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--rule);
-  font-family: var(--mono);
-  font-size: 0.6875rem;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+
+.sectionTitle {
+  font-size: 1.375rem;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--on-ground-62);
+  color: var(--on-ground);
 }
 
-/* Eleven plates. The column count is capped rather than left to auto-fit
-   because eleven across five columns leaves a single orphan on the last row,
-   which is the one arrangement that reads as a mistake. Four columns give
-   4-4-3, three give 3-3-3-2, two give a clean 5-and-a-half. */
-.grid {
+.sectionFill {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.sectionNote {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--on-ground-74);
+}
+
+.sectionRule {
+  margin-bottom: 38px;
+}
+
+/* The spread. Below 900px an album cannot open, so the gutter is withdrawn and
+   the two leaves run on as one column — the same reason a facsimile edition
+   prints a spread across a fold and a paperback does not. */
+.spread {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.leaf {
+  flex: 1 1 380px;
+  min-width: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(22px, 2.6vw, 42px);
-  align-items: start;
-  margin-top: clamp(30px, 3.4vw, 52px);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 40px 30px;
+  align-content: start;
+  padding: 0 34px;
 }
 
-@media (max-width: 1080px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+.tally {
+  margin-top: clamp(34px, 4vw, 52px);
+  padding-top: 18px;
+  border-top: 1px solid var(--rule-soft);
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .gutter {
+    display: none;
+  }
+
+  .leaf {
+    flex-basis: 100%;
+    padding: 0;
+  }
+
+  .leaf + .leaf {
+    margin-top: 40px;
   }
 }
 
+/* The two languages of the lead wrap below this; once they are stacked the
+   ruling between them would separate a paragraph from itself. */
 @media (max-width: 700px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px 16px;
-  }
-
-  /* At two columns the alternating drop stops being a sawtooth and becomes a
-     permanent lean on the right-hand column. Level them instead. */
-  .grid > * {
-    margin-top: 0 !important;
+  .leadGutter {
+    display: none;
   }
 }
 
 @media (max-width: 560px) {
-  .titleUrdu {
-    white-space: normal;
+  .leaf {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 34px 22px;
+  }
+
+  .sectionNote {
+    display: none;
   }
 }

@@ -39,7 +39,7 @@
   height: auto;
   border-radius: 2px;
   box-shadow:
-    0 0 0 1px rgba(201, 169, 107, 0.1),
+    0 0 0 1px rgba(201, 162, 39, 0.1),
     0 18px 56px rgba(0, 0, 0, 0.55);
 }
 
@@ -55,14 +55,14 @@
   padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid var(--on-ground-12);
-  background: rgba(7, 42, 33, 0.82);
+  background: rgba(11, 44, 32, 0.82);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  font-family: var(--mono);
-  font-size: 0.625rem;
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.875rem;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--on-ground-70);
+  color: var(--on-ground-74);
   white-space: nowrap;
   opacity: 1;
   transition: opacity 240ms ease;
@@ -111,16 +111,16 @@
 }
 
 .pillTotal {
-  color: var(--on-ground-62);
+  color: var(--on-ground-66);
 }
 
 .readerBtn {
   font: inherit;
-  font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.9375rem;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--on-ground-70);
+  color: var(--on-ground-74);
   background: transparent;
   border: 1px solid var(--on-ground-12);
   padding: 8px 16px;
@@ -136,7 +136,7 @@
 
 .readerBtn:not(:disabled):hover {
   color: var(--gold);
-  border-color: rgba(201, 169, 107, 0.4);
+  border-color: rgba(201, 162, 39, 0.4);
 }
 
 /* Covers the viewport before the document resolves. The loading state is
@@ -163,10 +163,10 @@
 }
 
 .readerLoaderText {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.9375rem;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--gold);
 }
 
@@ -193,10 +193,10 @@
 }
 
 .readerErrorLabel {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.9375rem;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--gold);
 }
 

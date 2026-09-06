@@ -1,29 +1,35 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Spectral, IBM_Plex_Mono, Noto_Nastaliq_Urdu } from "next/font/google";
-import SiteHeader from "@/components/SiteHeader";
-import GrainOverlay from "@/components/GrainOverlay";
+import { Marcellus, Cardo, Gulzar, Noto_Nastaliq_Urdu } from "next/font/google";
+import JaliOverlay from "@/components/JaliOverlay";
+import ArchDefs from "@/components/ArchDefs";
 import "./globals.css";
 
-const display = Bodoni_Moda({
+// Marcellus is a Trajan-descended Roman capital. It has one weight and one style
+// and needs no more: it is only ever set in capitals with wide tracking.
+const display = Marcellus({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
+  weight: ["400"],
   variable: "--font-display",
   display: "swap",
 });
 
-const body = Spectral({
+// Cardo carries real small capitals, which is the whole reason it is here — the
+// catalogue labels across this site are small caps, not scaled-down capitals.
+const body = Cardo({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "700"],
   style: ["normal", "italic"],
   variable: "--font-body",
   display: "swap",
 });
 
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
+// Gulzar is the Nastaliq display cut, for titles only. Loading it alongside Noto
+// is justified by how much Urdu display type this site sets — every figure and
+// every work carries a Nastaliq title — but it is never used for running text.
+const urduDisplay = Gulzar({
+  subsets: ["arabic"],
+  weight: ["400"],
+  variable: "--font-urdu-display",
   display: "swap",
 });
 
@@ -49,9 +55,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${display.variable} ${body.variable} ${mono.variable} ${urdu.variable}`}>
-        <GrainOverlay />
-        <SiteHeader />
+      <body
+        className={`${display.variable} ${body.variable} ${urduDisplay.variable} ${urdu.variable}`}
+      >
+        {/* No site header and no site footer, anywhere. Every route here is a
+            leaf of an album, and a leaf does not carry a menu bar across its
+            head or a strip of links along its foot. Navigation lives inside the
+            content instead: the figure page opens on a breadcrumb, the work page
+            on a running head that leads back to both the index and the figure. */}
+        <ArchDefs />
+        <JaliOverlay />
         {children}
       </body>
     </html>

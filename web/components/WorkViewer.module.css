@@ -18,19 +18,19 @@
 }
 
 .pendingLabel {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.9375rem;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--gold);
 }
 
 .pendingMeta {
-  font-family: var(--mono);
-  font-size: 0.625rem;
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.875rem;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--on-ground-62);
+  color: var(--on-ground-66);
 }
 
 .pendingBody {

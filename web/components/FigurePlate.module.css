@@ -1,110 +1,111 @@
 .plate {
+  position: relative;
   display: block;
   text-decoration: none;
   color: inherit;
+  background: var(--paper);
+  padding: 13px;
+  transition: box-shadow 200ms ease-out, background-color 200ms ease-out;
 }
 
-/* Arch-topped frame. Square-ish corners at the foot, a deep round at the head —
-   the shape of a lithographed title-page portrait, not a rounded card. */
+.plate:hover,
+.plate:focus-visible {
+  background: var(--paper-lit);
+  box-shadow: 0 0 0 3px var(--ground), 0 0 0 5px var(--gold);
+}
+
 .frame {
   position: relative;
-  overflow: hidden;
-  background: var(--plate-bg);
-  border: 1px solid var(--rule-soft);
-  border-radius: 50% 50% 2px 2px / 30% 30% 2px 2px;
-  transition: border-color 200ms ease-out;
+  padding: 9px;
+  border: 1px solid var(--rule-bronze);
 }
 
-.plate:hover .frame,
-.plate:focus-visible .frame {
-  border-color: var(--gold);
+.window {
+  position: relative;
+  aspect-ratio: 0.84;
 }
 
 .portrait {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
-  object-position: center 22%;
+  object-position: 50% 30%;
   /* The source photographs span ninety years, several processes and wildly
      different scan tints — sepia, warm grey, cold grey, one distinctly purple.
-     Flattening them to a single duotone is what makes a heterogeneous set of
-     archival images read as one collection, and it costs nothing. */
-  filter: grayscale(1) contrast(1.05) brightness(1.08);
+     Flattening them to one sepia is what makes a heterogeneous set of archival
+     images read as a single album, and it costs nothing. */
+  filter: sepia(0.42) contrast(1.04) brightness(1.02);
+  clip-path: url(#pishtaq-arch);
 }
 
-.duotone {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: var(--plate-bg);
-  mix-blend-mode: soft-light;
-  opacity: 0.7;
-}
-
-/* Grows from a stub to full width on hover. The only motion in the grid. */
-.rule {
-  height: 2px;
-  margin-top: 14px;
-  background: var(--gold);
-  transform: scaleX(0.16);
-  transform-origin: left;
-  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.plate:hover .rule,
-.plate:focus-visible .rule {
-  transform: scaleX(1);
-}
-
-.line {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.n {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.12em;
-  color: var(--gold);
-}
-
-.dates {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.1em;
-  color: var(--on-ground-62);
-}
-
-.name {
-  margin-top: 8px;
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: 1.375rem;
-  line-height: 1.16;
-  letter-spacing: -0.01em;
-  color: var(--on-ground);
-  transition: color 200ms ease-out;
-}
-
-.plate:hover .name,
-.plate:focus-visible .name {
-  color: var(--gold);
+/* The caption plaque is cut from the ground, not from the paper: on a real
+   mount the label is a separate slip of a different stock, laid on. */
+.plaque {
+  margin-top: 13px;
+  background: var(--ground);
+  border: 1px solid var(--bronze);
+  padding: 11px 12px 12px;
+  text-align: center;
 }
 
 .urdu {
+  font-size: 1.0625rem;
+  color: var(--on-ground);
+}
+
+/* The plaques are ruled to a fixed depth rather than left to the length of each
+   name: "Maulana Muhammad Ali Jauhar" takes two lines where "Aga Khan III"
+   takes one, and left to itself that makes one mount in the row taller than its
+   neighbours. In an album every leaf on a spread is cut to the same size, so
+   both lines here reserve their full two-line measure whether they use it or
+   not. Change these and the mounts stop aligning. */
+.name {
   margin-top: 2px;
-  color: var(--on-ground-62);
-  font-size: 1rem;
+  font-family: var(--display);
+  font-size: 0.9375rem;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+  min-height: 2.6em;
+  color: var(--on-ground);
 }
 
 .role {
-  margin-top: 6px;
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--on-ground-62);
+  margin-top: 3px;
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  min-height: 3em;
+  color: var(--gold);
+}
+
+.held {
+  margin-top: 2px;
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  color: var(--on-ground-66);
+}
+
+/* Foliation mark. Half off the mount at the head, the way a hand-numbered leaf
+   carries its number over the edge of the frame. */
+.numeral {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--bronze);
+  display: grid;
+  place-items: center;
+  font-family: var(--urdu);
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--rubric);
+}
+
+.plate:hover .numeral,
+.plate:focus-visible .numeral {
+  border-color: var(--gold);
 }

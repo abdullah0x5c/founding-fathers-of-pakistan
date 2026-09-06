@@ -13,10 +13,13 @@ export default function AboutPage() {
   return (
     <main className={`${styles.main} soft-in`}>
       <section className={styles.head}>
-        <h1 className={`display ${styles.title}`}>
-          About <em>and method</em>
-        </h1>
-        <hr className={`rule-fade ${styles.hr}`} />
+        <div className={styles.headRow}>
+          <span className="diamond" aria-hidden="true" />
+          <h1 className={`display ${styles.title}`}>About and method</h1>
+          <span className={styles.fill} aria-hidden="true" />
+          <span className="folio">f. 12r</span>
+        </div>
+        <div className="illum" aria-hidden="true" />
       </section>
 
       <div className={styles.body}>

@@ -1,0 +1,40 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  margin: clamp(28px, 4vw, 44px) 0 clamp(32px, 5vw, 56px);
+}
+
+.wrapLeft {
+  display: flex;
+  margin: 26px 0 0;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  background-color: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--bronze);
+  /* A ring of the ground, then a ring of bronze — the same double ruling every
+     mounted leaf on this site carries, at card scale. */
+  box-shadow: 0 0 0 3px var(--ground), 0 0 0 4px rgba(184, 135, 59, 0.7);
+  padding: 10px 20px;
+  transition: background-color 180ms ease-out, box-shadow 180ms ease-out;
+}
+
+.button:hover,
+.button:focus-visible {
+  background-color: var(--paper-lit);
+  box-shadow: 0 0 0 3px var(--ground), 0 0 0 5px var(--gold);
+}
+
+/* Nastaliq sits large here so it reads as the line of type it is rather than as
+   a label on a control. The 2.1 line height is what keeps its descenders off
+   the bottom rule of the slip. */
+.label {
+  font-size: 1.1875rem;
+  line-height: 2.1;
+  color: var(--ink);
+}

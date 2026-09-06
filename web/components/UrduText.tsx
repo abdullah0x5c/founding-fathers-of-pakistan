@@ -23,9 +23,9 @@ export default function UrduText({
   style,
 }: {
   children: React.ReactNode;
-  as?: "div" | "span" | "p" | "h1" | "h2";
+  as?: "div" | "span" | "p" | "h1" | "h2" | "h3";
   size?: string;
-  align?: "right" | "left";
+  align?: "right" | "left" | "center";
   className?: string;
   style?: CSSProperties;
 }) {

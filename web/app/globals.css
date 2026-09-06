@@ -1,48 +1,62 @@
 /* ==========================================================================
    Founding Fathers of Pakistan — design tokens
-   Extracted from design-guide/"Founding Fathers of Pakistan v2.dc.html",
-   the direction exported as design-guide/fff.pdf.
+
+   The system is a muraqqa: the Mughal album in which a leaf is not printed on
+   a page but *mounted* inside one, ruled around in gold and bronze, and bound
+   facing another leaf. Every surface here is either the dark green ground of
+   the album or a cream leaf mounted on it. Nothing floats; everything is ruled.
+
+   Extracted from the Claude Design project "Muraqqa"
+   (claude.ai/design/p/bc76c9d0-af9d-4a9c-9027-03ce0e5fde53).
    ========================================================================== */
 
 :root {
-  /* ground — the dark field the site sits on */
-  --ground: #0b3a2e;
-  --ground-sunk: #072a21;
-  --ground-raised: #0f4635;
-  --plate-bg: #12503e;
+  /* ground — the dark green field the leaves are mounted on */
+  --ground: #0f3a2a;
+  --ground-sunk: #0b2c20;
+  --ground-raised: #14442f;
 
-  /* gold — the only accent colour in the system */
-  --gold: #c9a96b;
-  --gold-bright: #e4ce9c;
-  --gold-deep: #7a6224;
+  /* paper — the cream leaf, the only light surface in the system */
+  --paper: #f3ead6;
+  --paper-lit: #f8f1df;
+  --paper-sunk: #e8dcc2;
+  --ink: #12281f;
+  --ink-2: #3a4a3e;
+  --muted: #5c5140;
+  --muted-2: #6b6250;
 
-  /* paper — light inset surfaces */
-  --paper: #ecefe6;
-  --paper-sunk: #dde2d7;
-  --ink: #16241f;
-  --ink-2: #2c3a34;
-  --muted: #566860;
-  --urdu-muted: #5a6b62;
+  /* gold and bronze — the ruling. Gold is the hairline, bronze the heavy rule. */
+  --gold: #c9a227;
+  --gold-bright: #e2c874;
+  --bronze: #b8873b;
 
-  /* viewer */
-  --stage: #2a3b34;
+  /* rubric — madder red, the ornament colour. Used for the marks a scribe made
+     in red: section diamonds, leaf numerals, drop caps. Never for body text. */
+  --rubric: #8c2f1f;
 
   /* text on the ground */
-  --on-ground: #ecefe6;
-  --on-ground-86: rgba(236, 239, 230, 0.86);
-  --on-ground-70: rgba(236, 239, 230, 0.7);
-  --on-ground-62: rgba(236, 239, 230, 0.62);
-  --on-ground-12: rgba(236, 239, 230, 0.12);
+  --on-ground: #f3ead6;
+  --on-ground-92: rgba(243, 234, 214, 0.92);
+  --on-ground-86: rgba(243, 234, 214, 0.86);
+  --on-ground-74: rgba(243, 234, 214, 0.74);
+  --on-ground-66: rgba(243, 234, 214, 0.66);
+  --on-ground-12: rgba(243, 234, 214, 0.14);
 
   /* hairlines */
-  --rule: rgba(201, 169, 107, 0.32);
-  --rule-soft: rgba(201, 169, 107, 0.24);
+  --rule: rgba(201, 162, 39, 0.4);
+  --rule-soft: rgba(201, 162, 39, 0.22);
+  --rule-bronze: rgba(184, 135, 59, 0.5);
 
-  /* type */
-  --display: var(--font-display), Didot, "Bodoni MT", Georgia, serif;
+  /* viewer stage */
+  --stage: #0b2c20;
+
+  /* type. Marcellus is a Trajan-descended Roman capital and is only ever set in
+     capitals with wide tracking; Cardo is the text face and carries real small
+     capitals, which is what the catalogue labels are set in. */
+  --display: var(--font-display), "Trajan Pro", Palatino, Georgia, serif;
   --body: var(--font-body), Georgia, "Times New Roman", serif;
-  --mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  --urdu: var(--font-urdu), var(--font-body), serif;
+  --urdu: var(--font-urdu), serif;
+  --urdu-display: var(--font-urdu-display), var(--font-urdu), serif;
 
   color-scheme: dark;
 }
@@ -68,7 +82,7 @@ body {
   color: var(--on-ground);
   font-family: var(--body);
   font-size: 1.0625rem;
-  line-height: 1.7;
+  line-height: 1.72;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -103,32 +117,35 @@ img {
    Type roles
    -------------------------------------------------------------------------- */
 
+/* Marcellus, set as a Roman inscription: capitals, wide tracking, no weight
+   variation. It has one weight and needs none. */
 .display {
   font-family: var(--display);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1.16;
   margin: 0;
 }
 
-.display em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--gold);
+/* The catalogue voice. Real small capitals from Cardo, not scaled-down caps —
+   setting the record in small caps and the prose in roman is what separates the
+   description of a document from the document's own words. */
+.label {
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.9375rem;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
 }
 
-.mono {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.mono-sm {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+/* The folio mark in the corner of a leaf: "f. 1r", "f. 3v". */
+.folio {
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--on-ground-74);
 }
 
 /* Nastaliq descends steeply across the line; anything under ~2.0 collides.
@@ -139,15 +156,105 @@ img {
   font-size: 1.2em;
 }
 
+/* Gulzar is the Nastaliq display face — a heavier, more calligraphic cut for
+   titles only. Its line box is enormous; never set it below ~1.8 line-height. */
+.urdu-display {
+  font-family: var(--urdu-display);
+  line-height: 1.9;
+}
+
 /* --------------------------------------------------------------------------
-   Rules
+   The ruling
+
+   An illuminated rule in a muraqqa is not one line, it is a stack: a heavy
+   bronze band, a gold hairline, a heavier bronze band, separated by the ground.
+   Drawn as three background layers on one element rather than three nested divs.
    -------------------------------------------------------------------------- */
+
+.illum {
+  height: 10px;
+  background-image: linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--gold), var(--gold)), linear-gradient(var(--bronze), var(--bronze));
+  background-size: 100% 2px, 100% 1px, 100% 3px;
+  background-position: 0 0, 0 4px, 0 7px;
+  background-repeat: no-repeat;
+}
+
+/* The same rule flipped, for the foot of a block. */
+.illum-up {
+  height: 10px;
+  background-image: linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--gold), var(--gold)), linear-gradient(var(--bronze), var(--bronze));
+  background-size: 100% 3px, 100% 1px, 100% 2px;
+  background-position: 0 0, 0 5px, 0 8px;
+  background-repeat: no-repeat;
+}
+
+/* The gutter between two leaves of a spread — the same rule stood on end. */
+.gutter {
+  flex: none;
+  width: 14px;
+  background-image: linear-gradient(var(--bronze), var(--bronze)),
+    linear-gradient(var(--gold), var(--gold)), linear-gradient(var(--bronze), var(--bronze));
+  background-size: 2px 100%, 1px 100%, 3px 100%;
+  background-position: 4px 0, 7px 0, 9px 0;
+  background-repeat: no-repeat;
+}
 
 .rule-fade {
   height: 1px;
   border: 0;
   margin: 0;
-  background: linear-gradient(to right, rgba(201, 169, 107, 0.7), rgba(201, 169, 107, 0));
+  background: linear-gradient(to right, rgba(201, 162, 39, 0.7), rgba(201, 162, 39, 0));
+}
+
+/* --------------------------------------------------------------------------
+   Surfaces
+   -------------------------------------------------------------------------- */
+
+/* The mount. A leaf is never set directly on the ground — it is bordered in
+   bronze, given a margin of ground, then bordered again in gold. */
+.mount {
+  border: 2px solid var(--bronze);
+  padding: 6px;
+}
+
+/* The smaller version, for cards: the ruling is done with box-shadow rings so
+   it costs no layout. */
+.mounted {
+  border: 1px solid var(--bronze);
+  box-shadow: 0 0 0 3px var(--ground), 0 0 0 4px rgba(184, 135, 59, 0.7);
+}
+
+/* Laid paper. Three radial gradients at coprime tile sizes, so the specks never
+   line up into a visible grid. If it reads as a texture it is too strong. */
+.speck {
+  background-image: radial-gradient(circle at 20% 30%, rgba(201, 162, 39, 0.5) 0 0.8px, transparent 1px),
+    radial-gradient(circle at 70% 60%, rgba(184, 135, 59, 0.36) 0 0.7px, transparent 1px),
+    radial-gradient(circle at 45% 85%, rgba(201, 162, 39, 0.4) 0 0.6px, transparent 1px);
+  background-size: 53px 47px, 71px 63px, 89px 79px;
+}
+
+/* The cross-hatched bronze fill behind a mounted portrait. */
+.hatch {
+  background-image: repeating-linear-gradient(45deg, rgba(184, 135, 59, 0.28) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(-45deg, rgba(184, 135, 59, 0.28) 0 1px, transparent 1px 8px);
+}
+
+/* --------------------------------------------------------------------------
+   Ornament
+   -------------------------------------------------------------------------- */
+
+.diamond {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  background: var(--rubric);
+  transform: rotate(45deg);
+}
+
+.diamond-gold {
+  background: var(--gold);
 }
 
 /* --------------------------------------------------------------------------

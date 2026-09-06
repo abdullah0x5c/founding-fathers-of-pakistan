@@ -1,0 +1,264 @@
+/* Narrower than the album's leaves. This is a single sheet slipped into the
+   back of the binding, not a spread, so it is set to one column of text. */
+.main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 56px clamp(16px, 4vw, 40px) clamp(56px, 8vw, 90px);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+
+.back {
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--on-ground-74);
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--gold);
+}
+
+.mountInner {
+  border: 1px solid var(--rule);
+  padding: 30px clamp(14px, 2vw, 20px) 34px;
+  background: linear-gradient(180deg, rgba(201, 162, 39, 0.09), rgba(201, 162, 39, 0) 42%);
+}
+
+/* The same domed headpiece as the opening leaf of the album, a little shallower
+   — this is a subordinate page and its crown should not out-rank the sarlauh. */
+.panel {
+  position: relative;
+  background-color: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--bronze);
+  border-radius: 50% 50% 0 0 / 18% 18% 0 0;
+  padding: clamp(38px, 6vw, 52px) clamp(20px, 4vw, 34px) 34px;
+  text-align: center;
+}
+
+.corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.cornerBL {
+  left: 9px;
+  bottom: 9px;
+  border-left: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  border-bottom-left-radius: 100%;
+}
+
+.cornerBR {
+  right: 9px;
+  bottom: 9px;
+  border-right: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  border-bottom-right-radius: 100%;
+}
+
+.cornerTL {
+  top: 7px;
+  left: 7px;
+  width: 16px;
+  height: 16px;
+  border-top: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
+  border-top-left-radius: 100%;
+}
+
+.cornerBR2 {
+  bottom: 7px;
+  right: 7px;
+  width: 16px;
+  height: 16px;
+  border-bottom: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+  border-bottom-right-radius: 100%;
+}
+
+.title {
+  font-size: clamp(2rem, 5.4vw, 3.625rem);
+  line-height: 2;
+  color: var(--ink);
+  margin: 0;
+}
+
+.titleRule {
+  max-width: 260px;
+  margin: 22px auto 18px;
+}
+
+.blurb {
+  margin: 0 auto;
+  max-width: 34em;
+  font-size: 1rem;
+  line-height: 2.35;
+  color: #2a3a31;
+}
+
+/* --------------------------------------------------------------------------
+   The accounts
+   -------------------------------------------------------------------------- */
+
+.accounts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+  margin-top: 34px;
+}
+
+.account {
+  flex: 1 1 300px;
+  min-width: 0;
+  position: relative;
+  background-color: var(--paper);
+  color: var(--ink);
+  padding: 24px 22px;
+}
+
+.accountLabel {
+  font-size: 0.875rem;
+  letter-spacing: 0.16em;
+  color: var(--rubric);
+  margin-bottom: 4px;
+}
+
+.accountLabelUrdu {
+  font-size: 0.9375rem;
+  line-height: 2.5;
+  padding-top: 4px;
+  color: var(--ink-2);
+}
+
+/* Two bands, not three: an account is a subordinate block inside the leaf. */
+.accountRule {
+  height: 5px;
+  background-size: 100% 2px, 100% 1px, 0 0;
+  background-position: 0 0, 0 4px, 0 0;
+  margin: 12px 0 16px;
+}
+
+.fields {
+  display: grid;
+  gap: 12px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 6.5em 1fr;
+  gap: 12px;
+}
+
+.fieldLabel {
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* An IBAN or a phone number is the one thing on this page a reader has to copy
+   exactly, so it is set larger than the prose around it, tracked out so the
+   digits separate, and allowed to break rather than overflow its card. */
+.fieldLabelWide {
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.fieldValueWide {
+  font-size: 1.125rem;
+  letter-spacing: 0.05em;
+  overflow-wrap: break-word;
+}
+
+.unset {
+  font-style: italic;
+  font-size: 0.9375rem;
+  letter-spacing: 0;
+  color: var(--muted-2);
+}
+
+/* --------------------------------------------------------------------------
+   The note
+   -------------------------------------------------------------------------- */
+
+.note {
+  margin-top: 30px;
+  background: rgba(243, 234, 214, 0.06);
+  border: 1px solid var(--bronze);
+  padding: 24px;
+}
+
+.noteHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.noteTitle {
+  font-size: 0.875rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+}
+
+.noteFill {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0.55), rgba(201, 162, 39, 0));
+}
+
+.noteEn {
+  margin: 0 0 12px;
+  color: var(--on-ground-92);
+  text-wrap: pretty;
+}
+
+.noteUr {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 2.35;
+  color: var(--on-ground-86);
+}
+
+/* --------------------------------------------------------------------------
+   Foot
+   -------------------------------------------------------------------------- */
+
+.ornament {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  margin-top: 32px;
+}
+
+.pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rubric);
+}
+
+.close {
+  margin: 14px auto 0;
+  max-width: 38em;
+  text-align: center;
+  font-style: italic;
+  color: var(--on-ground-74);
+  text-wrap: pretty;
+}
