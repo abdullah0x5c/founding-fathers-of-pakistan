@@ -193,18 +193,6 @@
   padding: 0 34px;
 }
 
-.tally {
-  margin-top: clamp(34px, 4vw, 52px);
-  padding-top: 18px;
-  border-top: 1px solid var(--rule-soft);
-  font-family: var(--body);
-  font-variant: small-caps;
-  font-size: 1rem;
-  letter-spacing: 0.06em;
-  color: var(--gold);
-  text-align: center;
-}
-
 @media (max-width: 900px) {
   .gutter {
     display: none;

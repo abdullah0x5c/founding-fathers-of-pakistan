@@ -1,7 +1,7 @@
 import FigurePlate from "@/components/FigurePlate";
 import ChaiButton from "@/components/ChaiButton";
 import UrduText from "@/components/UrduText";
-import { figures, worksFor, totalWorks, totalScans, lifespan } from "@/lib/catalogue";
+import { figures, worksFor, lifespan } from "@/lib/catalogue";
 import styles from "./page.module.css";
 
 /* The eleven are laid out as a facing spread — six on the verso, five on the
@@ -72,8 +72,6 @@ export default function Home() {
         </div>
       </section>
 
-      <ChaiButton />
-
       {/* ── f. 2r · the eleven, as a facing spread ── */}
       <section className={styles.section}>
         <div className={styles.sectionHead}>
@@ -106,11 +104,6 @@ export default function Home() {
               />
             ))}
           </div>
-        </div>
-
-        <div className={styles.tally}>
-          Eleven lives · {lifespan.from}–{lifespan.to} · {totalWorks} works in {totalScans} scans ·
-          English, Urdu and Persian
         </div>
       </section>
 
