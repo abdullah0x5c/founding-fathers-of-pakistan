@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "About and method",
   description:
-    "Who the eleven are, on what criteria they were selected, where the scans came from, and how rights were assessed.",
+    "Who the ten are, on what criteria they were selected, where the scans came from, and how rights were assessed.",
 };
 
 export default function AboutPage() {
@@ -26,7 +26,7 @@ export default function AboutPage() {
         <div className={styles.prose}>
           <h2>What this is</h2>
           <p>
-            A reading archive of the primary writings of eleven figures associated with the founding
+            A reading archive of the primary writings of ten figures associated with the founding
             of Pakistan. It holds {totalWorks} catalogued works in {totalScans} scanned documents:
             treatises, speeches, letters, poetry, law reports and pamphlets, in English and Urdu.
             Each figure has a page with a life and a shelf; each work has a page with a record and
@@ -39,7 +39,7 @@ export default function AboutPage() {
             rather than guessing.
           </p>
 
-          <h2>Who selected the eleven, and on what criteria</h2>
+          <h2>Who selected the ten, and on what criteria</h2>
           <p>
             &ldquo;Founding fathers of Pakistan&rdquo; is not a fixed or uncontested list, and
             several of the inclusions here are genuinely debated by historians on different grounds.
@@ -47,12 +47,10 @@ export default function AboutPage() {
             collection that already existed.
           </p>
           <p>
-            Ten of the eleven come from the folders of the source archive this site was built from,
-            in that archive&rsquo;s own order, roughly chronological by the start of public
-            activity rather than by birth. The eleventh, Liaquat Ali Khan, was added because the
-            collection held a volume of his speeches that was sitting unfiled, and leaving a sourced
-            document out of the catalogue seemed worse than the awkwardness of including a
-            successor among founders.
+            The ten come from the folders of the source archive this site was built from, in that
+            archive&rsquo;s own order, roughly chronological by the start of public activity rather
+            than by birth. Nobody has been added to that list and nobody promoted into it: where the
+            archive held a folder, there is a figure here.
           </p>
           <p>
             Several inclusions are arguable in both directions. Sir Syed Ahmad Khan died forty-nine
@@ -88,7 +86,7 @@ export default function AboutPage() {
           <p>
             Copyright in Pakistan runs for the author&rsquo;s life plus fifty years, which places
             original works by figures who died before roughly 1976 in the public domain there. All
-            eleven died before 1958, so their own writing is out of copyright.
+            ten died before 1958, so their own writing is out of copyright.
           </p>
           <p>That does not settle every item, and three categories need separate treatment:</p>
           <ul>
@@ -115,7 +113,7 @@ export default function AboutPage() {
 
           <h2>Portraits</h2>
           <p>
-            The eleven portraits are public-domain photographs, each sourced individually with its
+            The ten portraits are public-domain photographs, each sourced individually with its
             author, date and licence recorded in{" "}
             <a href="/portraits/CREDITS.md">the portrait credits</a>. Three are limited by their
             sources rather than by processing; the best free images that exist of those men are
@@ -125,8 +123,8 @@ export default function AboutPage() {
           <h2>What is incomplete</h2>
           <p>
             The collection is radically uneven, and the site does not hide it. Sir Syed Ahmad
-            Khan&rsquo;s shelf runs to eighteen items; Maulana Shaukat Ali&rsquo;s and Liaquat Ali
-            Khan&rsquo;s hold one apiece. Muhammad Ali Jinnah, the most famous of the eleven, has
+            Khan&rsquo;s shelf runs to eighteen items; Maulana Shaukat Ali&rsquo;s holds one. Muhammad Ali
+            Jinnah, the most famous of the ten, has
             exactly one: a five-page compilation of a handful of his speeches, downloaded from a web
             aggregator rather than a named archive. He wrote no books, and his corpus is properly
             speeches and correspondence recorded by others; this file is a genuine start on that

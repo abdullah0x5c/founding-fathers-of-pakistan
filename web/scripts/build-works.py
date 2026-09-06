@@ -331,15 +331,6 @@ w("speeches-1947", JN, "Speeches", None, "", "Speeches", "English",
           "Only a few speeches are included — confirm exactly which ones before citing this as representative of his oratory rather than as a sample.",
           "This replaces an earlier, corrupted browser download that could not be opened; the figure's biography text (\"he wrote no books\") still describes this file accurately."])
 
-LK = "liaquat-ali-khan"
-w("pakistan-the-heart-of-asia", LK, "Pakistan: The Heart of Asia", None, "1950", "Speeches", "English",
-  "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
-  "The speeches of the tour of the United States and Canada in May and June 1950: a new country's prime minister explaining it to an audience that had barely heard of it. It is the only document in this collection written from inside the state rather than in argument for it.",
-  rights=RIGHTS_MODERN,
-  verify=["The 1950 date is taken from the title, which is explicit.",
-          "Published 1950; its author died in 1951, so it is likely still in copyright in Pakistan. Check before uploading.",
-          "This file was found unfiled at the root of the collection and has been moved into a folder for Liaquat Ali Khan."])
-
 # ---------------------------------------------------------------- emit
 def esc(s):
     return s.replace("\\", "\\\\").replace('"', '\\"')

@@ -46,7 +46,7 @@ export function scanCount(work: Work): number {
 export const totalWorks = works.length;
 export const totalScans = works.reduce((n, w) => n + scanCount(w), 0);
 
-/** Earliest and latest year of birth and death across the eleven. */
+/** Earliest and latest year of birth and death across the ten. */
 export const lifespan = {
   from: Math.min(...figures.map((f) => f.born)),
   to: Math.max(...figures.map((f) => f.died)),

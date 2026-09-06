@@ -963,21 +963,5 @@
     "secondary": false,
     "alreadyMapped": false,
     "editions": []
-  },
-  {
-    "slug": "pakistan-the-heart-of-asia",
-    "figure": "liaquat-ali-khan",
-    "title": "Pakistan: The Heart of Asia",
-    "titleUrdu": null,
-    "year": "1950",
-    "kind": "Speeches",
-    "lang": "English",
-    "pages": 168,
-    "bytes": 6538388,
-    "intro": "The speeches of the tour of the United States and Canada in May and June 1950: a new country's prime minister explaining it to an audience that had barely heard of it. It is the only document in this collection written from inside the state rather than in argument for it.",
-    "sourceFile": "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
-    "secondary": false,
-    "alreadyMapped": false,
-    "editions": []
   }
 ]

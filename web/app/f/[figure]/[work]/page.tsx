@@ -43,7 +43,7 @@ export default async function WorkPage({
       <div className={styles.runningHead}>
         <span className="diamond" aria-hidden="true" />
         <span className={styles.crumb}>
-          <Link href="/">The Eleven</Link>
+          <Link href="/">The Ten</Link>
           <span className={styles.dot}>·</span>
           <Link href={`/f/${figure.slug}`}>{figure.name}</Link>
           <span className={styles.dot}>·</span>

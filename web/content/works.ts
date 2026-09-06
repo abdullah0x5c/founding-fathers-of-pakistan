@@ -338,7 +338,7 @@ export const works: Work[] = [
     bytes: 31825917,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "The most widely read book by any of the eleven: a life of the Prophet and an account of the faith written for a sceptical English readership. It went through many editions and remains in print. Its readiness to argue on the ground of reason rather than authority made it a formative text for a generation of Indian Muslim students.",
+      "The most widely read book by any of the ten: a life of the Prophet and an account of the faith written for a sceptical English readership. It went through many editions and remains in print. Its readiness to argue on the ground of reason rather than authority made it a formative text for a generation of Indian Muslim students.",
     sourceFile: "02-syed-ameer-ali/the-spirit-of-islam.pdf",
     r2Key: "02-syed-ameer-ali/the-spirit-of-islam.pdf",
     verify: [
@@ -658,7 +658,7 @@ export const works: Work[] = [
     bytes: 20084192,
     rights: "The underlying text is in the public domain, but this printing carries modern editorial apparatus that is likely still in copyright. Verify before redistribution.",
     intro:
-      "Written near the end of a long public life, and the only sustained first-person account by any of the eleven of the negotiations that produced separate electorates, the Round Table Conferences and partition. He was present at all of them, which is a claim none of the others can make.",
+      "Written near the end of a long public life, and the only sustained first-person account by any of the ten of the negotiations that produced separate electorates, the Round Table Conferences and partition. He was present at all of them, which is a claim none of the others can make.",
     sourceFile: "05-aga-khan-iii/memoirs-world-enough-and-time.pdf",
     r2Key: "05-aga-khan-iii/memoirs-world-enough-and-time.pdf",
     verify: [
@@ -1164,26 +1164,6 @@ export const works: Work[] = [
       "Downloaded from a web aggregator (ilide.info) rather than a named archive or press; the compiler and date of this particular compilation are unknown, and it may be a recent, separately copyrighted arrangement even though the speeches themselves are official records.",
       "Only a few speeches are included; confirm exactly which ones before citing this as representative of his oratory rather than as a sample.",
       "This replaces an earlier, corrupted browser download that could not be opened; the figure's biography text (\"he wrote no books\") still describes this file accurately.",
-    ],
-  },
-  {
-    slug: "pakistan-the-heart-of-asia",
-    figure: "liaquat-ali-khan",
-    title: "Pakistan: The Heart of Asia",
-    year: "1950",
-    kind: "Speeches",
-    lang: "English",
-    pages: 168,
-    bytes: 6538388,
-    rights: "The underlying text is in the public domain, but this printing carries modern editorial apparatus that is likely still in copyright. Verify before redistribution.",
-    intro:
-      "The speeches of the tour of the United States and Canada in May and June 1950: a new country's prime minister explaining it to an audience that had barely heard of it. It is the only document in this collection written from inside the state rather than in argument for it.",
-    sourceFile: "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
-    r2Key: "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
-    verify: [
-      "The 1950 date is taken from the title, which is explicit.",
-      "Published 1950; its author died in 1951, so it is likely still in copyright in Pakistan. Check before uploading.",
-      "This file was found unfiled at the root of the collection and has been moved into a folder for Liaquat Ali Khan.",
     ],
   },
 ];

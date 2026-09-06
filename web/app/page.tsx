@@ -4,10 +4,10 @@ import UrduText from "@/components/UrduText";
 import { figures, worksFor, lifespan } from "@/lib/catalogue";
 import styles from "./page.module.css";
 
-/* The eleven are laid out as a facing spread — six on the verso, five on the
-   recto — divided by a ruled gutter, the way an album opens. */
-const VERSO = figures.slice(0, 6);
-const RECTO = figures.slice(6);
+/* The ten are laid out as a facing spread, five to a leaf, divided by a ruled
+   gutter, the way an album opens. */
+const VERSO = figures.slice(0, 5);
+const RECTO = figures.slice(5);
 
 export default function Home() {
   return (
@@ -72,11 +72,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── f. 2r · the eleven, as a facing spread ── */}
+      {/* ── f. 2r · the ten, as a facing spread ── */}
       <section className={styles.section}>
         <div className={styles.sectionHead}>
           <span className="diamond" aria-hidden="true" />
-          <h2 className={`display ${styles.sectionTitle}`}>The Eleven</h2>
+          <h2 className={`display ${styles.sectionTitle}`}>The Ten</h2>
           <span className={styles.sectionFill} aria-hidden="true" />
         </div>
         <div className={`illum ${styles.sectionRule}`} aria-hidden="true" />

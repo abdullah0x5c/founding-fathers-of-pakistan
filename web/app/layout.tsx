@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     template: "%s · Founding Fathers of Pakistan",
   },
   description:
-    "A reading archive of the primary writings of eleven figures in the making of Pakistan. Speeches, treatises, letters, poetry and pamphlets, in English and Urdu.",
+    "A reading archive of the primary writings of ten figures in the making of Pakistan. Speeches, treatises, letters, poetry and pamphlets, in English and Urdu.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
