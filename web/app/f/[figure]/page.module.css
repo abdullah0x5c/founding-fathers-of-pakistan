@@ -260,3 +260,35 @@
     display: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   The foot of the leaf
+
+   Deliberately the same idiom as the nav at the foot of a work page: small
+   capitals in gold on a hairline, ranged to the outer edges. A reader who has
+   learned where the way out is on one page finds it in the same place on the
+   other.
+   -------------------------------------------------------------------------- */
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  margin-top: clamp(20px, 3vw, 30px);
+  padding-top: 18px;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.footLink {
+  font-family: var(--body);
+  font-variant: small-caps;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.footLink:last-child {
+  text-align: right;
+}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import UrduText from "@/components/UrduText";
@@ -135,6 +136,19 @@ export default async function FigurePage({ params }: { params: Promise<{ figure:
           </div>
         </div>
       </div>
+
+      {/* The way back. It sits at the foot of the leaf rather than above it,
+          because the head of a leaf in this album carries a folio mark and a
+          name, never navigation — and it is the same row the work page ends on,
+          so the route back is in the same place at every depth. */}
+      <nav className={styles.foot}>
+        <Link href="/" className={styles.footLink}>
+          ← The Ten
+        </Link>
+        <Link href="/about" className={styles.footLink}>
+          About and method
+        </Link>
+      </nav>
 
       <ChaiButton />
 
