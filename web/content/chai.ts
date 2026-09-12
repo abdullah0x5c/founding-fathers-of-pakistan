@@ -31,13 +31,4 @@ export const chaiAccounts: ChaiAccount[] = [
       { label: "Title", value: "Muhammad Hadi Hassan" },
     ],
   },
-  {
-    label: "Bank transfer",
-    labelUrdu: "بینک منتقلی",
-    fields: [
-      { label: "IBAN", value: "", wide: true },
-      { label: "Title", value: "" },
-      { label: "Bank", value: "" },
-    ],
-  },
 ];
