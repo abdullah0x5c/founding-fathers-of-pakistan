@@ -20,7 +20,7 @@ export default function ChaiButton({ align = "center" }: { align?: "center" | "l
       <Link href="/chai" className={`${styles.button} speck`}>
         <span className="diamond" aria-hidden="true" />
         <UrduText as="span" className={styles.label} align="center">
-          ہادی کو ایک چائے پلائیں
+          ہمیں ایک چائے پلائیں
         </UrduText>
         <span className="diamond" aria-hidden="true" />
       </Link>

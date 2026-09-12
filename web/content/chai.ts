@@ -27,8 +27,8 @@ export const chaiAccounts: ChaiAccount[] = [
     label: "Easypaisa",
     labelUrdu: "ایزی پیسہ",
     fields: [
-      { label: "Number", value: "", wide: true },
-      { label: "Title", value: "" },
+      { label: "Number", value: "0315 5270248", wide: true },
+      { label: "Title", value: "Muhammad Hadi Hassan" },
     ],
   },
   {

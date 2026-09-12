@@ -104,6 +104,17 @@ export default function Home() {
       </section>
 
       <ChaiButton />
+
+      <footer className={styles.footer}>
+        <a
+          href="https://linkedin.com/in/haadi42"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.footerLink}
+        >
+          Muhammad Hadi on LinkedIn
+        </a>
+      </footer>
     </main>
   );
 }

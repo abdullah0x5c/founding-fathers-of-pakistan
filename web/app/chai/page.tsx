@@ -28,7 +28,7 @@ export default function ChaiPage() {
             <span className={`${styles.corner} ${styles.cornerBR}`} aria-hidden="true" />
 
             <UrduText as="h1" className={`urdu-display ${styles.title}`} align="center">
-              ہادی کو ایک چائے پلائیں
+              ہمیں ایک چائے پلائیں
             </UrduText>
 
             <div className={`illum ${styles.titleRule}`} aria-hidden="true" />
