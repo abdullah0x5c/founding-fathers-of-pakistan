@@ -7,6 +7,15 @@
   width: 100%;
 }
 
+/* Before the document resolves (or on error) the stage itself has no
+   content yet, so nothing holds this open — reserve a page-sized block so
+   the loading/error state reads as "the book's spot on the page", sitting
+   right under the record above it, rather than needing height from a
+   full-viewport overlay. */
+.readerPending {
+  min-height: min(70vh, 820px);
+}
+
 .readerStage {
   position: relative;
   width: 100%;
@@ -162,12 +171,14 @@
   border-color: rgba(201, 162, 39, 0.4);
 }
 
-/* Covers the viewport before the document resolves. The loading state is
+/* Fills the reserved .readerPending block, not the viewport — the record
+   above (title, intro, colophon) is already rendered and must stay visible
+   and in place while this shows, so a visitor lands on the top of the page
+   instead of a screen-filling loading state. The loading state is
    informational (pointer-events: none so it never blocks scroll/keyboard);
-   the error state carries the retry button, so it accepts clicks. Fixed to the
-   window because the stage itself now spans the whole book. */
+   the error state carries the retry button, so it accepts clicks. */
 .readerOverlay {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 10;
   display: flex;

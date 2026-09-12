@@ -424,11 +424,17 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
         stage.appendChild(spacer);
         positionSlots(s);
 
-        // Restore where the reader sat, then seed the counter + first window.
-        window.scrollTo({
-          top: Math.min(stageTop() + start, document.body.scrollHeight),
-          behavior: "instant",
-        });
+        // Restore where the reader sat — but only when there is a saved
+        // position to restore. On a fresh visit `start` is 0, and jumping to
+        // stageTop() + 0 would still carry the window past the record above
+        // the reader (title, intro, colophon), landing the reader dropped
+        // straight into the book instead of at the top of the page.
+        if (start > 0) {
+          window.scrollTo({
+            top: Math.min(stageTop() + start, document.body.scrollHeight),
+            behavior: "instant",
+          });
+        }
         setCurrent(pageAt(s, Math.max(0, window.scrollY - stageTop()) + viewportH() / 2));
 
         if (!cancelled && genRef.current === gen) {
@@ -610,7 +616,12 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
   const shownTotal = (total || pages).toLocaleString("en-US");
 
   return (
-    <div ref={readerRef} className={styles.reader} role="region" aria-label="Document">
+    <div
+      ref={readerRef}
+      className={`${styles.reader} ${status !== "ready" ? styles.readerPending : ""}`}
+      role="region"
+      aria-label="Document"
+    >
       <div
         ref={stageRef}
         className={styles.readerStage}
@@ -619,6 +630,7 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
         aria-label="Document pages"
       />
 
+      {status === "ready" && (
       <div className={styles.pill} aria-live="polite">
         {editing ? (
           <form
@@ -652,6 +664,7 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
           </button>
         )}
       </div>
+      )}
 
       {status !== "ready" && (
         <div
