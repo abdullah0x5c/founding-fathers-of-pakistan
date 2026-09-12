@@ -382,6 +382,7 @@ export default function PdfReader({ url, pages }: PdfReaderProps) {
           rangeChunkSize: 1 << 20,
           disableAutoFetch: true,
           disableStream: false,
+          wasmUrl: "/vendor/pdfjs/wasm/",
         });
         let doc: any;
         try {
