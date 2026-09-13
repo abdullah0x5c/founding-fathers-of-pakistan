@@ -4,10 +4,10 @@ import UrduText from "@/components/UrduText";
 import { figures, worksFor, lifespan } from "@/lib/catalogue";
 import styles from "./page.module.css";
 
-/* The ten are laid out as a facing spread, five to a leaf, divided by a ruled
-   gutter, the way an album opens. */
-const VERSO = figures.slice(0, 5);
-const RECTO = figures.slice(5);
+/* The eleven are laid out as a facing spread — six on the verso, five on the
+   recto — divided by a ruled gutter, the way an album opens. */
+const VERSO = figures.slice(0, 6);
+const RECTO = figures.slice(6);
 
 export default function Home() {
   return (
@@ -68,15 +68,22 @@ export default function Home() {
               Nothing here is summarised in place of being shown, and where the record is thin the
               page says so.
             </p>
+
+            <p className={styles.leadClose}>
+              The founding fathers of Pakistan, as described by Ahmad Hasan Dani in his book, and
+              all of their works, now in the public domain, are presented here for accessible
+              viewing. If you like this collection or have benefitted from it, consider buying us
+              a chaye or coffee. Pakistan Zindabad.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ── f. 2r · the ten, as a facing spread ── */}
+      {/* ── f. 2r · the eleven, as a facing spread ── */}
       <section className={styles.section}>
         <div className={styles.sectionHead}>
           <span className="diamond" aria-hidden="true" />
-          <h2 className={`display ${styles.sectionTitle}`}>The Ten</h2>
+          <h2 className={`display ${styles.sectionTitle}`}>The Eleven</h2>
           <span className={styles.sectionFill} aria-hidden="true" />
         </div>
         <div className={`illum ${styles.sectionRule}`} aria-hidden="true" />

@@ -323,13 +323,21 @@ w("stray-reflections", IQ, "Stray Reflections", None, "1961", "Memoir", "English
           "Edited and published in 1961 by Javid Iqbal (died 2015); the editorial apparatus is almost certainly still in copyright even though Iqbal's own 1910 text is not."])
 
 JN = "quaid-e-azam"
-w("speeches-1947", JN, "Speeches", None, "", "Speeches", "English",
-  "10-quaid-e-azam/speeches-1947.pdf",
-  "A short compilation of a handful of his speeches from around independence, opening with the address to the Constituent Assembly of 14 August 1947. Five pages: a starting point rather than a collection, and the only item currently held for him.",
+w("all-speeches-statements-and-quotations", JN, "All Speeches, Statements and Quotations", None, "", "Compilation", "English",
+  "10-quaid-e-azam/all-speeches-statements-and-quotations.pdf",
+  "A comprehensive compilation of his speeches, statements and quotations, replacing the five-page starting point this shelf held before. He wrote no books, so a compilation drawn from the public record is the form his corpus takes here.",
   rights=RIGHTS_MODERN,
-  verify=["Downloaded from a web aggregator (ilide.info) rather than a named archive or press; the compiler and date of this particular compilation are unknown, and it may be a recent, separately copyrighted arrangement even though the speeches themselves are official records.",
-          "Only a few speeches are included — confirm exactly which ones before citing this as representative of his oratory rather than as a sample.",
-          "This replaces an earlier, corrupted browser download that could not be opened; the figure's biography text (\"he wrote no books\") still describes this file accurately."])
+  verify=["The compiler, publisher and date of this compilation are not yet established — confirm before citing it as an edited or authoritative edition rather than an assembled one.",
+          "Replaces the earlier five-page speeches-1947.pdf, which is now removed from the catalogue."])
+
+LK = "liaquat-ali-khan"
+w("pakistan-the-heart-of-asia", LK, "Pakistan: The Heart of Asia", None, "1950", "Speeches", "English",
+  "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
+  "The speeches of the tour of the United States and Canada in May and June 1950: a new country's prime minister explaining it to an audience that had barely heard of it. It is the only document in this collection written from inside the state rather than in argument for it.",
+  rights=RIGHTS_MODERN,
+  verify=["The 1950 date is taken from the title, which is explicit.",
+          "Published 1950; its author died in 1951, so it is likely still in copyright in Pakistan. Check before uploading.",
+          "This file was found unfiled at the root of the collection and has been moved into a folder for Liaquat Ali Khan."])
 
 # ---------------------------------------------------------------- emit
 def esc(s):

@@ -50,11 +50,11 @@
   /* viewer stage */
   --stage: #0b2c20;
 
-  /* type. Marcellus is a Trajan-descended Roman capital and is only ever set in
-     capitals with wide tracking; Cardo is the text face and carries real small
-     capitals, which is what the catalogue labels are set in. */
-  --display: var(--font-display), "Trajan Pro", Palatino, Georgia, serif;
-  --body: var(--font-body), Georgia, "Times New Roman", serif;
+  /* type. Inter carries both roles: Bold for display, set in capitals with wide
+     tracking; Regular/Semibold for the text face, with Semibold standing in for
+     the small caps the catalogue labels are set in. */
+  --display: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+  --body: var(--font-body), "Helvetica Neue", Arial, sans-serif;
   --urdu: var(--font-urdu), serif;
   --urdu-display: var(--font-urdu-display), var(--font-urdu), serif;
 
@@ -117,22 +117,23 @@ img {
    Type roles
    -------------------------------------------------------------------------- */
 
-/* Marcellus, set as a Roman inscription: capitals, wide tracking, no weight
-   variation. It has one weight and needs none. */
+/* Inter Bold, set as a Roman inscription: capitals, wide tracking. */
 .display {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   line-height: 1.16;
   margin: 0;
 }
 
-/* The catalogue voice. Real small capitals from Cardo, not scaled-down caps —
-   setting the record in small caps and the prose in roman is what separates the
-   description of a document from the document's own words. */
+/* The catalogue voice. Inter has no real small capitals, so the label role is
+   carried by weight instead: Semibold set in small caps (synthesized), lighter
+   than the prose around it — what separates the description of a document from
+   the document's own words. */
 .label {
   font-family: var(--body);
+  font-weight: 600;
   font-variant: small-caps;
   font-size: 0.9375rem;
   letter-spacing: 0.06em;
@@ -142,6 +143,7 @@ img {
 /* The folio mark in the corner of a leaf: "f. 1r", "f. 3v". */
 .folio {
   font-family: var(--body);
+  font-weight: 600;
   font-variant: small-caps;
   font-size: 0.875rem;
   letter-spacing: 0.05em;

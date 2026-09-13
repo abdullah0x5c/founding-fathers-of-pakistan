@@ -20,8 +20,9 @@ but it is recorded here so the images can be re-fetched, verified, or replaced l
 | 6 | Shawkat Ali | `shawkat-ali.jpg` | [Maulana Shaukat Ali 1932.jpg](https://commons.wikimedia.org/wiki/File:Maulana_Shaukat_Ali_1932.jpg) | Planet News / Agence Mondial | 1932 | Public domain |
 | 7 | Maulana Muhammad Ali Jawhar | `maulana-muhammad-ali-jawhar.jpg` | [Molana-Muhammad-Ali.jpg](https://commons.wikimedia.org/wiki/File:Molana-Muhammad-Ali.jpg) | Unknown | before 1931 | Public domain |
 | 8 | Ch. Rahmat Ali | `ch-rahmat-ali.jpg` | [Choudhry Rahmat Ali.jpg](https://commons.wikimedia.org/wiki/File:Choudhry_Rahmat_Ali.jpg) | Unknown | Unknown | Public domain |
-| 9 | Allama Iqbal | `allama-iqbal.jpg` | [Allama Iqbal.jpg](https://commons.wikimedia.org/wiki/File:Allama_Iqbal.jpg) | Iqbal Academy Pakistan | by 1938 | Public domain |
-| 10 | Quaid e Azam | `quaid-e-azam.jpg` | [Mohammad Ali Jinnah, 1910.jpg](https://commons.wikimedia.org/wiki/File:Mohammad_Ali_Jinnah,_1910.jpg) | Unknown | 1910 | Public domain (PD-US-expired, PD-Pakistan) |
+| 9 | Liaquat Ali Khan | `liaquat-ali-khan.jpg` | [Liaquat Ali Khan 1945.jpg](https://commons.wikimedia.org/wiki/File:Liaquat_Ali_Khan_1945.jpg) | Unknown | 1945 | Public domain |
+| 10 | Allama Iqbal | `allama-iqbal.jpg` | [Allama Iqbal.jpg](https://commons.wikimedia.org/wiki/File:Allama_Iqbal.jpg) | Iqbal Academy Pakistan | by 1938 | Public domain |
+| 11 | Quaid e Azam | `quaid-e-azam.jpg` | [Mohammad Ali Jinnah, 1910.jpg](https://commons.wikimedia.org/wiki/File:Mohammad_Ali_Jinnah,_1910.jpg) | Unknown | 1910 | Public domain (PD-US-expired, PD-Pakistan) |
 
 ## Notes on image quality
 

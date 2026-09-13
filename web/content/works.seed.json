@@ -441,10 +441,17 @@
     "readable": true
   },
   {
-    "sourceFile": "10-quaid-e-azam/speeches-1947.pdf",
+    "sourceFile": "10-quaid-e-azam/all-speeches-statements-and-quotations.pdf",
     "folder": "10-quaid-e-azam",
-    "bytes": 135138,
-    "pages": 5,
+    "bytes": 16714105,
+    "pages": 233,
+    "readable": true
+  },
+  {
+    "sourceFile": "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
+    "folder": "11-liaquat-ali-khan",
+    "bytes": 6538388,
+    "pages": 168,
     "readable": true
   }
 ]

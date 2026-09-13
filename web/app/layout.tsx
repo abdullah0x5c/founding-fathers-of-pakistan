@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
-import { Marcellus, Cardo, Gulzar, Noto_Nastaliq_Urdu } from "next/font/google";
+import { Inter, Gulzar, Noto_Nastaliq_Urdu } from "next/font/google";
 import JaliOverlay from "@/components/JaliOverlay";
 import ArchDefs from "@/components/ArchDefs";
 import "./globals.css";
 
-// Marcellus is a Trajan-descended Roman capital. It has one weight and one style
-// and needs no more: it is only ever set in capitals with wide tracking.
-const display = Marcellus({
+// Inter, at 700/bold, carries the display role — headings and titles.
+const display = Inter({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "600", "700"],
   variable: "--font-display",
   display: "swap",
 });
 
-// Cardo carries real small capitals, which is the whole reason it is here — the
-// catalogue labels across this site are small caps, not scaled-down capitals.
-const body = Cardo({
+// Inter also carries the running text and the catalogue labels: 400/regular for
+// prose, 600/semibold for the small-caps labels and folio marks (Inter has no
+// real small-caps glyphs, so those roles fall back to weight for distinction).
+const body = Inter({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-body",
   display: "swap",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     template: "%s · Founding Fathers of Pakistan",
   },
   description:
-    "A reading archive of the primary writings of ten figures in the making of Pakistan. Speeches, treatises, letters, poetry and pamphlets, in English and Urdu.",
+    "A reading archive of the primary writings of eleven figures in the making of Pakistan. Speeches, treatises, letters, poetry and pamphlets, in English and Urdu.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

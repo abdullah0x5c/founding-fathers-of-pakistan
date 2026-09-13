@@ -143,7 +143,7 @@ export default async function FigurePage({ params }: { params: Promise<{ figure:
           so the route back is in the same place at every depth. */}
       <nav className={styles.foot}>
         <Link href="/" className={styles.footLink}>
-          ← The Ten
+          ← The Eleven
         </Link>
         <Link href="/about" className={styles.footLink}>
           About and method

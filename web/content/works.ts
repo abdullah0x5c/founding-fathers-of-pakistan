@@ -26,7 +26,7 @@ export const works: Work[] = [
     r2Key: "01-sir-syed-ahmad-khan/asar-us-sanadid.pdf",
     editions: [
       {
-        label: "English translation: The Remnants of Ancient Heroes",
+        label: "English translation — The Remnants of Ancient Heroes",
         lang: "English",
         pages: 597,
         bytes: 30629843,
@@ -36,7 +36,7 @@ export const works: Work[] = [
     ],
     verify: [
       "The 1847 date is from general knowledge; the work was substantially rewritten for a later edition and this scan's edition has not been identified.",
-      "The English volume is treated here as a translation of the same work; confirm it is not an independent compilation.",
+      "The English volume is treated here as a translation of the same work — confirm it is not an independent compilation.",
     ],
   },
   {
@@ -105,7 +105,7 @@ export const works: Work[] = [
     r2Key: "01-sir-syed-ahmad-khan/khutbat-e-ahmadiyya.pdf",
     editions: [
       {
-        label: "English edition: Life of Muhammad and subjects subsidiary thereto",
+        label: "English edition — Life of Muhammad and subjects subsidiary thereto",
         lang: "English",
         pages: 432,
         bytes: 22948000,
@@ -186,7 +186,7 @@ export const works: Work[] = [
     bytes: 11497503,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "The record of the visit to England of 1869 to 1870, the journey that produced the Khutbāt, the plan for Tahzīb ul-Akhlāq, and eventually the college at Aligarh. Written largely as letters home, it is candid about money, illness and homesickness in a way none of his public writing is.",
+      "The record of the visit to England of 1869 to 1870 — the journey that produced the Khutbāt, the plan for Tahzīb ul-Akhlāq, and eventually the college at Aligarh. Written largely as letters home, it is candid about money, illness and homesickness in a way none of his public writing is.",
     sourceFile: "01-sir-syed-ahmad-khan/safarnama-e-london.pdf",
     r2Key: "01-sir-syed-ahmad-khan/safarnama-e-london.pdf",
     verify: [
@@ -241,7 +241,7 @@ export const works: Work[] = [
     bytes: 48962070,
     rights: "The underlying text is in the public domain, but this printing carries modern editorial apparatus that is likely still in copyright. Verify before redistribution.",
     intro:
-      "A modern compilation edited by Shan Mohammad, gathering the political speeches and public letters into one volume. It is the most convenient single point of entry to his political writing, and, as with any compilation, its selection is itself an argument about what he was.",
+      "A modern compilation edited by Shan Mohammad, gathering the political speeches and public letters into one volume. It is the most convenient single point of entry to his political writing, and — as with any compilation — its selection is itself an argument about what he was.",
     sourceFile: "01-sir-syed-ahmad-khan/writings-and-speeches.pdf",
     r2Key: "01-sir-syed-ahmad-khan/writings-and-speeches.pdf",
     verify: [
@@ -280,7 +280,7 @@ export const works: Work[] = [
     bytes: 36154506,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "A life of the Mughal noble and scholar Farīd ud-Dīn, written as family history as much as biography; the author's own ancestry ran through the same Delhi service milieu. An early work, and one of the few places his antiquarian and religious interests meet directly.",
+      "A life of the Mughal noble and scholar Farīd ud-Dīn, written as family history as much as biography — the author's own ancestry ran through the same Delhi service milieu. An early work, and one of the few places his antiquarian and religious interests meet directly.",
     sourceFile: "01-sir-syed-ahmad-khan/seerat-e-fareedia.pdf",
     r2Key: "01-sir-syed-ahmad-khan/seerat-e-fareedia.pdf",
     verify: [
@@ -338,7 +338,7 @@ export const works: Work[] = [
     bytes: 31825917,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "The most widely read book by any of the ten: a life of the Prophet and an account of the faith written for a sceptical English readership. It went through many editions and remains in print. Its readiness to argue on the ground of reason rather than authority made it a formative text for a generation of Indian Muslim students.",
+      "The most widely read book by any of the eleven: a life of the Prophet and an account of the faith written for a sceptical English readership. It went through many editions and remains in print. Its readiness to argue on the ground of reason rather than authority made it a formative text for a generation of Indian Muslim students.",
     sourceFile: "02-syed-ameer-ali/the-spirit-of-islam.pdf",
     r2Key: "02-syed-ameer-ali/the-spirit-of-islam.pdf",
     verify: [
@@ -393,7 +393,7 @@ export const works: Work[] = [
     bytes: 4189233,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "A lecture arguing that Islamic ethics rest on individual moral responsibility rather than on ritual compliance, the same case as the larger books, compressed to an evening's address.",
+      "A lecture arguing that Islamic ethics rest on individual moral responsibility rather than on ritual compliance — the same case as the larger books, compressed to an evening's address.",
     sourceFile: "02-syed-ameer-ali/the-ethics-of-islam.pdf",
     r2Key: "02-syed-ameer-ali/the-ethics-of-islam.pdf",
     verify: [
@@ -435,7 +435,7 @@ export const works: Work[] = [
     r2Key: "02-syed-ameer-ali/memoirs-and-other-writings.pdf",
     verify: [
       "Undated; this is a posthumous compilation and neither its year nor its editor could be established from the scan.",
-      "Scanned by the Digital Library of India; check their terms before redistributing.",
+      "Scanned by the Digital Library of India — check their terms before redistributing.",
     ],
   },
   {
@@ -469,7 +469,7 @@ export const works: Work[] = [
     bytes: 9451499,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "An argument on the limits of following established juristic authority and the conditions under which the ḥadīth may be acted on directly, the central methodological question of the Aligarh reform programme, argued in its own vocabulary rather than in the reformers'.",
+      "An argument on the limits of following established juristic authority and the conditions under which the ḥadīth may be acted on directly — the central methodological question of the Aligarh reform programme, argued in its own vocabulary rather than in the reformers'.",
     sourceFile: "03-nawab-mohsin-ul-mulk/taqleed-aur-amal-bil-hadees.pdf",
     r2Key: "03-nawab-mohsin-ul-mulk/taqleed-aur-amal-bil-hadees.pdf",
     verify: [
@@ -525,7 +525,7 @@ export const works: Work[] = [
     bytes: 11743763,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "A reply to Sir Lepel Griffin's characterisation of Indian Muslims in the British press. It belongs to the same genre as Sir Syed's answer to Hunter: a rebuttal written in English, for English readers, contesting a description before it hardened into policy.",
+      "A reply to Sir Lepel Griffin's characterisation of Indian Muslims in the British press. It belongs to the same genre as Sir Syed's answer to Hunter — a rebuttal written in English, for English readers, contesting a description before it hardened into policy.",
     sourceFile: "03-nawab-mohsin-ul-mulk/response-to-lepel-griffin.pdf",
     r2Key: "03-nawab-mohsin-ul-mulk/response-to-lepel-griffin.pdf",
     verify: [
@@ -600,7 +600,7 @@ export const works: Work[] = [
     bytes: 1552478,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "His stated position on the Muslim university question, the campaign to turn the Aligarh college into a degree-granting university independent of government control, and the issue on which he eventually resigned the trust secretaryship.",
+      "His stated position on the Muslim university question — the campaign to turn the Aligarh college into a degree-granting university independent of government control, and the issue on which he eventually resigned the trust secretaryship.",
     sourceFile: "04-nawab-viqar-ul-mulk/aimu-se-mutaliq-raye.pdf",
     r2Key: "04-nawab-viqar-ul-mulk/aimu-se-mutaliq-raye.pdf",
     verify: [
@@ -658,7 +658,7 @@ export const works: Work[] = [
     bytes: 20084192,
     rights: "The underlying text is in the public domain, but this printing carries modern editorial apparatus that is likely still in copyright. Verify before redistribution.",
     intro:
-      "Written near the end of a long public life, and the only sustained first-person account by any of the ten of the negotiations that produced separate electorates, the Round Table Conferences and partition. He was present at all of them, which is a claim none of the others can make.",
+      "Written near the end of a long public life, and the only sustained first-person account by any of the eleven of the negotiations that produced separate electorates, the Round Table Conferences and partition. He was present at all of them, which is a claim none of the others can make.",
     sourceFile: "05-aga-khan-iii/memoirs-world-enough-and-time.pdf",
     r2Key: "05-aga-khan-iii/memoirs-world-enough-and-time.pdf",
     verify: [
@@ -678,7 +678,7 @@ export const works: Work[] = [
     bytes: 6076950,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "Twenty-four pages, and the only item held for him. A call to action in the Khilafat register, the form he worked in, which was the meeting and the pamphlet rather than the book. That this shelf is nearly empty is a fact about how he worked, not a gap in the archive.",
+      "Twenty-four pages, and the only item held for him. A call to action in the Khilafat register — the form he worked in, which was the meeting and the pamphlet rather than the book. That this shelf is nearly empty is a fact about how he worked, not a gap in the archive.",
     sourceFile: "06-maulana-shaukat-ali/paigham-e-amal.pdf",
     r2Key: "06-maulana-shaukat-ali/paigham-e-amal.pdf",
     verify: [
@@ -750,7 +750,7 @@ export const works: Work[] = [
     bytes: 38016667,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "On the Saudi conquest of the Hijaz and the question of who should hold custody of the holy cities, the issue that occupied the Khilafat movement after the caliphate itself was abolished, and that split it.",
+      "On the Saudi conquest of the Hijaz and the question of who should hold custody of the holy cities — the issue that occupied the Khilafat movement after the caliphate itself was abolished, and that split it.",
     sourceFile: "07-maulana-muhammad-ali-jauhar/problem-of-hijaz-and-the-ibn-sauds.pdf",
     r2Key: "07-maulana-muhammad-ali-jauhar/problem-of-hijaz-and-the-ibn-sauds.pdf",
     verify: [
@@ -788,7 +788,7 @@ export const works: Work[] = [
     bytes: 178799091,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "Verse written during imprisonment. Twenty-six pages, and the most personal document on this shelf: the same voice as the leading articles, with the audience removed.",
+      "Verse written during imprisonment. Twenty-six pages, and the most personal document on this shelf — the same voice as the leading articles, with the audience removed.",
     scanNote:
       "Scanned at very high resolution: twenty-six pages occupy a hundred and seventy megabytes. Read it in the viewer rather than downloading it unless you need the full-resolution image.",
     sourceFile: "07-maulana-muhammad-ali-jauhar/jazbaat-e-jauhar.pdf",
@@ -960,12 +960,12 @@ export const works: Work[] = [
     bytes: 40980920,
     rights: "Public domain in Pakistan, where copyright runs for the author's life plus fifty years. Rights in the scan itself may rest separately with the institution that produced it.",
     intro:
-      "A reply, a century late, to Goethe's West-östlicher Divan, an East answering a West that had addressed it. Written partly in response to the intellectual exhaustion he saw in post-war Europe.",
+      "A reply, a century late, to Goethe's West-östlicher Divan — an East answering a West that had addressed it. Written partly in response to the intellectual exhaustion he saw in post-war Europe.",
     sourceFile: "09-allama-muhammad-iqbal/payam-e-mashriq.pdf",
     r2Key: "09-allama-muhammad-iqbal/payam-e-mashriq.pdf",
     verify: [
       "Downloaded from a web aggregator rather than a named library or press; the specific printing behind this scan has not been identified.",
-      "Confirm page count and completeness; 235 pages is plausible for this collection but has not been checked against a reference edition.",
+      "Confirm page count and completeness — 235 pages is plausible for this collection but has not been checked against a reference edition.",
     ],
   },
   {
@@ -1026,7 +1026,7 @@ export const works: Work[] = [
     r2Key: "09-allama-muhammad-iqbal/pas-cheh-bayad-kard.pdf",
     verify: [
       "The 1936 date is from general knowledge.",
-      "The 812-page extent is far longer than typical standalone printings of this poem and has not been explained; check what else this particular scan contains before citing it as the poem alone.",
+      "The 812-page extent is far longer than typical standalone printings of this poem and has not been explained — check what else this particular scan contains before citing it as the poem alone.",
       "Downloaded from a web aggregator rather than a named library or press.",
     ],
   },
@@ -1123,7 +1123,7 @@ export const works: Work[] = [
     sourceFile: "09-allama-muhammad-iqbal/the-development-of-metaphysics-in-persia.pdf",
     r2Key: "09-allama-muhammad-iqbal/the-development-of-metaphysics-in-persia.pdf",
     verify: [
-      "Pointed at an existing Internet Archive copy (developmentofmet032082mbp) whose title and creator match this thesis exactly, rather than at an upload of the local file; the two appear to be the same scan.",
+      "Pointed at an existing Internet Archive copy (developmentofmet032082mbp) whose title and creator match this thesis exactly, rather than at an upload of the local file — the two appear to be the same scan.",
       "The 1908 date is from general knowledge.",
     ],
   },
@@ -1147,23 +1147,41 @@ export const works: Work[] = [
     ],
   },
   {
-    slug: "speeches-1947",
+    slug: "all-speeches-statements-and-quotations",
     figure: "quaid-e-azam",
-    title: "Speeches",
+    title: "All Speeches, Statements and Quotations",
     year: "",
-    kind: "Speeches",
+    kind: "Compilation",
     lang: "English",
-    pages: 5,
-    bytes: 135138,
+    pages: 233,
+    bytes: 16714105,
     rights: "The underlying text is in the public domain, but this printing carries modern editorial apparatus that is likely still in copyright. Verify before redistribution.",
     intro:
-      "A short compilation of a handful of his speeches from around independence, opening with the address to the Constituent Assembly of 14 August 1947. Five pages: a starting point rather than a collection, and the only item currently held for him.",
-    sourceFile: "10-quaid-e-azam/speeches-1947.pdf",
-    r2Key: "10-quaid-e-azam/speeches-1947.pdf",
+      "A comprehensive compilation of his speeches, statements and quotations, replacing the five-page starting point this shelf held before. He wrote no books, so a compilation drawn from the public record is the form his corpus takes here.",
+    sourceFile: "10-quaid-e-azam/all-speeches-statements-and-quotations.pdf",
     verify: [
-      "Downloaded from a web aggregator (ilide.info) rather than a named archive or press; the compiler and date of this particular compilation are unknown, and it may be a recent, separately copyrighted arrangement even though the speeches themselves are official records.",
-      "Only a few speeches are included; confirm exactly which ones before citing this as representative of his oratory rather than as a sample.",
-      "This replaces an earlier, corrupted browser download that could not be opened; the figure's biography text (\"he wrote no books\") still describes this file accurately.",
+      "The compiler, publisher and date of this compilation are not yet established — confirm before citing it as an edited or authoritative edition rather than an assembled one.",
+      "Replaces the earlier five-page speeches-1947.pdf, which is now removed from the catalogue.",
+    ],
+  },
+  {
+    slug: "pakistan-the-heart-of-asia",
+    figure: "liaquat-ali-khan",
+    title: "Pakistan: The Heart of Asia",
+    year: "1950",
+    kind: "Speeches",
+    lang: "English",
+    pages: 168,
+    bytes: 6538388,
+    rights: "The underlying text is in the public domain, but this printing carries modern editorial apparatus that is likely still in copyright. Verify before redistribution.",
+    intro:
+      "The speeches of the tour of the United States and Canada in May and June 1950: a new country's prime minister explaining it to an audience that had barely heard of it. It is the only document in this collection written from inside the state rather than in argument for it.",
+    sourceFile: "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
+    r2Key: "11-liaquat-ali-khan/pakistan-the-heart-of-asia.pdf",
+    verify: [
+      "The 1950 date is taken from the title, which is explicit.",
+      "Published 1950; its author died in 1951, so it is likely still in copyright in Pakistan. Check before uploading.",
+      "This file was found unfiled at the root of the collection and has been moved into a folder for Liaquat Ali Khan.",
     ],
   },
 ];
