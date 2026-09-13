@@ -1159,6 +1159,7 @@ export const works: Work[] = [
     intro:
       "A comprehensive compilation of his speeches, statements and quotations, replacing the five-page starting point this shelf held before. He wrote no books, so a compilation drawn from the public record is the form his corpus takes here.",
     sourceFile: "10-quaid-e-azam/all-speeches-statements-and-quotations.pdf",
+    r2Key: "10-quaid-e-azam/all-speeches-statements-and-quotations.pdf",
     verify: [
       "The compiler, publisher and date of this compilation are not yet established — confirm before citing it as an edited or authoritative edition rather than an assembled one.",
       "Replaces the earlier five-page speeches-1947.pdf, which is now removed from the catalogue.",
