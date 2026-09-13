@@ -1,3 +1,4 @@
+import Image from "next/image";
 import FigurePlate from "@/components/FigurePlate";
 import ChaiButton from "@/components/ChaiButton";
 import UrduText from "@/components/UrduText";
@@ -22,18 +23,37 @@ export default function Home() {
               <span className={`${styles.corner} ${styles.cornerBL}`} aria-hidden="true" />
               <span className={`${styles.corner} ${styles.cornerBR}`} aria-hidden="true" />
 
-              <UrduText as="h2" className={`urdu-display ${styles.titleUrdu}`} align="center">
-                بانیانِ پاکستان
-              </UrduText>
+              {/* The frontispiece: a photographic plate bound into the head of
+                  the illuminated leaf, before the title takes over. */}
+              <figure className={styles.frontispiece}>
+                <Image
+                  src="/site/frontispiece.jpg"
+                  alt="A group portrait of the founding fathers of Pakistan"
+                  width={619}
+                  height={420}
+                  sizes="(max-width: 760px) 100vw, 760px"
+                  className={styles.frontispieceImg}
+                  priority
+                />
+                <figcaption className={`label ${styles.frontispieceCaption}`}>
+                  The founders, together
+                </figcaption>
+              </figure>
 
-              <div className={`illum ${styles.titleRule}`} aria-hidden="true" />
+              <div className={styles.sarlauhBody}>
+                <UrduText as="h2" className={`urdu-display ${styles.titleUrdu}`} align="center">
+                  بانیانِ پاکستان
+                </UrduText>
 
-              <h1 className={`display ${styles.title}`}>
-                Founding Fathers
-                <br />
-                of Pakistan
-              </h1>
-              <div className={styles.subtitle}>a reading collection of primary works</div>
+                <div className={`illum ${styles.titleRule}`} aria-hidden="true" />
+
+                <h1 className={`display ${styles.title}`}>
+                  Founding Fathers
+                  <br />
+                  of Pakistan
+                </h1>
+                <div className={styles.subtitle}>a reading collection of primary works</div>
+              </div>
 
               {/* The foot of the panel is a band of the ground itself, so the
                   leaf reads as mounted rather than as printed on. */}

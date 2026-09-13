@@ -35,9 +35,30 @@
   color: var(--ink);
   border: 2px solid var(--bronze);
   border-radius: 50% 50% 0 0 / 20% 20% 0 0;
-  padding: clamp(40px, 6vw, 64px) clamp(20px, 4vw, 40px) 0;
   text-align: center;
   overflow: hidden;
+}
+
+.sarlauhBody {
+  padding: clamp(28px, 4vw, 40px) clamp(20px, 4vw, 40px) 0;
+}
+
+/* The plate is bound flush into the dome of the panel, its own top corners cut
+   by the sarlauh's radius rather than carrying a radius of its own. */
+.frontispiece {
+  margin: 0;
+  border-bottom: 1px solid var(--rule-bronze);
+}
+
+.frontispieceImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.frontispieceCaption {
+  padding: 9px 0 10px;
+  color: var(--muted);
 }
 
 /* Quarter-round flourishes in the corners — the mark a limner leaves where two
@@ -93,7 +114,7 @@
 }
 
 .foot {
-  margin: 0 clamp(-20px, -4vw, -40px);
+  margin: 0;
   height: 6px;
   background: var(--ground);
   border-top: 2px solid var(--bronze);
