@@ -2,21 +2,14 @@ import Image from "next/image";
 import FigurePlate from "@/components/FigurePlate";
 import ChaiButton from "@/components/ChaiButton";
 import UrduText from "@/components/UrduText";
-import { figures, worksFor, lifespan } from "@/lib/catalogue";
+import { figures, worksFor } from "@/lib/catalogue";
 import styles from "./page.module.css";
-
-/* The eleven are laid out as a facing spread — six on the verso, five on the
-   recto — divided by a ruled gutter, the way an album opens. */
-const VERSO = figures.slice(0, 6);
-const RECTO = figures.slice(6);
 
 export default function Home() {
   return (
     <main className={`${styles.main} soft-in`}>
-      {/* ── f. 1r · the sarlauh, the illuminated opening leaf ── */}
+      {/* ── the sarlauh, the illuminated opening leaf ── */}
       <section className={styles.opening}>
-        <div className={`folio ${styles.folioRight}`}>f. 1r</div>
-
         <div className="mount">
           <div className={styles.mountInner}>
             <div className={`${styles.sarlauh} speck`}>
@@ -31,7 +24,7 @@ export default function Home() {
                   alt="A group portrait of the founding fathers of Pakistan"
                   width={619}
                   height={420}
-                  sizes="(max-width: 760px) 100vw, 760px"
+                  sizes="(max-width: 900px) 100vw, 900px"
                   className={styles.frontispieceImg}
                   priority
                 />
@@ -60,77 +53,41 @@ export default function Home() {
               <div className={styles.foot} aria-hidden="true" />
             </div>
 
-            <div className={styles.lead}>
-              <p className={styles.leadEn}>
-                Between {lifespan.from} and 1950 a small number of men argued a country into
-                existence: in treatises, law reports, pamphlets, newspapers, poetry and speeches.
-                Among them were a district judge, a High Court barrister, a philosopher-poet, two
-                nawabs of the Aligarh trust, a hereditary Imam, a pair of brothers who ran a
-                newspaper, and a student at Cambridge who coined the name. They disagreed with one
-                another, frequently and in print.
-              </p>
-
-              <div className={`gutter ${styles.leadGutter}`} aria-hidden="true" />
-
-              <UrduText as="p" className={styles.leadUr}>
-                ۱۸۴۷ء اور ۱۹۵۰ء کے درمیان چند افراد نے ایک ملک کو دلیل کے زور پر وجود میں لایا،
-                رسالوں، عدالتی فیصلوں، پمفلٹوں، اخبارات، شاعری اور تقریروں کے ذریعے۔ اِن میں ایک
-                ضلعی جج، ہائی کورٹ کا ایک بیرسٹر، ایک فلسفی شاعر، علی گڑھ ٹرسٹ کے دو نواب، ایک
-                موروثی امام، ایک اخبار چلانے والے دو بھائی، اور کیمبرج کا ایک طالبِ علم شامل تھے جس
-                نے اِس ملک کا نام تجویز کیا۔ وہ ایک دوسرے سے اختلاف کرتے رہے، بار بار اور طبع شدہ
-                صورت میں۔
-              </UrduText>
-            </div>
-
-            <p className={styles.leadClose}>
-              This is their writing, gathered and read in place. Each figure opens to a life and a
-              shelf; each work opens to its own page, with an introduction and the document itself.
-              Nothing here is summarised in place of being shown, and where the record is thin the
-              page says so.
-            </p>
-
-            <p className={styles.leadClose}>
+            <p className={styles.lead}>
               The founding fathers of Pakistan, as described by Ahmad Hasan Dani in his book, and
               all of their works, now in the public domain, are presented here for accessible
-              viewing. If you like this collection or have benefitted from it, consider buying us
-              a chaye or coffee. Pakistan Zindabad.
+              viewing. Among them were a district judge, a High Court barrister, a
+              philosopher-poet, two nawabs of the Aligarh trust, a hereditary Imam, a pair of
+              brothers who ran a newspaper, and a student at Cambridge who coined the name.
             </p>
+
+            <p className={styles.leadClose}>
+              All of their writings are gathered here for the one interested to view. If you like
+              this collection or have benefitted from it, consider buying us a chai or coffee.
+              Funding also helps us keep the website up. Pakistan Zindabad.
+            </p>
+
+            <ChaiButton />
           </div>
         </div>
       </section>
 
-      {/* ── f. 2r · the eleven, as a facing spread ── */}
+      {/* ── the eleven ── */}
       <section className={styles.section}>
         <div className={styles.sectionHead}>
           <span className="diamond" aria-hidden="true" />
           <h2 className={`display ${styles.sectionTitle}`}>The Eleven</h2>
-          <span className={styles.sectionFill} aria-hidden="true" />
         </div>
         <div className={`illum ${styles.sectionRule}`} aria-hidden="true" />
 
-        <div className={styles.spread}>
-          <div className={styles.leaf}>
-            {VERSO.map((f, i) => (
-              <FigurePlate key={f.slug} figure={f} workCount={worksFor(f.slug).length} index={i} />
-            ))}
-          </div>
-
-          <div className={`gutter ${styles.gutter}`} aria-hidden="true" />
-
-          <div className={styles.leaf}>
-            {RECTO.map((f, i) => (
-              <FigurePlate
-                key={f.slug}
-                figure={f}
-                workCount={worksFor(f.slug).length}
-                index={i + VERSO.length}
-              />
-            ))}
-          </div>
+        {/* One centred grid rather than a two-leaf spread: with eleven plates a
+            split always leaves a gap, and a centred last row reads as complete. */}
+        <div className={styles.grid}>
+          {figures.map((f, i) => (
+            <FigurePlate key={f.slug} figure={f} workCount={worksFor(f.slug).length} index={i} />
+          ))}
         </div>
       </section>
-
-      <ChaiButton />
 
       <footer className={styles.footer}>
         <a

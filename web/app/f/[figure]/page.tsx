@@ -49,7 +49,6 @@ export default async function FigurePage({ params }: { params: Promise<{ figure:
           <div className={styles.spread}>
             {/* ── verso: the shelf ── */}
             <div className={styles.verso}>
-              <div className={styles.folio}>f. {Number(figure.n)}v · Works held</div>
               <h3 className={`display ${styles.versoTitle}`}>The shelf</h3>
               <div className={`illum ${styles.versoRule}`} aria-hidden="true" />
 
@@ -94,8 +93,6 @@ export default async function FigurePage({ params }: { params: Promise<{ figure:
 
             {/* ── recto: the portrait and the life ── */}
             <div className={styles.recto}>
-              <div className={`${styles.folio} ${styles.folioRight}`}>f. {Number(figure.n)}r</div>
-
               <div className={styles.head}>
                 <div className={`${styles.portraitFrame} hatch`}>
                   <div className={styles.portraitWindow}>
@@ -138,8 +135,8 @@ export default async function FigurePage({ params }: { params: Promise<{ figure:
       </div>
 
       {/* The way back. It sits at the foot of the leaf rather than above it,
-          because the head of a leaf in this album carries a folio mark and a
-          name, never navigation — and it is the same row the work page ends on,
+          because the head of a leaf in this album carries a name, never
+          navigation — and it is the same row the work page ends on,
           so the route back is in the same place at every depth. */}
       <nav className={styles.foot}>
         <Link href="/" className={styles.footLink}>

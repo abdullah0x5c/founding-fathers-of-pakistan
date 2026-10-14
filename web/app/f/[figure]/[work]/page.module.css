@@ -1,5 +1,5 @@
 .main {
-  max-width: 1180px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 clamp(16px, 4vw, 40px) clamp(32px, 6vw, 80px);
 }
@@ -36,12 +36,6 @@
   padding: 0 8px;
 }
 
-.fill {
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
-}
-
 .headRule {
   margin-bottom: 34px;
 }
@@ -71,8 +65,7 @@
 }
 
 .title {
-  font-size: clamp(1.1875rem, 2.2vw, 1.6875rem);
-  letter-spacing: 0.07em;
+  font-size: clamp(1.875rem, 3.4vw, 2.625rem);
   color: var(--gold);
   margin: 4px 0 0;
   text-wrap: balance;
@@ -129,8 +122,7 @@
 
 .editionLabel {
   font-family: var(--display);
-  font-size: 1rem;
-  letter-spacing: 0.04em;
+  font-size: 1.25rem;
   color: var(--on-ground);
 }
 
@@ -195,8 +187,7 @@
 
 .colophonHead {
   text-align: center;
-  font-size: 0.875rem;
-  letter-spacing: 0.2em;
+  font-size: 1.5rem;
   color: var(--rubric);
   margin-bottom: 6px;
 }

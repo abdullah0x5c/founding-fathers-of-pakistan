@@ -1,21 +1,15 @@
 .main {
-  max-width: 1180px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 clamp(16px, 4vw, 40px);
 }
 
 /* --------------------------------------------------------------------------
-   f. 1r — the sarlauh
+   The sarlauh
    -------------------------------------------------------------------------- */
 
 .opening {
   padding: 56px 0 clamp(56px, 8vw, 104px);
-}
-
-.folioRight {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
 }
 
 .mountInner {
@@ -29,7 +23,7 @@
    of the ornamental block that opens a manuscript. */
 .sarlauh {
   position: relative;
-  max-width: 760px;
+  max-width: 900px;
   margin: 0 auto;
   background-color: var(--paper);
   color: var(--ink);
@@ -101,7 +95,7 @@
 }
 
 .title {
-  font-size: clamp(1.3125rem, 2.7vw, 2.0625rem);
+  font-size: clamp(1.875rem, 3.6vw, 2.75rem);
   color: var(--ink);
   margin: 0 0 8px;
 }
@@ -120,45 +114,24 @@
   border-top: 2px solid var(--bronze);
 }
 
-/* The lead, set as two facing columns of one argument in two languages. Neither
-   is a translation caption of the other; they are the same paragraph, ruled
-   apart, and they are given equal width on purpose. */
 .lead {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  max-width: 980px;
+  max-width: 820px;
   margin: 52px auto 0;
-}
-
-.leadEn {
-  flex: 1 1 320px;
-  min-width: 0;
-  margin: 0;
   color: var(--on-ground-92);
+  font-size: 1.125rem;
   text-wrap: pretty;
 }
 
-.leadUr {
-  flex: 1 1 320px;
-  min-width: 0;
-  margin: 0;
-  font-size: 1rem;
-  line-height: 2.35;
-  color: var(--on-ground-92);
-}
-
 .leadClose {
-  max-width: 660px;
-  margin: 38px auto 0;
+  max-width: 820px;
+  margin: 28px auto 0;
   color: var(--on-ground-74);
   font-style: italic;
   text-wrap: pretty;
 }
 
 /* --------------------------------------------------------------------------
-   f. 2r — the eleven
+   The eleven
    -------------------------------------------------------------------------- */
 
 .section {
@@ -173,67 +146,48 @@
 }
 
 .sectionTitle {
-  font-size: 1.375rem;
-  letter-spacing: 0.14em;
+  font-size: clamp(1.875rem, 3vw, 2.375rem);
   color: var(--on-ground);
-}
-
-.sectionFill {
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
 }
 
 .sectionRule {
   margin-bottom: 38px;
 }
 
-/* The spread. Below 900px an album cannot open, so the gutter is withdrawn and
-   the two leaves run on as one column — the same reason a facsimile edition
-   prints a spread across a fold and a paperback does not. */
-.spread {
+/* Four plates to a row, centred, so the last row of three sits in the middle
+   rather than leaving an empty slot at its end. Flex rather than grid because
+   only flex can centre a short final row. */
+.grid {
+  --cols: 4;
+  --gap-x: 34px;
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
+  justify-content: center;
+  gap: 44px var(--gap-x);
 }
 
-.leaf {
-  flex: 1 1 380px;
+.grid > * {
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap-x)) / var(--cols));
   min-width: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 40px 30px;
-  align-content: start;
-  padding: 0 34px;
 }
 
-@media (max-width: 900px) {
-  .gutter {
-    display: none;
-  }
-
-  .leaf {
-    flex-basis: 100%;
-    padding: 0;
-  }
-
-  .leaf + .leaf {
-    margin-top: 40px;
+@media (max-width: 1000px) {
+  .grid {
+    --cols: 3;
   }
 }
 
-/* The two languages of the lead wrap below this; once they are stacked the
-   ruling between them would separate a paragraph from itself. */
 @media (max-width: 700px) {
-  .leadGutter {
-    display: none;
+  .grid {
+    --cols: 2;
+    --gap-x: 22px;
+    row-gap: 34px;
   }
 }
 
-@media (max-width: 560px) {
-  .leaf {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 34px 22px;
+@media (max-width: 340px) {
+  .grid {
+    --cols: 1;
   }
 }
 

@@ -37,7 +37,7 @@ export default function FigurePlate({
             src={figure.portrait}
             alt={`Portrait of ${figure.name}`}
             fill
-            sizes="(max-width: 700px) 45vw, (max-width: 1080px) 30vw, 260px"
+            sizes="(max-width: 340px) 90vw, (max-width: 700px) 45vw, (max-width: 1000px) 30vw, 320px"
             className={styles.portrait}
           />
         </div>

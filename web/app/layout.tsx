@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Gulzar, Noto_Nastaliq_Urdu } from "next/font/google";
+import { EB_Garamond, Inter, Gulzar, Noto_Nastaliq_Urdu } from "next/font/google";
 import JaliOverlay from "@/components/JaliOverlay";
 import ArchDefs from "@/components/ArchDefs";
 import "./globals.css";
 
-// Inter, at 700/bold, carries the display role — headings and titles.
-const display = Inter({
+// EB Garamond carries the display role — headings and titles — set in mixed
+// case, larger than the running text so a heading never reads as a label.
+const display = EB_Garamond({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["500", "600", "700"],
   variable: "--font-display",
   display: "swap",
 });
 
-// Inter also carries the running text and the catalogue labels: 400/regular for
-// prose, 600/semibold for the small-caps labels and folio marks (Inter has no
+// Inter carries the running text and the catalogue labels: 400/regular for
+// prose, 600/semibold for the small-caps labels (Inter has no
 // real small-caps glyphs, so those roles fall back to weight for distinction).
 const body = Inter({
   subsets: ["latin"],
@@ -54,10 +55,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={`${display.variable} ${body.variable} ${urduDisplay.variable} ${urdu.variable}`}
-      >
+    // The font variables go on <html>, not <body>: the type tokens in globals.css
+    // are declared on :root and resolve there, so the variables must exist there.
+    <html
+      lang="en"
+      className={`${display.variable} ${body.variable} ${urduDisplay.variable} ${urdu.variable}`}
+    >
+      <body>
         {/* No site header and no site footer, anywhere. Every route here is a
             leaf of an album, and a leaf does not carry a menu bar across its
             head or a strip of links along its foot. Navigation lives inside the
