@@ -1,14 +1,13 @@
 /* Narrower than the album's leaves. This is a single sheet slipped into the
    back of the binding, not a spread, so it is set to one column of text. */
 .main {
-  max-width: 880px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 56px clamp(16px, 4vw, 40px) clamp(56px, 8vw, 90px);
 }
 
 .top {
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
   margin-bottom: 20px;
 }
@@ -128,8 +127,7 @@
 }
 
 .accountLabel {
-  font-size: 0.875rem;
-  letter-spacing: 0.16em;
+  font-size: 1.5rem;
   color: var(--rubric);
   margin-bottom: 4px;
 }
@@ -211,15 +209,8 @@
 }
 
 .noteTitle {
-  font-size: 0.875rem;
-  letter-spacing: 0.18em;
+  font-size: 1.5rem;
   color: var(--gold);
-}
-
-.noteFill {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(201, 162, 39, 0.55), rgba(201, 162, 39, 0));
 }
 
 .noteEn {

@@ -17,7 +17,6 @@ export default function ChaiPage() {
         <Link href="/" className={styles.back}>
           ← back to the album
         </Link>
-        <span className="folio">f. 5r</span>
       </div>
 
       <div className="mount">
@@ -34,7 +33,7 @@ export default function ChaiPage() {
             <div className={`illum ${styles.titleRule}`} aria-hidden="true" />
 
             <UrduText as="p" className={styles.blurb}>
-              یہ مجموعہ کسی ادارے کی مدد کے بغیر، فرصت کے وقت میں تیار کیا گیا ہے۔ اسکین جمع کرنے،
+              یہ مجموعہ کسی ادارے کی مدد کے بغیر تیار کیا گیا ہے۔ اسکین جمع کرنے،
               محفوظ رکھنے اور صفحہ بہ صفحہ درست کرنے کا کام جاری ہے۔ اگر آپ چاہیں تو ایک چائے کے
               برابر مدد بھیج سکتے ہیں۔ اِس سے ہوسٹنگ کا خرچ اور اگلے اسکین کی گنجائش نکلتی ہے۔
             </UrduText>
@@ -83,7 +82,6 @@ export default function ChaiPage() {
             <div className={styles.noteHead}>
               <span className="diamond" aria-hidden="true" />
               <span className={`display ${styles.noteTitle}`}>Please write a note</span>
-              <span className={styles.noteFill} aria-hidden="true" />
             </div>
 
             <p className={styles.noteEn}>

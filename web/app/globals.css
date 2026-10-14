@@ -50,10 +50,10 @@
   /* viewer stage */
   --stage: #0b2c20;
 
-  /* type. Inter carries both roles: Bold for display, set in capitals with wide
-     tracking; Regular/Semibold for the text face, with Semibold standing in for
-     the small caps the catalogue labels are set in. */
-  --display: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+  /* type. EB Garamond for display, in mixed case; Inter Regular/Semibold for the
+     text face, with Semibold standing in for the small caps the catalogue labels
+     are set in. */
+  --display: var(--font-display), Garamond, "Times New Roman", serif;
   --body: var(--font-body), "Helvetica Neue", Arial, sans-serif;
   --urdu: var(--font-urdu), serif;
   --urdu-display: var(--font-urdu-display), var(--font-urdu), serif;
@@ -117,12 +117,12 @@ img {
    Type roles
    -------------------------------------------------------------------------- */
 
-/* Inter Bold, set as a Roman inscription: capitals, wide tracking. */
+/* EB Garamond, set in mixed case. Every heading is larger than the running
+   text, so size does the work the old tracked capitals did. */
 .display {
   font-family: var(--display);
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.005em;
   line-height: 1.16;
   margin: 0;
 }
@@ -138,16 +138,6 @@ img {
   font-size: 0.9375rem;
   letter-spacing: 0.06em;
   text-transform: lowercase;
-}
-
-/* The folio mark in the corner of a leaf: "f. 1r", "f. 3v". */
-.folio {
-  font-family: var(--body);
-  font-weight: 600;
-  font-variant: small-caps;
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
-  color: var(--on-ground-74);
 }
 
 /* Nastaliq descends steeply across the line; anything under ~2.0 collides.

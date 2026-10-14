@@ -49,8 +49,6 @@ export default async function WorkPage({
           <span className={styles.dot}>·</span>
           {work.year || "undated"}
         </span>
-        <span className={styles.fill} aria-hidden="true" />
-        <span className="folio">f. {Number(figure.n)}r</span>
       </div>
       <div className={`illum ${styles.headRule}`} aria-hidden="true" />
 

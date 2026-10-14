@@ -1,5 +1,5 @@
 .main {
-  max-width: 1180px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 clamp(16px, 4vw, 40px);
 }
@@ -16,16 +16,9 @@
 }
 
 .title {
-  font-size: clamp(1.25rem, 2.6vw, 1.625rem);
-  letter-spacing: 0.14em;
+  font-size: clamp(2rem, 4vw, 2.75rem);
   color: var(--on-ground);
   margin: 0;
-}
-
-.fill {
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
 }
 
 .body {
@@ -36,24 +29,23 @@
   align-items: flex-start;
 }
 
-/* Body text sits at 62–72 characters. Wider than that is the commonest
-   self-taught mistake and it reads as amateur immediately. */
+/* Body text sits at around 80 characters — wide enough to use the page, short
+   enough that the eye finds the start of the next line. */
 .prose {
   flex: 1 1 460px;
-  max-width: 68ch;
+  max-width: 80ch;
   margin-top: clamp(24px, 3vw, 40px);
 }
 
-/* Section heads are rubric small capitals with a hanging rule, the way a
-   chapter opening is marked in a manuscript rather than by size alone. */
+/* Section heads are Garamond in gold, set well above the text size, with a
+   hanging rule beneath. */
 .prose h2 {
   font-family: var(--display);
-  font-size: 0.9375rem;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+  font-weight: 600;
+  line-height: 1.2;
   color: var(--gold);
-  margin: 44px 0 6px;
+  margin: 48px 0 14px;
 }
 
 .prose h2::after {
@@ -106,9 +98,8 @@
 
 .ledgerHead {
   font-family: var(--display);
-  font-size: 0.875rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 1.375rem;
+  font-weight: 600;
   color: var(--rubric);
   padding-bottom: 12px;
   border-bottom: 1px solid var(--rule-bronze);
